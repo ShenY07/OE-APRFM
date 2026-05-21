@@ -1,6 +1,6 @@
-# Asymptotic Preserving Random Feature Method for Multiscale Radiative Transfer Equations
+# Mitigating Ill-Conditioning in Asymptotic Preserving Random Feature Methods for Multiscale Radiative Transfer Equations via Parity Embedding
 
-Keke Wu
+Yan Shen
 Email: wukekever@ustc.edu.cn
 
 School of Mathematical Sciences and Suzhou Institute for Advanced Research, University of Science and Technology of China
