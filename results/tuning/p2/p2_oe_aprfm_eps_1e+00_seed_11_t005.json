@@ -1,0 +1,32 @@
+{
+  "problem": "p2",
+  "method": "oe_aprfm",
+  "epsilon": 1.0,
+  "seed": 11,
+  "relative_l2_f": 0.05066145296698982,
+  "relative_l2_rho": 0.010559305671332675,
+  "condition_number": 1655535925.9236977,
+  "rank": 128,
+  "partitions": [
+    1,
+    1
+  ],
+  "strides": {
+    "v": 1.0,
+    "x": 1.0
+  },
+  "features_per_patch": 64,
+  "scale": 1.0,
+  "rcond": 1e-12,
+  "block_weights": [
+    4.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "feature_seconds": 5.363685064017773,
+  "assembly_seconds": 9.363838229328394,
+  "solve_seconds": 0.027886327356100082,
+  "evaluation_seconds": 1.9943599067628384,
+  "total_seconds": 16.749769527465105
+}

@@ -1,0 +1,132 @@
+{
+  "problem": "p1",
+  "method": "oe_aprfm",
+  "epsilon": 1.0,
+  "seed": 11,
+  "relative_l2_f": 6.96319435587436e-08,
+  "relative_l2_rho": 3.501119235742917e-08,
+  "residual_half": 4.178740171371391e-09,
+  "empirical_stability_ratio": 0.03993324678953509,
+  "condition_number": 10188344568541.719,
+  "rank": 77,
+  "coefficient_norm": 20.51082729545914,
+  "num_rows": 532,
+  "num_columns": 128,
+  "feature_seconds": 7.308066695928574,
+  "assembly_seconds": 11.637228958308697,
+  "solve_seconds": 0.00911683589220047,
+  "evaluation_seconds": 3.6331020817160606,
+  "total_seconds": 22.58751457184553,
+  "rcond": 1e-08,
+  "partitions": [
+    1,
+    1
+  ],
+  "strides": {
+    "v": 1.0,
+    "x": 1.0
+  },
+  "features_per_patch": 64,
+  "scale": 0.5,
+  "block_weights": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "collocation": {
+    "boundary": 14,
+    "interior": [
+      14,
+      14
+    ]
+  }
+}
+{
+  "problem": "p1",
+  "method": "oe_aprfm",
+  "epsilon": 0.001,
+  "seed": 11,
+  "relative_l2_f": 1.2481793505937786e-07,
+  "relative_l2_rho": 1.2306145020884538e-07,
+  "residual_half": 7.0868212649948e-09,
+  "empirical_stability_ratio": 0.02858979683738667,
+  "condition_number": 281474978214126.7,
+  "rank": 70,
+  "coefficient_norm": 21.953096297104082,
+  "num_rows": 532,
+  "num_columns": 128,
+  "feature_seconds": 7.308489162474871,
+  "assembly_seconds": 11.174948271363974,
+  "solve_seconds": 0.009332198649644852,
+  "evaluation_seconds": 3.444363486021757,
+  "total_seconds": 21.937133118510246,
+  "rcond": 1e-08,
+  "partitions": [
+    1,
+    1
+  ],
+  "strides": {
+    "v": 1.0,
+    "x": 1.0
+  },
+  "features_per_patch": 64,
+  "scale": 0.5,
+  "block_weights": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "collocation": {
+    "boundary": 14,
+    "interior": [
+      14,
+      14
+    ]
+  }
+}
+{
+  "problem": "p1",
+  "method": "oe_aprfm",
+  "epsilon": 1e-06,
+  "seed": 11,
+  "relative_l2_f": 1.2424227157782739e-07,
+  "relative_l2_rho": 1.2246603245818526e-07,
+  "residual_half": 7.084736876201734e-09,
+  "empirical_stability_ratio": 0.028717058811151965,
+  "condition_number": 281474978185998.8,
+  "rank": 70,
+  "coefficient_norm": 21.948774928037626,
+  "num_rows": 532,
+  "num_columns": 128,
+  "feature_seconds": 7.068064108490944,
+  "assembly_seconds": 11.141894176602364,
+  "solve_seconds": 0.008865617215633392,
+  "evaluation_seconds": 3.4187814593315125,
+  "total_seconds": 21.637605361640453,
+  "rcond": 1e-08,
+  "partitions": [
+    1,
+    1
+  ],
+  "strides": {
+    "v": 1.0,
+    "x": 1.0
+  },
+  "features_per_patch": 64,
+  "scale": 0.5,
+  "block_weights": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "collocation": {
+    "boundary": 14,
+    "interior": [
+      14,
+      14
+    ]
+  }
+}

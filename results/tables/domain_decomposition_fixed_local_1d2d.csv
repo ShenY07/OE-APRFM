@@ -1,0 +1,13 @@
+dimension,epsilon,partition,spatial_patches,features_per_patch,total_features,num_coefficients,relative_l2_f,relative_l2_rho,condition_number,total_seconds,file
+1D,1.0,1,1,64,64,128,5.220743306348391e-07,,787727130.1332442,56.46359970420599,results/domain_decomposition/1d_fixed_local/p1_oe_aprfm_eps_1e+00_seed_11_dd_fixedlocal_p11_f64.json
+1D,1.0,2,2,64,128,256,9.676928383865815e-07,,1776736728.438695,65.96317248418927,results/domain_decomposition/1d_fixed_local/p1_oe_aprfm_eps_1e+00_seed_11_dd_fixedlocal_p21_f64.json
+1D,1.0,4,4,64,256,512,7.416997152466772e-05,,129294771832.9847,51.74055866152048,results/domain_decomposition/1d_fixed_local/p1_oe_aprfm_eps_1e+00_seed_11_dd_fixedlocal_p41_f64.json
+1D,0.001,1,1,64,64,128,3.751221944922262e-07,,11216036478.596209,57.222569070756435,results/domain_decomposition/1d_fixed_local/p1_oe_aprfm_eps_1e-03_seed_11_dd_fixedlocal_p11_f64.json
+1D,0.001,2,2,64,128,256,1.391860131283262e-06,,39146498905.4235,72.39741627499461,results/domain_decomposition/1d_fixed_local/p1_oe_aprfm_eps_1e-03_seed_11_dd_fixedlocal_p21_f64.json
+1D,0.001,4,4,64,256,512,0.0002994364643291756,,14066682624925.326,52.72496012598276,results/domain_decomposition/1d_fixed_local/p1_oe_aprfm_eps_1e-03_seed_11_dd_fixedlocal_p41_f64.json
+2D,1.0,1x1,1,64,64,128,0.0703272233140088,0.05381493012130611,45100.84642692166,236.4859906360507,results/quadrant/domain_decomposition_fixed_local/p3_oe_aprfm_eps_1e+00_seed_11_dd_fixedlocal_p111_f64.json
+2D,1.0,2x1,2,64,128,256,0.054046143850431376,0.025716825811888753,43618.07152042631,375.04500038549304,results/quadrant/domain_decomposition_fixed_local/p3_oe_aprfm_eps_1e+00_seed_11_dd_fixedlocal_p211_f64.json
+2D,1.0,2x2,4,64,256,512,0.050791690571966565,0.034957036000197596,84630.11978940787,890.2415766790509,results/quadrant/domain_decomposition_fixed_local/p3_oe_aprfm_eps_1e+00_seed_11_dd_p221_f64.json
+2D,0.001,1x1,1,64,64,128,0.030455626278351484,0.027201977938949125,108594.86622732138,222.27870254218578,results/quadrant/domain_decomposition_fixed_local/p3_oe_aprfm_eps_1e-03_seed_11_dd_fixedlocal_p111_f64.json
+2D,0.001,2x1,2,64,128,256,0.04311762612638997,0.04216863251537772,168131.2476669941,380.61150160059333,results/quadrant/domain_decomposition_fixed_local/p3_oe_aprfm_eps_1e-03_seed_11_dd_fixedlocal_p211_f64.json
+2D,0.001,2x2,4,64,256,512,0.03372531107932853,0.033649628971511886,305210.1864492769,858.0862486213446,results/quadrant/domain_decomposition_fixed_local/p3_oe_aprfm_eps_1e-03_seed_11_dd_p221_f64.json

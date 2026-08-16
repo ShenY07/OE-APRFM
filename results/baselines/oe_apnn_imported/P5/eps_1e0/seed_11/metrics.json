@@ -1,0 +1,28 @@
+{
+  "problem": "P5",
+  "epsilon": 1.0,
+  "seed": 11,
+  "status": "success",
+  "evaluation_status": "complete",
+  "best_step": 19800,
+  "steps": 20000,
+  "E_f": 0.0010481064962002315,
+  "E_rho": 0.00040793924082260856,
+  "loss_best": {
+    "total": 2.126681635749287e-06
+  },
+  "train_time_s": 776.9171974156052,
+  "parameter_count": 25730,
+  "peak_gpu_memory_mb": 153.48046875,
+  "n_int_per_step": 4096,
+  "n_bdy_per_step": 1024,
+  "n_int_total": 81920000,
+  "n_bdy_total": 20480000,
+  "quadrature_base_nodes": 16,
+  "dtype": "float64",
+  "device": "cuda:3",
+  "git_commit": "322f299e27cc297f1a9aae36b280cd20e02f5c41",
+  "compatibility_note": "archive solution is P3-like and does not match the current heterogeneous P5",
+  "inference_time_s": 3.3386979661881924,
+  "reconstruction_factor": 1.0
+}

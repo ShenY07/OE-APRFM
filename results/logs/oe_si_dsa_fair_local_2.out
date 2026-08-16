@@ -1,0 +1,18 @@
+SI+DSA iteration 1: difference=1.206730e+02
+{
+  "problem": "p2",
+  "method": "oe_si_dsa",
+  "epsilon": 1.0,
+  "grid": [
+    256,
+    128
+  ],
+  "tolerance": 1e-09,
+  "max_iterations": 500,
+  "iterations": 16,
+  "converged": true,
+  "relative_l2_f": null,
+  "relative_l2_rho": 0.0003608967278542766,
+  "runtime_seconds": 0.6839952245354652,
+  "final_difference": 2.6432055666356605e-10
+}

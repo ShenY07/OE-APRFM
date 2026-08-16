@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/sheny-y23/rte_oe/scripts/plot_three_seed_method_comparison.py", line 102, in <module>
+    main()
+  File "/home/sheny-y23/rte_oe/scripts/plot_three_seed_method_comparison.py", line 59, in main
+    rows = records()
+  File "/home/sheny-y23/rte_oe/scripts/plot_three_seed_method_comparison.py", line 51, in records
+    groups = [apnn, load_json(oe_paths, "OE-APRFM", problem, epsilon),
+  File "/home/sheny-y23/rte_oe/scripts/plot_three_seed_method_comparison.py", line 30, in load_json
+    "E_rho": float(data["relative_l2_rho"]),
+KeyError: 'relative_l2_rho'

@@ -1,0 +1,3 @@
+WARNING:2026-08-15 07:33:49,266:jax._src.xla_bridge:794: An NVIDIA GPU may be present on this machine, but a CUDA-enabled jaxlib is not installed. Falling back to cpu.
+Killed
+slurmstepd: error: Detected 1 oom_kill event in StepId=95415.batch. Some of the step tasks have been OOM Killed.

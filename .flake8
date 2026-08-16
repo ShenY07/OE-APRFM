@@ -1,0 +1,5 @@
+# Purpose: Flake8 compatibility settings for reproducible style checks.
+# Distinction: This complements pyproject.toml for environments using Flake8.
+[flake8]
+max-line-length = 79
+extend-ignore = E203

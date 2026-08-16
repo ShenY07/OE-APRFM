@@ -1,0 +1,18 @@
+{
+  "problem": "p3",
+  "method": "oe_si_dsa_krylov",
+  "epsilon": 0.001,
+  "grid": [
+    24,
+    24,
+    6
+  ],
+  "tolerance": 1e-09,
+  "max_iterations": 500,
+  "iterations": 249,
+  "converged": true,
+  "relative_l2_f": 0.0008054391269038592,
+  "relative_l2_rho": 0.0008054389932099651,
+  "runtime_seconds": 116.73880640417337,
+  "relative_residual": 9.631187150581175e-10
+}

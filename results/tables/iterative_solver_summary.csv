@@ -1,0 +1,3 @@
+problem,epsilon,method,spatial_resolution,full_velocity_resolution,tolerance,max_iterations,iterations,converged,final_difference,runtime_seconds
+p2,1.0,si_dsa,1024,512,1e-11,16384,19,true,4.1713084215302385e-12,0.9085144884884357
+p2,0.001,si_dsa,1024,512,1e-11,16384,1257,true,9.779207288944402e-12,49.65327072888613

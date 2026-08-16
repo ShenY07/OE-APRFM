@@ -1,0 +1,27 @@
+{
+  "problem": "P4",
+  "epsilon": 1.0,
+  "seed": 7,
+  "status": "success",
+  "evaluation_status": "complete",
+  "best_step": 18000,
+  "steps": 20000,
+  "E_f": 0.001141900159031724,
+  "E_rho": 0.0006399440637107974,
+  "loss_best": {
+    "total": 6.381371297032132e-07
+  },
+  "train_time_s": 855.1414309795946,
+  "inference_time_s": 76.00143091753125,
+  "parameter_count": 25730,
+  "peak_gpu_memory_mb": 153.72998046875,
+  "n_int_per_step": 4096,
+  "n_bdy_per_step": 1024,
+  "n_int_total": 81920000,
+  "n_bdy_total": 20480000,
+  "quadrature_base_nodes": 16,
+  "dtype": "float64",
+  "device": "cuda:3",
+  "git_commit": "322f299e27cc297f1a9aae36b280cd20e02f5c41",
+  "reconstruction_factor": 1.0
+}

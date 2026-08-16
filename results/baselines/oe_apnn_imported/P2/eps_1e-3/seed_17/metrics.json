@@ -1,0 +1,28 @@
+{
+  "problem": "P2",
+  "epsilon": 0.001,
+  "seed": 17,
+  "status": "success",
+  "evaluation_status": "complete",
+  "best_step": 20000,
+  "steps": 20000,
+  "E_f": 0.9847053858109848,
+  "E_rho": 0.643473646542396,
+  "loss_best": {
+    "total": 1.557491531056806e-06
+  },
+  "train_time_s": 493.05580538511276,
+  "parameter_count": 25474,
+  "peak_gpu_memory_mb": 152.7724609375,
+  "n_int_per_step": 4096,
+  "n_bdy_per_step": 1024,
+  "n_int_total": 81920000,
+  "n_bdy_total": 20480000,
+  "quadrature_base_nodes": 16,
+  "dtype": "float64",
+  "device": "cuda:3",
+  "git_commit": "322f299e27cc297f1a9aae36b280cd20e02f5c41",
+  "compatibility_note": "archive boundary/solution definition differs from the current P2 reference",
+  "inference_time_s": 12.413536369800568,
+  "reconstruction_factor": 1.0
+}

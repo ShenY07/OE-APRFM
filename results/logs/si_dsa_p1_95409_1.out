@@ -1,0 +1,23 @@
+SI+DSA iteration 1: difference=6.399577e+01
+SI+DSA iteration 100: difference=6.478740e-01
+SI+DSA iteration 200: difference=1.375021e-01
+SI+DSA iteration 300: difference=3.920498e-02
+SI+DSA iteration 400: difference=2.577990e-02
+SI+DSA iteration 500: difference=1.268114e-02
+{
+  "problem": "p1",
+  "method": "si_dsa",
+  "epsilon": 0.001,
+  "grid": [
+    256,
+    128
+  ],
+  "tolerance": 1e-09,
+  "max_iterations": 500,
+  "iterations": 500,
+  "converged": false,
+  "relative_l2_f": 0.009266588878990387,
+  "relative_l2_rho": 0.009266554439451385,
+  "runtime_seconds": 2.2835559621453285,
+  "final_difference": 0.01268114025576158
+}

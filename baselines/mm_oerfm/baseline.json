@@ -1,0 +1,71 @@
+{
+  "method": "MM-OERFM",
+  "formulation": "micro-macro",
+  "source": "/home/sheny-y23/rte",
+  "vendored_source": "baselines/mm_oerfm/original/src",
+  "result_root": "results/baselines/mm_oerfm",
+  "one_dimensional_assets": {
+    "constraint": "original/src/constraints/continuous1d.py",
+    "constructor": "original/src/modules/solution.py",
+    "sampler": "original/src/modules/generator.py",
+    "least_squares": "original/src/solver/least_square.py",
+    "micro_macro_notebook": "original/src/numerical/micro_macro.ipynb",
+    "source_iteration_notebook": "original/src/numerical/SI_1d.ipynb",
+    "dsa_source_iteration_notebook": "original/src/numerical/DSA_SI_1d.ipynb",
+    "rfm_notebook": "original/test/rte_1d_ex1.ipynb",
+    "matched_runner": "scripts/run_mm_aprfm_1d.py"
+  },
+  "comparison_protocol": {
+    "epsilons": [1.0, 0.001],
+    "theta_for_2d": [0.0, 1.5707963267948966],
+    "seeds": [11, 23, 37, 53, 71],
+    "reference_data": "reuse OE-OERFM P1-P5 references",
+    "metrics": [
+      "relative_l2_f",
+      "relative_l2_rho",
+      "condition_number",
+      "feature_seconds",
+      "assembly_seconds",
+      "solve_seconds",
+      "total_seconds"
+    ]
+  },
+  "experiments": {
+    "ex1_1d": {
+      "notebook": "original/test/ap_rte_1d_ex1.ipynb",
+      "configuration": "original/src/configuration/rte1d_settings_ex1_aprfm.py",
+      "comparison_target": "P1",
+      "status": "matched MM-APRFM runner submitted"
+    },
+    "ex2_1d": {
+      "notebook": "original/test/ap_rte_1d_ex2.ipynb",
+      "configuration": "original/src/configuration/rte1d_settings_ex2_aprfm.py",
+      "comparison_target": "P2",
+      "status": "matched MM-APRFM runner submitted"
+    },
+    "ex3_1d": {
+      "notebook": "original/test/ap_rte_1d_ex3.ipynb",
+      "configuration": "original/src/configuration/rte1d_settings_ex3_aprfm.py",
+      "comparison_target": null,
+      "status": "supplementary original case"
+    },
+    "ex4_2d": {
+      "notebook": "original/test/ap_rte_2d_ex4.ipynb",
+      "configuration": "original/src/configuration/rte2d_settings_ex4_aprfm.py",
+      "comparison_target": "P3",
+      "status": "matched full-angle MM-APRFM runner submitted"
+    },
+    "ex5_2d": {
+      "notebook": "original/test/ap_rte_2d_ex5.ipynb",
+      "configuration": "original/src/configuration/rte2d_settings_ex5_aprfm.py",
+      "comparison_target": "P4",
+      "status": "circular-hole adapter submitted"
+    },
+    "ex6_2d": {
+      "notebook": "original/test/ap_rte_2d_ex6.ipynb",
+      "configuration": "original/src/configuration/rte2d_settings_ex6_aprfm.py",
+      "comparison_target": "P5",
+      "status": "matched MM-APRFM runner submitted"
+    }
+  }
+}

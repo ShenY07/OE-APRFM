@@ -1,0 +1,27 @@
+{
+  "problem": "P3",
+  "epsilon": 0.001,
+  "seed": 17,
+  "status": "success",
+  "evaluation_status": "complete",
+  "best_step": 19800,
+  "steps": 20000,
+  "E_f": 0.12389053369393946,
+  "E_rho": 0.05617731042904995,
+  "loss_best": {
+    "total": 2.0958832326011717e-05
+  },
+  "train_time_s": 782.580602997914,
+  "inference_time_s": 55.73563878983259,
+  "parameter_count": 25730,
+  "peak_gpu_memory_mb": 153.478515625,
+  "n_int_per_step": 4096,
+  "n_bdy_per_step": 1024,
+  "n_int_total": 81920000,
+  "n_bdy_total": 20480000,
+  "quadrature_base_nodes": 16,
+  "dtype": "float64",
+  "device": "cuda:3",
+  "git_commit": "322f299e27cc297f1a9aae36b280cd20e02f5c41",
+  "reconstruction_factor": 1.0
+}

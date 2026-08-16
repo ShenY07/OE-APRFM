@@ -1,0 +1,58 @@
+{
+  "protocol": "oe-apnn-p1-p5-v1",
+  "problems": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5"
+  ],
+  "epsilons": [
+    1.0,
+    0.001
+  ],
+  "seed": 11,
+  "dtype": "float64",
+  "network": {
+    "separate_r_j": true,
+    "hidden_width": 64,
+    "hidden_transforms": 4,
+    "activation": "tanh",
+    "output_activation": "linear",
+    "initialization": "xavier_normal"
+  },
+  "optimizer": {
+    "name": "Adam",
+    "learning_rate": 0.001,
+    "scheduler": null
+  },
+  "training": {
+    "steps": 20000,
+    "interior_phase_samples": 4096,
+    "boundary_phase_samples": 1024,
+    "quadrature_base_nodes": 16,
+    "validation_interval": 200,
+    "loss_weights": {
+      "macro": 1.0,
+      "even": 1.0,
+      "odd": 1.0,
+      "boundary": 1.0
+    }
+  },
+  "evaluation": {
+    "deferred": true,
+    "note": "solution fields and reference errors are generated on a separate device"
+  },
+  "results_root": "results",
+  "problem": "P3",
+  "epsilon": 1.0,
+  "device": "cuda:3",
+  "gpu_name": "NVIDIA A800 80GB PCIe",
+  "torch": "2.5.1+cu121",
+  "cuda": "12.1",
+  "python": "3.10.12",
+  "parameter_count": 25730,
+  "array_axes": {
+    "solution": "space,direction,field"
+  }
+}
