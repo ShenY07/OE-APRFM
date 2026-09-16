@@ -1,0 +1,16 @@
+{
+  "output": "results/p7_transient_pilot/three_seed_J128",
+  "features": 128,
+  "seeds": [
+    11,
+    23,
+    37
+  ],
+  "epsilons": [
+    1,
+    0.01,
+    0.001
+  ],
+  "nx": 128,
+  "nt": 400
+}

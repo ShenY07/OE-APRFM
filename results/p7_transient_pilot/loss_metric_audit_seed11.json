@@ -1,0 +1,794 @@
+[
+  {
+    "method": "oe_ap",
+    "epsilon": 1,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 1,
+    "boundary_weight": 1,
+    "block_average": true,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 0.43119703705233337,
+        "weighted_loss": 1.369779880674366e-05
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.13675471188664265,
+        "weighted_loss": 1.6522222227771858e-05
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.2584249163566812,
+        "weighted_loss": 2.3098266774665274e-05
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.06862335770557071,
+        "weighted_loss": 6.0097945938123815e-05
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.006907583201888701,
+        "weighted_loss": 5.59552544151985e-07
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.13039539036269118,
+        "weighted_loss": 0.00020790825503621315
+      }
+    },
+    "assembly_seconds": 0.1801428198814392,
+    "linear_seconds": 0.16585748270154,
+    "compute_seconds": 0.3460003025829792,
+    "rank": 256,
+    "condition": 59451.92644971867,
+    "training_rms": 0.00024469218140312215,
+    "held_out": {
+      "initial_rms": 0.1357962208193366,
+      "left_rms": 0.06804595302721585,
+      "right_rms": 0.006451918031146957
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 1.2335203712211857,
+        "E_rho": 1.5360519407889621
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.785382276884057,
+        "E_rho": 0.6903916590757079
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 1,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 10,
+    "boundary_weight": 1,
+    "block_average": true,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 1.3278794590699905,
+        "weighted_loss": 0.00014858834838746792
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.27503411560803515,
+        "weighted_loss": 7.181431536571084e-05
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.4201629468451958,
+        "weighted_loss": 7.058790746710325e-05
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.1726544260326888,
+        "weighted_loss": 0.00037656798328843913
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.011270149848962206,
+        "weighted_loss": 1.4535212966814453e-06
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.05627414332604397,
+        "weighted_loss": 0.0003870208988495784
+      }
+    },
+    "assembly_seconds": 0.1599714383482933,
+    "linear_seconds": 0.13310996443033218,
+    "compute_seconds": 0.2930814027786255,
+    "rank": 256,
+    "condition": 111922.56043691734,
+    "training_rms": 0.0004432095498823907,
+    "held_out": {
+      "initial_rms": 0.06022500391287306,
+      "left_rms": 0.16840732584762932,
+      "right_rms": 0.011320987686848683
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 1.065310817867331,
+        "E_rho": 1.3885340210905028
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.7248468404051557,
+        "E_rho": 0.7340342428044732
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 1,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 1,
+    "boundary_weight": 10,
+    "block_average": true,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 0.39441166652263393,
+        "weighted_loss": 9.939177778988863e-06
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.16453966722405844,
+        "weighted_loss": 2.6071547114621465e-05
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.347309359733425,
+        "weighted_loss": 4.742799533099256e-05
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.016745534445051516,
+        "weighted_loss": 3.587674548870875e-05
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.0038423943084087285,
+        "weighted_loss": 1.741376290798044e-06
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.1603075537363772,
+        "weighted_loss": 0.0003140283488185069
+      }
+    },
+    "assembly_seconds": 0.12489764764904976,
+    "linear_seconds": 0.12892070040106773,
+    "compute_seconds": 0.2538183480501175,
+    "rank": 256,
+    "condition": 203838.48696833797,
+    "training_rms": 0.00028448378702240794,
+    "held_out": {
+      "initial_rms": 0.16808715660956747,
+      "left_rms": 0.01659792834275294,
+      "right_rms": 0.003671970180766935
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 1.4312337101440846,
+        "E_rho": 1.823822615872077
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.9280147653115671,
+        "E_rho": 0.8686079002976903
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 1,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 10,
+    "boundary_weight": 10,
+    "block_average": true,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 1.3269601966122986,
+        "weighted_loss": 0.00013344362138678785
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.38046093687328714,
+        "weighted_loss": 0.00013946847643807347
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.655708579950756,
+        "weighted_loss": 0.00019942828332719623
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.05581760909063612,
+        "weighted_loss": 0.00039201322164731284
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.006695038669560828,
+        "weighted_loss": 5.176842340528268e-06
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.09644852667200975,
+        "weighted_loss": 0.0011366373571302197
+      }
+    },
+    "assembly_seconds": 1.1236744932830334,
+    "linear_seconds": 0.9782070741057396,
+    "compute_seconds": 2.101881567388773,
+    "rank": 256,
+    "condition": 187853.82152935342,
+    "training_rms": 0.0006108773151560509,
+    "held_out": {
+      "initial_rms": 0.10198646543538316,
+      "left_rms": 0.05377291444552908,
+      "right_rms": 0.006442143283933884
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 1.2548676779337933,
+        "E_rho": 1.680955845830848
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.9067484691258816,
+        "E_rho": 0.9778754402796788
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 1,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 100,
+    "boundary_weight": 100,
+    "block_average": true,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 2.7867892365602343,
+        "weighted_loss": 0.0005586406200279117
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.6853421256817164,
+        "weighted_loss": 0.0005197703330217197
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 1.2892131737635268,
+        "weighted_loss": 0.0009354905213706854
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.049004222070766455,
+        "weighted_loss": 0.0029696460830784775
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.0055942504843787535,
+        "weighted_loss": 3.606218939347886e-05
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.07799004409819829,
+        "weighted_loss": 0.00742378893344618
+      }
+    },
+    "assembly_seconds": 1.0216204412281513,
+    "linear_seconds": 0.8371367044746876,
+    "compute_seconds": 1.858757145702839,
+    "rank": 256,
+    "condition": 480471.8742790243,
+    "training_rms": 0.0015213876199843186,
+    "held_out": {
+      "initial_rms": 0.08590055973996656,
+      "left_rms": 0.043451302316634806,
+      "right_rms": 0.006033722799575251
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 1.5430188679208743,
+        "E_rho": 2.2410748870375965
+      },
+      {
+        "t": 0.1,
+        "E_f": 1.3002087095873536,
+        "E_rho": 1.6603527119697985
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 1,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 1,
+    "boundary_weight": 1,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 0.7048394183561831,
+        "weighted_loss": 0.00975192283424685
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.055658694406474585,
+        "weighted_loss": 0.005931616312419271
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.081829007459595,
+        "weighted_loss": 0.004820496724828977
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.11428115827090352,
+        "weighted_loss": 0.042534072338217356
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.007818667803596796,
+        "weighted_loss": 0.0001785672865586795
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.12032908000723963,
+        "weighted_loss": 0.09068376408384565
+      }
+    },
+    "assembly_seconds": 0.7584660612046719,
+    "linear_seconds": 0.9617279507219791,
+    "compute_seconds": 1.720194011926651,
+    "rank": 256,
+    "condition": 30088.41320340839,
+    "training_rms": 0.005350449879215007,
+    "held_out": {
+      "initial_rms": 0.12489611968503346,
+      "left_rms": 0.11258447187857075,
+      "right_rms": 0.007788268975222779
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 1.230473795846949,
+        "E_rho": 1.5754067965891596
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.7486136282032783,
+        "E_rho": 0.6902158391349215
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.001,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 1,
+    "boundary_weight": 1,
+    "block_average": true,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 0.411459870694531,
+        "weighted_loss": 1.0844590394225484e-05
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.003069434422560665,
+        "weighted_loss": 1.076655316832436e-05
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.024607758851666675,
+        "weighted_loss": 8.651661376847774e-06
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.07896692702692086,
+        "weighted_loss": 8.725041852978206e-05
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.004710972448730541,
+        "weighted_loss": 2.9741681214339887e-07
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.11597223939886307,
+        "weighted_loss": 0.0001838896633353606
+      }
+    },
+    "assembly_seconds": 1.537534087896347,
+    "linear_seconds": 0.8183397129178047,
+    "compute_seconds": 2.3558738008141518,
+    "rank": 256,
+    "condition": 230356.44836469178,
+    "training_rms": 0.0002368962814038763,
+    "held_out": {
+      "initial_rms": 0.1310692139110774,
+      "left_rms": 0.07429604742082933,
+      "right_rms": 0.004489854276859543
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.03115506620259003,
+        "E_rho": 0.030330855862770584
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.025847661210921014,
+        "E_rho": 0.017305430819632497
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.001,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 10,
+    "boundary_weight": 1,
+    "block_average": true,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 0.8792753299470167,
+        "weighted_loss": 5.864515833302753e-05
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.0049662779234690415,
+        "weighted_loss": 3.053204227863815e-05
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.06302305389599742,
+        "weighted_loss": 4.9989907130155746e-05
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.1822993685280357,
+        "weighted_loss": 0.00046391505293576777
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.007212900567777532,
+        "weighted_loss": 7.426948160473037e-07
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.04457320003416661,
+        "weighted_loss": 0.0002743849305921206
+      }
+    },
+    "assembly_seconds": 0.1668127216398716,
+    "linear_seconds": 0.15711598098278046,
+    "compute_seconds": 0.32392870262265205,
+    "rank": 256,
+    "condition": 222974.3355565252,
+    "training_rms": 0.00040417505500754897,
+    "held_out": {
+      "initial_rms": 0.052587141356647694,
+      "left_rms": 0.17273371097972548,
+      "right_rms": 0.007452055773625671
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.07009955751041655,
+        "E_rho": 0.06904325783948358
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.047006003272110033,
+        "E_rho": 0.03526352801150318
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.001,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 1,
+    "boundary_weight": 10,
+    "block_average": true,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 0.5079698072787715,
+        "weighted_loss": 1.7225133959931647e-05
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.0042313503142998015,
+        "weighted_loss": 1.855533794285639e-05
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.03887790054851353,
+        "weighted_loss": 1.8061117031398775e-05
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.019707102379093136,
+        "weighted_loss": 5.4318016867178285e-05
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.003577853579379266,
+        "weighted_loss": 1.717937743543171e-06
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.163173422465573,
+        "weighted_loss": 0.00036413064841067704
+      }
+    },
+    "assembly_seconds": 0.1201459988951683,
+    "linear_seconds": 0.14262766763567924,
+    "compute_seconds": 0.26277366653084755,
+    "rank": 256,
+    "condition": 239365.90525094705,
+    "training_rms": 0.0002969363006747514,
+    "held_out": {
+      "initial_rms": 0.18219015641027544,
+      "left_rms": 0.017828243469394933,
+      "right_rms": 0.0036439776715169307
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.020243923868945295,
+        "E_rho": 0.01813750974406406
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.027729426723349583,
+        "E_rho": 0.0188408065197068
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.001,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 10,
+    "boundary_weight": 10,
+    "block_average": true,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 1.3300105047306165,
+        "weighted_loss": 0.0001171275998047259
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.008345881905392316,
+        "weighted_loss": 9.048345568562077e-05
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.07579682322832251,
+        "weighted_loss": 6.854917191636569e-05
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.07214914577624747,
+        "weighted_loss": 0.0007195298132719682
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.0072100985929246545,
+        "weighted_loss": 7.240102265636252e-06
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.09959256552495009,
+        "weighted_loss": 0.0013606696479766792
+      }
+    },
+    "assembly_seconds": 0.10526876524090767,
+    "linear_seconds": 0.11655228957533836,
+    "compute_seconds": 0.22182105481624603,
+    "rank": 256,
+    "condition": 272635.43425081205,
+    "training_rms": 0.0006630668889365864,
+    "held_out": {
+      "initial_rms": 0.11516862008496685,
+      "left_rms": 0.06482115092365669,
+      "right_rms": 0.007576387656606545
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.051913392135010644,
+        "E_rho": 0.047951620419360394
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.059602392359800443,
+        "E_rho": 0.037716856465272196
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.001,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 100,
+    "boundary_weight": 100,
+    "block_average": true,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 3.8563486018182904,
+        "weighted_loss": 0.0009957971166653402
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.021034185621863877,
+        "weighted_loss": 0.0006257942648559819
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.18295516280546525,
+        "weighted_loss": 0.0003929374098418383
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.06490677013899146,
+        "weighted_loss": 0.005775376231232374
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.009462675111454157,
+        "weighted_loss": 0.0001249843173488353
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.08554016249843308,
+        "weighted_loss": 0.010017170617842951
+      }
+    },
+    "assembly_seconds": 0.08925823494791985,
+    "linear_seconds": 0.10927688330411911,
+    "compute_seconds": 0.19853511825203896,
+    "rank": 256,
+    "condition": 648979.0658922016,
+    "training_rms": 0.001826356106856747,
+    "held_out": {
+      "initial_rms": 0.10186925808312307,
+      "left_rms": 0.05540084647066368,
+      "right_rms": 0.010429997957411064
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.18207242727663878,
+        "E_rho": 0.17328481054829226
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.20206003952875326,
+        "E_rho": 0.14435717543862056
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.001,
+    "seed": 11,
+    "J": 128,
+    "N_coef": 256,
+    "N_row": 5376,
+    "initial_weight": 1,
+    "boundary_weight": 1,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 256,
+        "physical_rms": 0.5880300943492,
+        "weighted_loss": 0.0067807754793794755
+      },
+      "micro": {
+        "rows": 2048,
+        "physical_rms": 0.0016993203580724918,
+        "weighted_loss": 0.005829566906674313
+      },
+      "odd": {
+        "rows": 2048,
+        "physical_rms": 0.013909313416573778,
+        "weighted_loss": 0.005478824099765556
+      },
+      "left": {
+        "rows": 256,
+        "physical_rms": 0.10936833302483269,
+        "weighted_loss": 0.04287378953442624
+      },
+      "right": {
+        "rows": 256,
+        "physical_rms": 0.004619418838282002,
+        "weighted_loss": 7.391131352860148e-05
+      },
+      "initial": {
+        "rows": 512,
+        "physical_rms": 0.10216824640534779,
+        "weighted_loss": 0.0730394796554075
+      }
+    },
+    "assembly_seconds": 0.09178270399570465,
+    "linear_seconds": 0.12683741375803947,
+    "compute_seconds": 0.21862011775374413,
+    "rank": 256,
+    "condition": 255988.94821679604,
+    "training_rms": 0.004993976039888038,
+    "held_out": {
+      "initial_rms": 0.11502650192690976,
+      "left_rms": 0.10399077538308424,
+      "right_rms": 0.004580412988000247
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.0529750997776371,
+        "E_rho": 0.05279722491440583
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.028446118223781867,
+        "E_rho": 0.02654942997620297
+      }
+    ]
+  }
+]

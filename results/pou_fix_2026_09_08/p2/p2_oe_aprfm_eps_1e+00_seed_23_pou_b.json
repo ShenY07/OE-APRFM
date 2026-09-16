@@ -1,0 +1,48 @@
+{
+  "problem": "p2",
+  "method": "oe_aprfm",
+  "epsilon": 1.0,
+  "seed": 23,
+  "relative_l2_f": 0.024078738228624698,
+  "relative_l2_rho": 0.0033367377271381377,
+  "residual_half": 0.0004895816075945782,
+  "empirical_stability_ratio": 49.652263290459665,
+  "condition_number": 995401.9401048606,
+  "rank": 671,
+  "largest_singular_value": 10.033320379081541,
+  "smallest_effective_singular_value": 1.0079667293017915e-05,
+  "singular_value_threshold": 1.0033320379081541e-05,
+  "num_rows": 3008,
+  "num_columns": 1024,
+  "oversampling_ratio": 2.9375,
+  "partitions": [
+    2,
+    4
+  ],
+  "strides": {
+    "v": 0.25,
+    "x": 0.5
+  },
+  "features_per_patch": 64,
+  "scale": 1.0,
+  "rcond": 1e-06,
+  "block_weights": null,
+  "collocation": {
+    "boundary": 64,
+    "interior": [
+      32,
+      32
+    ]
+  },
+  "reference_level": "B",
+  "evaluation_stride": 1,
+  "evaluation_grid": [
+    1024,
+    512
+  ],
+  "feature_seconds": 23.878930803388357,
+  "assembly_seconds": 101.7928618490696,
+  "solve_seconds": 0.5603422075510025,
+  "evaluation_seconds": 12.383252166211605,
+  "total_seconds": 138.61538702622056
+}

@@ -1,0 +1,304 @@
+{
+  "config": {
+    "cases": [
+      "global",
+      "local_x"
+    ],
+    "epsilons": [
+      1,
+      0.001
+    ],
+    "seeds": [
+      11
+    ],
+    "features": 256,
+    "samples": 1024,
+    "output": "results/p7_transient_pilot/local_space_budget256.json"
+  },
+  "runs": [
+    {
+      "method": "oe_ap",
+      "epsilon": 1,
+      "seed": 11,
+      "J": 256,
+      "N_coef": 512,
+      "N_row": 18432,
+      "initial_weight": 1.0,
+      "boundary_weight": 1.0,
+      "block_average": true,
+      "block_diagnostics": {
+        "macro": {
+          "rows": 1024,
+          "physical_rms": 0.36797481670105564,
+          "weighted_loss": 4.686348449650915e-06
+        },
+        "micro": {
+          "rows": 8192,
+          "physical_rms": 0.10697275332819058,
+          "weighted_loss": 6.339025411962009e-06
+        },
+        "odd": {
+          "rows": 8192,
+          "physical_rms": 0.24392470990927917,
+          "weighted_loss": 1.0111691665318426e-05
+        },
+        "left": {
+          "rows": 256,
+          "physical_rms": 0.0584119017577551,
+          "weighted_loss": 2.17095431562217e-05
+        },
+        "right": {
+          "rows": 256,
+          "physical_rms": 0.004286253104108367,
+          "weighted_loss": 1.1654195239955076e-07
+        },
+        "initial": {
+          "rows": 512,
+          "physical_rms": 0.10524513239286043,
+          "weighted_loss": 6.801086378785415e-05
+        }
+      },
+      "assembly_seconds": 2.957565777003765,
+      "linear_seconds": 1.3627197779715061,
+      "compute_seconds": 4.320285554975271,
+      "rank": 512,
+      "condition": 548106.1476514481,
+      "training_rms": 7.759333482270846e-05,
+      "case": "global",
+      "samples": 1024,
+      "held_out": {
+        "macro_rms": 0.32078239250080703,
+        "micro_rms": 0.08367552191966207,
+        "odd_rms": 0.23214571058657718,
+        "initial_rms": 0.10264209111410484,
+        "left_rms": 0.05927400492102379,
+        "right_rms": 0.005364321530755307
+      },
+      "snapshots": [
+        {
+          "t": 0.05,
+          "E_f": 1.0092147475096496,
+          "E_rho": 1.0412998750879512
+        },
+        {
+          "t": 0.1,
+          "E_f": 0.6947677412524597,
+          "E_rho": 0.6194895223294646
+        }
+      ]
+    },
+    {
+      "method": "oe_ap",
+      "epsilon": 1,
+      "seed": 11,
+      "J": 256,
+      "N_coef": 512,
+      "N_row": 18432,
+      "initial_weight": 1.0,
+      "boundary_weight": 1.0,
+      "block_average": true,
+      "block_diagnostics": {
+        "macro": {
+          "rows": 1024,
+          "physical_rms": 0.3358473989697994,
+          "weighted_loss": 1.2549293299861145e-05
+        },
+        "micro": {
+          "rows": 8192,
+          "physical_rms": 0.17257387912620015,
+          "weighted_loss": 2.060608618266303e-05
+        },
+        "odd": {
+          "rows": 8192,
+          "physical_rms": 0.7035823753030416,
+          "weighted_loss": 5.187605746154563e-05
+        },
+        "left": {
+          "rows": 256,
+          "physical_rms": 0.028142242531522667,
+          "weighted_loss": 1.866777238485384e-05
+        },
+        "right": {
+          "rows": 256,
+          "physical_rms": 9.434338308930763e-05,
+          "weighted_loss": 2.0671611629612204e-10
+        },
+        "initial": {
+          "rows": 512,
+          "physical_rms": 0.052412150255186106,
+          "weighted_loss": 6.940660359683071e-05
+        }
+      },
+      "assembly_seconds": 1.1882884912192822,
+      "linear_seconds": 1.254040151834488,
+      "compute_seconds": 2.44232864305377,
+      "rank": 512,
+      "condition": 9527.986181947106,
+      "training_rms": 9.691028133350816e-05,
+      "case": "local_x",
+      "samples": 1024,
+      "held_out": {
+        "macro_rms": 0.3009200372553712,
+        "micro_rms": 0.1403832253774646,
+        "odd_rms": 0.527395941822895,
+        "initial_rms": 0.059966781238334654,
+        "left_rms": 0.027950789597621553,
+        "right_rms": 9.445824186748686e-05
+      },
+      "snapshots": [
+        {
+          "t": 0.05,
+          "E_f": 0.576618922378551,
+          "E_rho": 0.5125123384536175
+        },
+        {
+          "t": 0.1,
+          "E_f": 0.3912791245673269,
+          "E_rho": 0.21619554774578112
+        }
+      ]
+    },
+    {
+      "method": "oe_ap",
+      "epsilon": 0.001,
+      "seed": 11,
+      "J": 256,
+      "N_coef": 512,
+      "N_row": 18432,
+      "initial_weight": 1.0,
+      "boundary_weight": 1.0,
+      "block_average": true,
+      "block_diagnostics": {
+        "macro": {
+          "rows": 1024,
+          "physical_rms": 0.32825728061793946,
+          "weighted_loss": 3.5756699415196404e-06
+        },
+        "micro": {
+          "rows": 8192,
+          "physical_rms": 0.0036008144375265856,
+          "weighted_loss": 6.1104003147650995e-06
+        },
+        "odd": {
+          "rows": 8192,
+          "physical_rms": 0.030789417826404746,
+          "weighted_loss": 5.466309080102857e-06
+        },
+        "left": {
+          "rows": 256,
+          "physical_rms": 0.06926418043884666,
+          "weighted_loss": 3.31383142212649e-05
+        },
+        "right": {
+          "rows": 256,
+          "physical_rms": 0.005693330430462468,
+          "weighted_loss": 2.4050050365259155e-07
+        },
+        "initial": {
+          "rows": 512,
+          "physical_rms": 0.09491745072323886,
+          "weighted_loss": 6.221233110581908e-05
+        }
+      },
+      "assembly_seconds": 0.7089866250753403,
+      "linear_seconds": 1.231831580400467,
+      "compute_seconds": 1.9408182054758072,
+      "rank": 512,
+      "condition": 6514557.86236059,
+      "training_rms": 7.75127135794268e-05,
+      "case": "global",
+      "samples": 1024,
+      "held_out": {
+        "macro_rms": 0.36833137889629214,
+        "micro_rms": 0.0030001163340933126,
+        "odd_rms": 0.030221888432997873,
+        "initial_rms": 0.10582348725389608,
+        "left_rms": 0.06090503047311914,
+        "right_rms": 0.0061846357527394966
+      },
+      "snapshots": [
+        {
+          "t": 0.05,
+          "E_f": 0.015109992617539406,
+          "E_rho": 0.013231472627346945
+        },
+        {
+          "t": 0.1,
+          "E_f": 0.023655362253865674,
+          "E_rho": 0.01210667891829585
+        }
+      ]
+    },
+    {
+      "method": "oe_ap",
+      "epsilon": 0.001,
+      "seed": 11,
+      "J": 256,
+      "N_coef": 512,
+      "N_row": 18432,
+      "initial_weight": 1.0,
+      "boundary_weight": 1.0,
+      "block_average": true,
+      "block_diagnostics": {
+        "macro": {
+          "rows": 1024,
+          "physical_rms": 0.07885791491050431,
+          "weighted_loss": 7.93851057721456e-07
+        },
+        "micro": {
+          "rows": 8192,
+          "physical_rms": 0.0025923152121985855,
+          "weighted_loss": 1.6963813227599786e-05
+        },
+        "odd": {
+          "rows": 8192,
+          "physical_rms": 0.8178223572253868,
+          "weighted_loss": 4.1832277536834635e-05
+        },
+        "left": {
+          "rows": 256,
+          "physical_rms": 0.019516582995287222,
+          "weighted_loss": 1.068027813844577e-05
+        },
+        "right": {
+          "rows": 256,
+          "physical_rms": 0.0005662987483438743,
+          "weighted_loss": 9.037849918087212e-09
+        },
+        "initial": {
+          "rows": 512,
+          "physical_rms": 0.039049431082977065,
+          "weighted_loss": 4.0491659420111196e-05
+        }
+      },
+      "assembly_seconds": 1.9052985608577728,
+      "linear_seconds": 1.6322676539421082,
+      "compute_seconds": 3.537566214799881,
+      "rank": 512,
+      "condition": 58437.055882042376,
+      "training_rms": 7.75222992499714e-05,
+      "case": "local_x",
+      "samples": 1024,
+      "held_out": {
+        "macro_rms": 0.18910915689394997,
+        "micro_rms": 0.0018915668872861403,
+        "odd_rms": 0.4951375766237688,
+        "initial_rms": 0.06007004087282768,
+        "left_rms": 0.01914868030461047,
+        "right_rms": 0.0005783643789044666
+      },
+      "snapshots": [
+        {
+          "t": 0.05,
+          "E_f": 0.05793048496131098,
+          "E_rho": 0.057522123202309636
+        },
+        {
+          "t": 0.1,
+          "E_f": 0.05987261080404577,
+          "E_rho": 0.05773987706968712
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-"""Run matched square-domain 2-D MM-APRFM baselines (P3 and P5)."""
+"""Run matched square-domain 2-D MM-APRFM baselines (P3 and P4 only)."""
 
 from __future__ import annotations
 
@@ -14,7 +14,6 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from configuration.p3_manufactured_2d import get_config as get_p3_config
 from configuration.p4_circular_hole_2d import get_config as get_p4_config
-from configuration.p5_heterogeneous_2d import get_config as get_p5_config
 
 sys.path.insert(0, str(ROOT / "baselines" / "mm_oerfm" / "original" / "src"))
 import jax
@@ -37,11 +36,15 @@ jax.config.update("jax_enable_x64", True)
 
 
 def run(problem, epsilon, seed, output_dir, *, partitions, features, rcond, collocation):
-    config = {"p3": get_p3_config, "p4": get_p4_config, "p5": get_p5_config}[problem](epsilon)
+    config = {"p3": get_p3_config, "p4": get_p4_config}[problem](epsilon)
     model = config.model
     px, py, pt = partitions
     domain = {"x": tuple(config.mesh.domain.x), "y": tuple(config.mesh.domain.y), "theta": (0.0, 2.0 * np.pi)}
-    strides = {"x": 2.0 / px, "y": 2.0 / py, "theta": 2.0 * np.pi / pt}
+    strides = {
+        "x": (domain["x"][1] - domain["x"][0]) / px,
+        "y": (domain["y"][1] - domain["y"][0]) / py,
+        "theta": 2.0 * np.pi / pt,
+    }
     spatial_patches, phase_patches = px * py, px * py * pt
     unknowns = features * (spatial_patches + phase_patches)
     jn = {"rho": features, "g": features}
@@ -105,7 +108,8 @@ def run(problem, epsilon, seed, output_dir, *, partitions, features, rcond, coll
     constructor = MicroMacroConstructor2D(**common, coefficients=jnp.asarray(coefficients))
     approx = jit(vmap(lambda x, y, t: constructor.apply(params, x, y, t)))
     nx, ny, na = 65, 65, 64
-    x, y = np.linspace(-1.0, 1.0, nx), np.linspace(-1.0, 1.0, ny)
+    x = np.linspace(*domain["x"], nx)
+    y = np.linspace(*domain["y"], ny)
     theta = np.linspace(0.0, 2.0 * np.pi, na, endpoint=False)
     numerical = np.empty((nx, ny, na))
     started = perf_counter()
@@ -121,15 +125,12 @@ def run(problem, epsilon, seed, output_dir, *, partitions, features, rcond, coll
         reference_rho = 1.0 / (1.0 + xx[:, :, 0] ** 2 + yy[:, :, 0] ** 2)
         reference = np.broadcast_to(reference_rho[:, :, None], numerical.shape)
         mask = xx[:, :, 0] ** 2 + yy[:, :, 0] ** 2 >= 0.25
-    else:
-        reference = np.asarray(vmap(model.exact_solution)(jnp.asarray(xx.reshape(-1, 1)), jnp.asarray(yy.reshape(-1, 1)), jnp.asarray(tt.reshape(-1, 1)))).reshape(nx, ny, na)
-        mask = np.ones((nx, ny), dtype=bool)
     rho, reference_rho = numerical.mean(axis=2), reference.mean(axis=2)
     phase_mask = np.broadcast_to(mask[:, :, None], numerical.shape)
     error_f = float(np.linalg.norm((numerical-reference)[phase_mask]) / np.linalg.norm(reference[phase_mask]))
     error_rho = float(np.linalg.norm((rho-reference_rho)[mask]) / np.linalg.norm(reference_rho[mask]))
     evaluation_seconds = perf_counter() - started
-    record = {"problem": problem, "method": "mm_aprfm", "epsilon": epsilon, "seed": seed, "relative_l2_f": error_f, "relative_l2_rho": error_rho, "condition_number": condition_number, "rank": int(rank), "num_rows": int(matrix.shape[0]), "num_columns": int(unknowns), "oversampling_ratio": float(matrix.shape[0] / unknowns), "feature_matrix_sha256": hashlib.sha256(matrix.tobytes()).hexdigest(), "partitions": list(partitions), "features_per_field_patch": features, "total_features": unknowns, "rcond": rcond, "collocation": list(collocation), "feature_seconds": feature_seconds, "assembly_seconds": assembly_seconds, "solve_seconds": solve_seconds, "evaluation_seconds": evaluation_seconds, "total_seconds": feature_seconds + assembly_seconds + solve_seconds + evaluation_seconds}
+    record = {"problem": problem, "method": "mm_aprfm", "epsilon": epsilon, "seed": seed, "relative_l2_f": error_f, "relative_l2_rho": error_rho, "condition_number": condition_number, "rank": int(rank), "num_rows": int(matrix.shape[0]), "num_columns": int(unknowns), "oversampling_ratio": float(matrix.shape[0] / unknowns), "feature_matrix_sha256": hashlib.sha256(matrix.tobytes()).hexdigest(), "partitions": list(partitions), "features_per_field_patch": features, "total_features": unknowns, "rcond": rcond, "collocation": list(collocation), "feature_seconds": feature_seconds, "assembly_seconds": assembly_seconds, "solve_seconds": solve_seconds, "evaluation_seconds": evaluation_seconds, "total_seconds": feature_seconds + assembly_seconds + solve_seconds + evaluation_seconds, "min_rho_h": float(rho.min()), "max_rho_h": float(rho.max()), "min_f_h": float(numerical.min()), "negative_fraction_f": float(np.mean(numerical < 0.0)), "negative_fraction_rho": float(np.mean(rho < 0.0))}
     output_dir.mkdir(parents=True, exist_ok=True)
     stem = f"{problem}_mm_aprfm_eps_{epsilon:.0e}_seed_{seed}"
     (output_dir / f"{stem}.json").write_text(json.dumps(record, indent=2) + "\n")
@@ -139,7 +140,7 @@ def run(problem, epsilon, seed, output_dir, *, partitions, features, rcond, coll
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--problem", choices=("p3", "p4", "p5"), required=True)
+    parser.add_argument("--problem", choices=("p3", "p4"), required=True)
     parser.add_argument("--epsilon", type=float, required=True)
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--partitions", type=int, nargs=3, default=(1, 1, 1))

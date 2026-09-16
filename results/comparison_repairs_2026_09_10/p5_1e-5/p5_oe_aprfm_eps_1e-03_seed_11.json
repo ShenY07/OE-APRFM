@@ -1,0 +1,64 @@
+{
+  "problem": "p5",
+  "method": "oe_aprfm",
+  "epsilon": 0.001,
+  "seed": 11,
+  "relative_l2_f": 0.0031947635136566088,
+  "relative_l2_rho": 0.002698919358067425,
+  "residual_half": 0.003987409635735063,
+  "empirical_stability_ratio": 1.048847840234526,
+  "condition_number": 98038.05261958519,
+  "largest_singular_value": 12.803045084434222,
+  "smallest_effective_singular_value": 0.00013059260911794715,
+  "singular_value_threshold": 0.00012803045084434223,
+  "coefficient_norm": 1733.7983720010266,
+  "rank": 206,
+  "num_rows": 58096,
+  "num_columns": 1024,
+  "num_angular": 16,
+  "oversampling_ratio": 56.734375,
+  "partitions": [
+    1,
+    1,
+    2
+  ],
+  "strides": {
+    "theta": 0.7853981633974483,
+    "x": 1.0,
+    "y": 1.0
+  },
+  "features_per_patch": 128,
+  "scale": 0.25,
+  "rcond": 1e-05,
+  "block_weights": [
+    10.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "collocation": [
+    32,
+    32,
+    16
+  ],
+  "feature_seconds": 22.912155240774155,
+  "assembly_seconds": 155.5489233136177,
+  "solve_seconds": 0.4502464458346367,
+  "evaluation_seconds": 8.61320386826992,
+  "total_seconds": 187.52452886849642,
+  "min_rho_h": 0.9987692827901479,
+  "max_rho_h": 1.20836582876961,
+  "min_f_h": 0.9959533259559143,
+  "correlation_rho": 0.9989486829327937,
+  "negative_fraction_f": 0.0,
+  "negative_fraction_rho": 0.0,
+  "angular_representation": "four_component",
+  "residual_definition": "complete_normalized_training_residual_v2",
+  "boundary_implementation": "independent_pair_traces_v2",
+  "source_sha256": {
+    "scripts/run_p3_oe_aprfm.py": "b1ceca3c114e79b22c3d4880f5086cc5adfc20d8cca3218e7011215a0ab5b366",
+    "src/solver/streaming_least_squares.py": "af112a17cefc3faf268a11d190094e9b2ad97d5e349a80a970a849f9ee97ea9c",
+    "src/constraints/continuous_2d_odd_even_v2.py": "fc1bdeb9877b6cf41a5526bf905cb1305fc4d18be04bba3b18b6200b22e7289d",
+    "src/modules/function_space_v2.py": "aad976bf7d507f1638761a12f61e49ae0cf286d71be18d2c1314d0849d7f33d5"
+  }
+}

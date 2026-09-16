@@ -1,16 +1,13 @@
 flake8==7.0.0
-flax==0.7.5
+flax==0.10.6
 ipython==8.12.3
-jax==0.4.21
-jaxlib==0.4.21+cuda12.cudnn89
-jaxline==0.0.7
+jax==0.6.2
+jaxlib==0.6.2
 jupyterlab==4.1.2
-matplotlib==3.8.3
+matplotlib==3.10.9
 ml-collections==0.1.1
-numpy==1.26.2
-pathlib==1.0.1
-scipy==1.11.4
+numpy==2.2.6
+scipy==1.15.3
 typing_extensions==4.9.0
-ml-collections==0.1.1
 # Purpose: Runtime dependencies required by the RTE numerical experiments.
 # Distinction: Development-only formatting and test tools are configured separately.

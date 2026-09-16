@@ -85,7 +85,25 @@ class OERadiativeTransferSolver1D(_OESolver):
             "macro": average_vdj + sigma_a * average_r - average_q_even,
             "even": self.epsilon**2 * (vdj - average_vdj)
             + collision * (r - average_r)
-            - self.epsilon**2 * q_even,
+            - self.epsilon**2 * (q_even - average_q_even),
+            "odd": collision * j + vdr - self.epsilon * q_odd,
+        }
+
+    def phase_residual(self, nets, sample):
+        """Evaluate 256 spatial points x 16 fixed representative velocities."""
+        xq, vq, weight = self._quadrature_inputs(sample["x"])
+        xq = xq.clone().requires_grad_(True)
+        r, j = self.model_r(nets["r"], xq, vq), self.model_j(nets["j"], xq, vq)
+        vdj, vdr = vq * _grad(j, xq), vq * _grad(r, xq)
+        q_plus, q_minus = self.source(xq, vq), self.source(xq, -vq)
+        q_even, q_odd = 0.5 * (q_plus + q_minus), 0.5 * (q_plus - q_minus)
+        integrate = lambda value: torch.sum(weight * value, dim=-2, keepdim=True)
+        average_r, average_vdj, average_q_even = integrate(r), integrate(vdj), integrate(q_even)
+        sigma_s, sigma_a = self.scattering(xq), self.absorption(xq)
+        collision = sigma_s + self.epsilon**2 * sigma_a
+        return {
+            "macro": average_vdj + self.absorption(sample["x"][:, None, :]) * average_r - average_q_even,
+            "even": self.epsilon**2 * (vdj - average_vdj) + collision * (r - average_r) - self.epsilon**2 * (q_even - average_q_even),
             "odd": collision * j + vdr - self.epsilon * q_odd,
         }
 
@@ -160,7 +178,28 @@ class OERadiativeTransferSolver2D(_OESolver):
             "macro": average_vdj + sigma_a * average_r - average_q_even,
             "even": self.epsilon**2 * (vdj - average_vdj)
             + collision * (r - average_r)
-            - self.epsilon**2 * q_even,
+            - self.epsilon**2 * (q_even - average_q_even),
+            "odd": collision * j + vdr - self.epsilon * q_odd,
+        }
+
+    def phase_residual(self, nets, sample):
+        """Evaluate 128 spatial points x 32 fixed representative directions."""
+        xq, yq, theta, weight = self._quadrature_inputs(sample["x"], sample["y"])
+        xq, yq = xq.clone().requires_grad_(True), yq.clone().requires_grad_(True)
+        r = self.model_r(nets["r"], xq, yq, theta)
+        j = self.model_j(nets["j"], xq, yq, theta)
+        xi, eta = torch.cos(theta), torch.sin(theta)
+        vdj = xi * _grad(j, xq) + eta * _grad(j, yq)
+        vdr = xi * _grad(r, xq) + eta * _grad(r, yq)
+        q_plus, q_minus = self.source(xq, yq, theta), self.source(xq, yq, theta + math.pi)
+        q_even, q_odd = 0.5 * (q_plus + q_minus), 0.5 * (q_plus - q_minus)
+        integrate = lambda value: torch.sum(weight * value, dim=-2, keepdim=True)
+        average_r, average_vdj, average_q_even = integrate(r), integrate(vdj), integrate(q_even)
+        sigma_s, sigma_a = self.scattering(xq, yq), self.absorption(xq, yq)
+        collision = sigma_s + self.epsilon**2 * sigma_a
+        return {
+            "macro": average_vdj + self.absorption(sample["x"][:, None, :], sample["y"][:, None, :]) * average_r - average_q_even,
+            "even": self.epsilon**2 * (vdj - average_vdj) + collision * (r - average_r) - self.epsilon**2 * (q_even - average_q_even),
             "odd": collision * j + vdr - self.epsilon * q_odd,
         }
 

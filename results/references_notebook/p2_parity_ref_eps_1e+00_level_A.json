@@ -1,0 +1,17 @@
+{
+  "problem": "p2",
+  "epsilon": 1.0,
+  "level": "A",
+  "grid": [
+    512,
+    256
+  ],
+  "iterations": 19,
+  "converged": true,
+  "final_difference": 2.086246789595644e-12,
+  "runtime_seconds": 0.4562619850039482,
+  "tolerance": 1e-11,
+  "dsa_relaxation": 0.01,
+  "solver_source": "src/numerical/parity_si_1d.ipynb",
+  "notebook_sha256": "fec1353c7a503975a7a355da7b73de8ba12fff75281b2b28cd497aa8f8f310eb"
+}

@@ -38,8 +38,9 @@ class CollocationDataset(IterableDataset):
         }
 
     def _boundary_2d(self, count):
-        counts = [count // 4] * 4
-        for index in range(count % 4):
+        strata = 5 if self.config.problem.name == "p4" else (8 if self.config.problem.name == "p5" else 4)
+        counts = [count // strata] * strata
+        for index in range(count % strata):
             counts[index] += 1
         xmin, xmax = map(float, self.config.domain.x)
         ymin, ymax = map(float, self.config.domain.y)
@@ -51,7 +52,7 @@ class CollocationDataset(IterableDataset):
             (math.pi, 2.0 * math.pi),
         )
         xs, ys, angles = [], [], []
-        for side, n in enumerate(counts):
+        for side, n in enumerate(counts[:4]):
             if side < 2:
                 x = torch.full((n, 1), xmin if side == 0 else xmax, device=self.device)
                 y = self._uniform((ymin, ymax), n)
@@ -62,19 +63,15 @@ class CollocationDataset(IterableDataset):
             ys.append(y)
             angles.append(self._uniform(theta_intervals[side], n))
         if self.config.problem.name == "p4":
-            n = max(4, count // 2)
+            n = counts[4]
             polar = self._uniform((0.0, 2.0 * math.pi), n)
-            normal = polar + math.pi
             offset = self._uniform((-0.49 * math.pi, 0.49 * math.pi), n)
             xs.append(0.5 * torch.cos(polar))
             ys.append(0.5 * torch.sin(polar))
-            angles.append(normal + offset)
+            angles.append(polar + offset)
         elif self.config.problem.name == "p5":
             # Four inflow edges of the central square hole [-1/3,1/3]^2.
-            n = max(4, count // 2)
-            inner_counts = [n // 4] * 4
-            for index in range(n % 4):
-                inner_counts[index] += 1
+            inner_counts = counts[4:]
             specs = ((0, 1/3, 0.0), (0, -1/3, math.pi),
                      (1, 1/3, math.pi/2), (1, -1/3, -math.pi/2))
             for index, (coord, value, inflow_center) in enumerate(specs):
@@ -92,12 +89,14 @@ class CollocationDataset(IterableDataset):
         n_i = int(config.model.dataset.interior_samples)
         n_b = int(config.model.dataset.boundary_samples)
         while True:
-            interior = {"x": self._uniform(config.domain.x, n_i)}
             if int(config.problem.dimension) == 1:
-                interior["v"] = self._uniform(config.domain.v, n_i)
+                n_space = n_i // int(config.rte.num_vquads)
+                interior = {"x": self._uniform(config.domain.x, n_space)}
                 boundary = self._boundary_1d(n_b)
             else:
-                interior["y"] = self._uniform(config.domain.y, n_i)
+                n_space = n_i // (2 * int(config.rte.num_vquads))
+                interior = {"x": self._uniform(config.domain.x, n_space),
+                            "y": self._uniform(config.domain.y, n_space)}
                 if config.problem.name == "p4":
                     inside = interior["x"].square() + interior["y"].square() < 0.25
                     while torch.any(inside):
@@ -112,9 +111,5 @@ class CollocationDataset(IterableDataset):
                         interior["x"][inside] = self._uniform(config.domain.x, count).reshape(-1)
                         interior["y"][inside] = self._uniform(config.domain.y, count).reshape(-1)
                         inside = (interior["x"].abs() <= 1/3) & (interior["y"].abs() <= 1/3)
-                # Use both independent directions theta and pi-theta while the
-                # configured base angular interval remains [0, pi/2].
-                base = self._uniform(config.domain.theta, (n_i + 1) // 2)
-                interior["theta"] = torch.cat((base, math.pi - base))[:n_i]
                 boundary = self._boundary_2d(n_b)
             yield {"interior": interior, "boundary": boundary}

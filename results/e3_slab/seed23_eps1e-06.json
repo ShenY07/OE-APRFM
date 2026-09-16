@@ -1,0 +1,29 @@
+{
+  "seed": 23,
+  "epsilon": 1e-06,
+  "initialization": "U(-1,1)",
+  "num_columns": 128,
+  "num_rows": 2944,
+  "angular_collocation": 32,
+  "angular_quadrature": 8,
+  "rcond": 1e-12,
+  "rank": 128,
+  "coefficient_norm": 165.82187581694632,
+  "feature_seconds": 2.8046626336872578,
+  "assembly_seconds": 0.003396611660718918,
+  "solve_seconds": 0.0265052393078804,
+  "total_seconds": 2.834564484655857,
+  "evaluation": {
+    "64": {
+      "E_diff": 6.432218306341704e-07,
+      "E_q_diff": 1.304092566063205e-06,
+      "fick_defect": 8.664366562211472e-08
+    },
+    "128": {
+      "E_diff": 6.432218308032454e-07,
+      "E_q_diff": 1.30409256894618e-06,
+      "fick_defect": 8.664366512523044e-08
+    }
+  },
+  "reference_status": "finite-epsilon transport comparison pending"
+}

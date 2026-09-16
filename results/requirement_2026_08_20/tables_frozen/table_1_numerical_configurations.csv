@@ -1,0 +1,6 @@
+problem,partition,J,Ncoef,Nrow,angular_order,rcond
+1D manufactured,$1\times1$,64,128,2944,8,$10^{-12}$
+1D heterogeneous,$2\times4$,64,1024,3008,8,$10^{-6}$
+2D manufactured (four component),$1\times1\times1$,128,512,15856,32,$10^{-12}$
+Perforated domain (four component),$1\times1\times1$,128,512,14736,32,$10^{-12}$
+P5 smooth heterogeneous,$1\times1\times2$,128,1024,58096,16,$10^{-6}$

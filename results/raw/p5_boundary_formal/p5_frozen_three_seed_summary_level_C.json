@@ -1,0 +1,110 @@
+{
+  "configuration": {
+    "partitions": [
+      1,
+      1,
+      2
+    ],
+    "features_per_component_per_patch": 128,
+    "num_columns": 1024,
+    "collocation": [
+      32,
+      32,
+      16
+    ],
+    "scale": 0.25,
+    "rcond": 1e-06,
+    "block_weights": [
+      10,
+      1,
+      1,
+      1
+    ],
+    "angular_evaluation": "64-point periodic midpoint"
+  },
+  "reference_level": "C",
+  "per_seed": [
+    {
+      "epsilon": 1.0,
+      "seed": 11,
+      "relative_l2_f": 0.04274114565272369,
+      "relative_l2_rho": 0.004764282933193701,
+      "correlation_rho": 0.9995596296297663,
+      "min_f_h": 0.7694537376772388,
+      "min_rho_h": 0.9846459904060937,
+      "reference_level": "C"
+    },
+    {
+      "epsilon": 1.0,
+      "seed": 23,
+      "relative_l2_f": 0.04234260252219342,
+      "relative_l2_rho": 0.004800664867393759,
+      "correlation_rho": 0.999301793593827,
+      "min_f_h": 0.7567071704380055,
+      "min_rho_h": 0.9853586809187102,
+      "reference_level": "C"
+    },
+    {
+      "epsilon": 1.0,
+      "seed": 37,
+      "relative_l2_f": 0.042101795745765024,
+      "relative_l2_rho": 0.004647998247598054,
+      "correlation_rho": 0.9994979746451981,
+      "min_f_h": 0.7715341509531015,
+      "min_rho_h": 0.9845431044962724,
+      "reference_level": "C"
+    },
+    {
+      "epsilon": 0.001,
+      "seed": 11,
+      "relative_l2_f": 0.03548338047934085,
+      "relative_l2_rho": 0.0035381331694114334,
+      "correlation_rho": 0.9994416800602653,
+      "min_f_h": 0.8601022367712923,
+      "min_rho_h": 0.9958749038340727,
+      "reference_level": "C"
+    },
+    {
+      "epsilon": 0.001,
+      "seed": 23,
+      "relative_l2_f": 0.0363512835805761,
+      "relative_l2_rho": 0.005029215472554079,
+      "correlation_rho": 0.9989062365161471,
+      "min_f_h": 0.8407849803972408,
+      "min_rho_h": 0.9962802723666613,
+      "reference_level": "C"
+    },
+    {
+      "epsilon": 0.001,
+      "seed": 37,
+      "relative_l2_f": 0.036239492904590095,
+      "relative_l2_rho": 0.004602224594649652,
+      "correlation_rho": 0.9990880824947014,
+      "min_f_h": 0.8245756041601151,
+      "min_rho_h": 0.9959686034677415,
+      "reference_level": "C"
+    }
+  ],
+  "medians": {
+    "1e+00": {
+      "relative_l2_f": 0.04234260252219342,
+      "relative_l2_rho": 0.004764282933193701,
+      "correlation_rho": 0.9994979746451981,
+      "seeds": [
+        11,
+        23,
+        37
+      ]
+    },
+    "1e-03": {
+      "relative_l2_f": 0.036239492904590095,
+      "relative_l2_rho": 0.004602224594649652,
+      "correlation_rho": 0.9990880824947014,
+      "seeds": [
+        11,
+        23,
+        37
+      ]
+    }
+  }
+}

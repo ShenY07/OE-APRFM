@@ -1,0 +1,39 @@
+% Table 7: Accuracy--cost comparison at $\varepsilon=10^{-3}$. The 2D OE-APRFM sweep uses the final normalized four-component representation at matched total coefficient budgets. Randomized values are three-seed medians. Deterministic OE--$S_N$--Krylov values use Gauss--Legendre quadrature, one solver, a common $10^{-12}$ tolerance, and true relative residuals below $10^{-12}$. The 1D linear manufactured solution is represented exactly by diamond difference, so its $10^{-11}$--$10^{-10}$ errors reflect the algebraic roundoff floor and are not interpreted as a grid-convergence curve.
+\begin{table}[t]
+\centering
+\caption{Accuracy--cost comparison at $\varepsilon=10^{-3}$. The 2D OE-APRFM sweep uses the final normalized four-component representation at matched total coefficient budgets. Randomized values are three-seed medians. Deterministic OE--$S_N$--Krylov values use Gauss--Legendre quadrature, one solver, a common $10^{-12}$ tolerance, and true relative residuals below $10^{-12}$. The 1D linear manufactured solution is represented exactly by diamond difference, so its $10^{-11}$--$10^{-10}$ errors reflect the algebraic roundoff floor and are not interpreted as a grid-convergence curve.}
+\label{tab:accuracy-cost}
+\begin{tabular}{lllrrrr}
+\toprule
+Problem & Method & Budget & Size & $E_f$ & $E_\rho$ & $T_{\rm solve}$ (s)\\
+\midrule
+1D manufactured & OE-$S_N$-Krylov & 32x16 & 512 & $1.95\times10^{-11}$ & $1.95\times10^{-11}$ & $0.08$\\
+ &  & 64x32 & 2048 & $1.51\times10^{-10}$ & $1.51\times10^{-10}$ & $0.19$\\
+ &  & 128x64 & 8192 & $9.80\times10^{-12}$ & $9.80\times10^{-12}$ & $0.94$\\
+ &  & 256x128 & 32768 & $1.44\times10^{-11}$ & $1.44\times10^{-11}$ & $17.65$\\
+ & MM-APRFM & J=32 & 64 & $5.34\times10^{-11}$ & $5.34\times10^{-11}$ & $2.21$\\
+ &  & J=64 & 128 & $7.25\times10^{-11}$ & $7.25\times10^{-11}$ & $2.54$\\
+ &  & J=128 & 256 & $6.93\times10^{-11}$ & $6.93\times10^{-11}$ & $3.21$\\
+ & OE-APNN & 500 steps & 25474 & $2.48\times10^{-2}$ & $1.63\times10^{-2}$ & $12.50$\\
+ &  & 2000 steps & 25474 & $1.42\times10^{-2}$ & $8.02\times10^{-3}$ & $47.77$\\
+ &  & 5000 steps & 25474 & $4.75\times10^{-3}$ & $2.33\times10^{-3}$ & $120.72$\\
+ & OE-APRFM & J=32 & 64 & $5.79\times10^{-5}$ & $2.77\times10^{-5}$ & $16.60$\\
+ &  & J=64 & 128 & $1.21\times10^{-8}$ & $4.73\times10^{-9}$ & $15.53$\\
+ &  & J=128 & 256 & $3.23\times10^{-12}$ & $2.67\times10^{-12}$ & $16.51$\\
+\midrule
+2D manufactured & OE-$S_N$-Krylov & 12x12x16 & 2304 & $2.98\times10^{-3}$ & $2.98\times10^{-3}$ & $0.33$\\
+ &  & 16x16x16 & 4096 & $1.75\times10^{-3}$ & $1.75\times10^{-3}$ & $0.41$\\
+ &  & 24x24x16 & 9216 & $8.04\times10^{-4}$ & $8.04\times10^{-4}$ & $0.77$\\
+ &  & 32x32x16 & 16384 & $4.57\times10^{-4}$ & $4.57\times10^{-4}$ & $3.24$\\
+ & MM-APRFM & J=64 & 128 & $5.55\times10^{-6}$ & $5.55\times10^{-6}$ & $4.19$\\
+ &  & J=128 & 256 & $3.97\times10^{-8}$ & $3.97\times10^{-8}$ & $5.44$\\
+ &  & J=256 & 512 & $8.08\times10^{-8}$ & $8.08\times10^{-8}$ & $9.02$\\
+ & OE-APNN & 500 steps & 25730 & $1.19\times10^{-1}$ & $7.93\times10^{-2}$ & $18.66$\\
+ &  & 2000 steps & 25730 & $4.53\times10^{-2}$ & $2.20\times10^{-2}$ & $69.45$\\
+ &  & 5000 steps & 25730 & $2.09\times10^{-2}$ & $1.17\times10^{-2}$ & $173.85$\\
+ & OE-APRFM & J=32 & 128 & $3.48\times10^{-2}$ & $1.94\times10^{-2}$ & $39.67$\\
+ &  & J=64 & 256 & $1.03\times10^{-2}$ & $5.81\times10^{-3}$ & $43.34$\\
+ &  & J=128 & 512 & $1.16\times10^{-3}$ & $4.86\times10^{-4}$ & $59.06$\\
+\bottomrule
+\end{tabular}
+\end{table}

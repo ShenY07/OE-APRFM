@@ -1,0 +1,50 @@
+{
+  "changed_table_files": [
+    "README.md",
+    "all_available_tables.tex",
+    "supplement_tables.tex",
+    "table_1.tex",
+    "table_1_numerical_configurations.csv",
+    "table_5.tex",
+    "table_5_extended_examples.csv"
+  ],
+  "results": [
+    "results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e+00_seed_11_pou_b.json",
+    "results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e+00_seed_23_pou_b.json",
+    "results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e+00_seed_37_pou_b.json",
+    "results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e-03_seed_11_pou_b.json",
+    "results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e-03_seed_23_pou_b.json",
+    "results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e-03_seed_37_pou_b.json"
+  ],
+  "source_sha256": {
+    "src/modules/function_space.py": "569a202bbc8a481856c9192be0b56da0b40d12332cfa98f44cf201dcc32e4640",
+    "scripts/run_p2_oe_aprfm.py": "6632e895cb5826353faa3ae4029e9013a7395009fe5d8d1b6617ba8087cbe5d9"
+  },
+  "median_comparison": [
+    {
+      "epsilon": 1.0,
+      "old_E_f": 0.026929876711954622,
+      "new_E_f": 0.024078738228624698,
+      "old_E_rho": 0.0037418161496685387,
+      "new_E_rho": 0.0033367377271381377
+    },
+    {
+      "epsilon": 0.001,
+      "old_E_f": 0.005575563896629914,
+      "new_E_f": 0.002078420954659833,
+      "old_E_rho": 0.0018005489456483727,
+      "new_E_rho": 0.0010957631298365409
+    }
+  ],
+  "updated_figure_files": [
+    "results/requirement_2026_08_20/figures_separate/fig05_heterogeneous_1d_density_comparison.pdf",
+    "results/requirement_2026_08_20/figures_separate/fig05_heterogeneous_1d_density_comparison.png",
+    "results/requirement_2026_08_20/figures_separate/fig05_heterogeneous_1d_oe_aprfm_phase_space.pdf",
+    "results/requirement_2026_08_20/figures_separate/fig05_heterogeneous_1d_oe_aprfm_phase_space.png",
+    "results/requirement_2026_08_20/figures_separate/fig05_heterogeneous_1d_reference_phase_space.pdf",
+    "results/requirement_2026_08_20/figures_separate/fig05_heterogeneous_1d_reference_phase_space.png",
+    "results/requirement_2026_08_20/figures_separate/fig05_heterogeneous_1d_scattering_coefficient.pdf",
+    "results/requirement_2026_08_20/figures_separate/fig05_heterogeneous_1d_scattering_coefficient.png"
+  ],
+  "figure_review": "Density panel visually inspected; new representative selected by corrected median Ef."
+}

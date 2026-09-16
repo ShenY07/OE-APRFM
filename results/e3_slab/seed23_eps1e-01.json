@@ -1,0 +1,36 @@
+{
+  "seed": 23,
+  "epsilon": 0.1,
+  "initialization": "U(-1,1)",
+  "num_columns": 128,
+  "num_rows": 2944,
+  "angular_collocation": 32,
+  "angular_quadrature": 8,
+  "rcond": 1e-12,
+  "rank": 128,
+  "coefficient_norm": 39316391.18954762,
+  "feature_seconds": 2.8046626336872578,
+  "assembly_seconds": 0.0028002411127090454,
+  "solve_seconds": 0.023321114480495453,
+  "total_seconds": 2.8307839892804623,
+  "evaluation": {
+    "64": {
+      "E_diff": 0.05685108245644267,
+      "E_q_diff": 0.11817326623808005,
+      "fick_defect": 0.0037857113172307727
+    },
+    "128": {
+      "E_diff": 0.05685108245687765,
+      "E_q_diff": 0.11817326625873785,
+      "fick_defect": 0.003785711281330849
+    }
+  },
+  "reference_status": "evaluated; see refinement_below_ten_percent",
+  "transport_reference": {
+    "E_f": 0.0038007260913692754,
+    "E_rho": 0.0032859679377390525,
+    "refinement_f": 0.00012901309884387593,
+    "refinement_rho": 2.2822495521259478e-05,
+    "refinement_below_ten_percent": true
+  }
+}

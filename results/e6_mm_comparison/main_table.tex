@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{E6 evolution errors at $t=0.2$, $\Delta t=0.002$. Medians over seeds 11, 23, and 37; 256 coefficients for both methods. CT and BE denote continuous-time and same-step backward-Euler transport references.}
+\label{tab:e6-mm}
+\begin{tabular}{llrrrr}
+\toprule
+$\varepsilon$ & Method & $E_f^{\rm CT}$ & $E_f^{\rm BE}$ & $E_\rho^{\rm BE}$ & $E_q^{\rm BE}$ \\
+\midrule
+$1$ & OE-APRFM & 4.430e-04 & 7.258e-09 & 3.579e-09 & 3.365e-08 \\
+$1$ & MM-APRFM & 4.430e-04 & 9.246e-08 & 4.296e-08 & 1.684e-07 \\
+\midrule
+$10^{-3}$ & OE-APRFM & 3.523e-04 & 3.180e-10 & 3.180e-10 & 4.537e-08 \\
+$10^{-3}$ & MM-APRFM & 3.523e-04 & 3.951e-09 & 3.950e-09 & 1.354e-06 \\
+\bottomrule
+\end{tabular}
+\end{table}

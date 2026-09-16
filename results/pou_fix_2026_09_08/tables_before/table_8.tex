@@ -1,0 +1,21 @@
+% Table 8: P3/P4 two-component versus four-component angular representations at equal total coefficient budget $N_{\rm coef}=512$. Values are medians over seeds 11, 23, and 37 with $16\times16\times16$ collocation and 32-point angular quadrature. The four-component formulation samples only $[0,\pi/2]$; the legacy two-component formulation samples $[0,\pi]$. Computation time is $T_{\rm comp}=T_{\rm feature}+T_{\rm assembly}+T_{\rm linear}$ and excludes test-grid evaluation.
+\begin{table}[t]
+\centering
+\caption{P3/P4 two-component versus four-component angular representations at equal total coefficient budget $N_{\rm coef}=512$. Values are medians over seeds 11, 23, and 37 with $16\times16\times16$ collocation and 32-point angular quadrature. The four-component formulation samples only $[0,\pi/2]$; the legacy two-component formulation samples $[0,\pi]$. Computation time is $T_{\rm comp}=T_{\rm feature}+T_{\rm assembly}+T_{\rm linear}$ and excludes test-grid evaluation.}
+\label{tab:p34-components}
+\begin{tabular}{lllrcrrrrr}
+\toprule
+Problem & $\varepsilon$ & Representation & Sampled angle & Components$\times J$ & $N_{\rm row}$ & $E_f$ & $E_\rho$ & $\kappa(A)$ & $T_{\rm comp}$ (s)\\
+\midrule
+2D manufactured & $1$ & Two component & $[0,\pi]$ & $2\times256$ & 16160 & $1.36\times10^{-2}$ & $1.92\times10^{-3}$ & $6.92\times10^{7}$ & $64.71$\\
+ &  & Four component & $[0,\pi/2]$ & $4\times128$ & 15856 & $3.90\times10^{-3}$ & $1.33\times10^{-3}$ & $7.99\times10^{5}$ & $50.12$\\
+ & $10^{-3}$ & Two component & $[0,\pi]$ & $2\times256$ & 16160 & $1.22\times10^{-3}$ & $1.09\times10^{-3}$ & $3.53\times10^{8}$ & $66.29$\\
+ &  & Four component & $[0,\pi/2]$ & $4\times128$ & 15856 & $2.01\times10^{-3}$ & $1.03\times10^{-3}$ & $7.19\times10^{6}$ & $52.27$\\
+\midrule
+Perforated domain & $1$ & Two component & $[0,\pi]$ & $2\times256$ & 15840 & $6.12\times10^{-2}$ & $2.06\times10^{-2}$ & $9.39\times10^{7}$ & $64.35$\\
+ &  & Four component & $[0,\pi/2]$ & $4\times128$ & 14736 & $1.56\times10^{-2}$ & $1.04\times10^{-2}$ & $1.25\times10^{6}$ & $55.81$\\
+ & $10^{-3}$ & Two component & $[0,\pi]$ & $2\times256$ & 15840 & $1.88\times10^{-2}$ & $1.37\times10^{-2}$ & $4.25\times10^{8}$ & $62.93$\\
+ &  & Four component & $[0,\pi/2]$ & $4\times128$ & 14736 & $1.63\times10^{-2}$ & $1.38\times10^{-2}$ & $6.91\times10^{6}$ & $54.12$\\
+\bottomrule
+\end{tabular}
+\end{table}

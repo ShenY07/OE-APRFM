@@ -1,0 +1,20 @@
+{
+  "problem": "p1",
+  "method": "oe_sn_krylov_N64_A32",
+  "epsilon": 0.001,
+  "grid": [
+    64,
+    32
+  ],
+  "angular_quadrature": "Gauss-Legendre",
+  "tolerance": 1e-12,
+  "max_iterations": 50,
+  "dsa_relaxation": 0.01,
+  "stopping_criterion": "preconditioned relative GMRES residual < tolerance",
+  "iterations": 115,
+  "converged": true,
+  "relative_l2_f": 1.505193737168485e-10,
+  "relative_l2_rho": 1.5051927668029165e-10,
+  "runtime_seconds": 0.19479041546583176,
+  "relative_residual": 8.616812933596152e-14
+}

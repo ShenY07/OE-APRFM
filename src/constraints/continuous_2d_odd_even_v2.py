@@ -9,6 +9,8 @@ from utils.quadrature import leggauss
 from utils.parallel import tree_map_funcs
 from collections.abc import Callable
 from typing import Dict, Tuple
+# Keep the operator basis identical to the overlapping V2 feature space used
+# by the boundary constraint and solution constructor.
 from modules.partition_of_unity import psi_b as psi, dpsi_b as dpsi
 from modules.function_space_v2 import RandomFeatureSpaceXYV
 from functools import partial
@@ -601,18 +603,11 @@ class OddEvenDecompositionPointwiseInteriorConstraint2D(RandomFeatureSpaceXYV):
         eqn_residual = eqn_residual.at[
             2,
             self._Mp_j1 * self._jn_j1 + self._Mp_r1 * self._jn_r1 : self._Mp_j1
-            * self._jn_j1
-            + self._Mp_r1 * self._jn_r1
-            + self._Mp_j2 * self._jn_j2,
-        ].set(
-            (self._sigma_s(x, y) + self.kn**2 * self._sigma_a(x, y))
-            * vector_j2
-        )
+            * self._jn_j1 + self._Mp_r1 * self._jn_r1 + self._Mp_j2 * self._jn_j2,
+        ].set((self._sigma_s(x, y) + self.kn**2 * self._sigma_a(x, y)) * vector_j2)
         eqn_residual = eqn_residual.at[
             2,
-            self._Mp_j1 * self._jn_j1
-            + self._Mp_r1 * self._jn_r1
-            + self._Mp_j2 * self._jn_j2 :,
+            self._Mp_j1 * self._jn_j1 + self._Mp_r1 * self._jn_r1 + self._Mp_j2 * self._jn_j2 :,
         ].set(vector_vdr2)
 
         eqn_residual = eqn_residual.at[3, : self._Mp_j1 * self._jn_j1].set(
@@ -622,10 +617,7 @@ class OddEvenDecompositionPointwiseInteriorConstraint2D(RandomFeatureSpaceXYV):
             3,
             self._Mp_j1 * self._jn_j1 : self._Mp_j1 * self._jn_j1
             + self._Mp_r1 * self._jn_r1,
-        ].set(
-            (self._sigma_s(x, y) + self.kn**2 * self._sigma_a(x, y))
-            * vector_r1
-        )
+        ].set((self._sigma_s(x, y) + self.kn**2 * self._sigma_a(x, y)) * vector_r1)
         eqn_residual = eqn_residual.at[
             3,
             self._Mp_j1 * self._jn_j1 + self._Mp_r1 * self._jn_r1 : self._Mp_j1
@@ -639,13 +631,12 @@ class OddEvenDecompositionPointwiseInteriorConstraint2D(RandomFeatureSpaceXYV):
             + self._Mp_r1 * self._jn_r1
             + self._Mp_j2 * self._jn_j2 :,
         ].set(
-            -(self._sigma_s(x, y) + self.kn**2 * self._sigma_a(x, y))
-            * vector_r2
+            (self._sigma_s(x, y) + self.kn**2 * self._sigma_a(x, y))
+            * -vector_r2
         )
 
         eqn_residual = eqn_residual.at[4, : self._Mp_j1 * self._jn_j1].set(
-            (self._sigma_s(x, y) + self.kn**2 * self._sigma_a(x, y))
-            * vector_j1
+            (self._sigma_s(x, y) + self.kn**2 * self._sigma_a(x, y)) * vector_j1
         )
         eqn_residual = eqn_residual.at[
             4,
@@ -659,8 +650,7 @@ class OddEvenDecompositionPointwiseInteriorConstraint2D(RandomFeatureSpaceXYV):
             + self._Mp_r1 * self._jn_r1
             + self._Mp_j2 * self._jn_j2,
         ].set(
-            -(self._sigma_s(x, y) + self.kn**2 * self._sigma_a(x, y))
-            * vector_j2
+            -(self._sigma_s(x, y) + self.kn**2 * self._sigma_a(x, y)) * vector_j2
         )
         eqn_residual = eqn_residual.at[
             4,
@@ -902,22 +892,42 @@ class OddEvenDecompositionPointwiseBoundaryConstraint2D(RandomFeatureSpaceXYV):
         #     self.kn * vector_j2 * sign_j2,
         #     vector_r2,
         # ])
+        # Each first-quadrant sample represents two independent antipodal
+        # velocity pairs.  Impose their inflow traces independently.  The old
+        # sum/difference mixing is algebraically equivalent only for exactly
+        # zero data and silently applies a sqrt(2) boundary reweighting.
         vector_f1 = jnp.concatenate(
             [
                 self.kn * vector_j1 * sign_j1,
                 vector_r1,
-                self.kn * vector_j2 * sign_j2,
-                vector_r2,
+                jnp.zeros_like(vector_j2),
+                jnp.zeros_like(vector_r2),
             ]
-        )  # (Mp_j1*Jn_j1 + Mp_r1*Jn_r1 + Mp_j2*Jn_j2 + Mp_r2*Jn_r2,)
+        )
         vector_f2 = jnp.concatenate(
             [
-                self.kn * vector_j1 * sign_j1,
-                vector_r1,
-                -self.kn * vector_j2 * sign_j2,
-                -vector_r2,
+                jnp.zeros_like(vector_j1),
+                jnp.zeros_like(vector_r1),
+                self.kn * vector_j2 * sign_j2,
+                vector_r2,
             ]
         )
         # (2, Mp_j1*Jn_j1 + Mp_r1*Jn_r1 + Mp_j2*Jn_j2 + Mp_r2*Jn_r2)
         vector_f = jnp.stack([vector_f1, vector_f2], axis=0)
         return vector_f
+
+    def trace(self, invar_x, invar_y, physical_angle):
+        """Coefficient row for ``f`` at an arbitrary physical direction."""
+        angle = jnp.mod(physical_angle, 2.0 * jnp.pi)
+        base = jnp.arctan2(jnp.abs(jnp.sin(angle)), jnp.abs(jnp.cos(angle)))
+        j1 = 0.5 * (self._feats_fn_j1(invar_x, invar_y, base) - self._feats_fn_j1(invar_x, invar_y, base + jnp.pi))
+        r1 = 0.5 * (self._feats_fn_r1(invar_x, invar_y, base) + self._feats_fn_r1(invar_x, invar_y, base + jnp.pi))
+        j2 = 0.5 * (self._feats_fn_j2(invar_x, invar_y, -base) - self._feats_fn_j2(invar_x, invar_y, jnp.pi - base))
+        r2 = 0.5 * (self._feats_fn_r2(invar_x, invar_y, -base) + self._feats_fn_r2(invar_x, invar_y, jnp.pi - base))
+        j1, r1, j2, r2 = (value.reshape(-1) for value in (j1, r1, j2, r2))
+        z1, z2, z3, z4 = (jnp.zeros_like(value) for value in (j1, r1, j2, r2))
+        q1 = jnp.concatenate((self.kn*j1, r1, z3, z4))
+        q2 = jnp.concatenate((z1, z2, -self.kn*j2, r2))
+        q3 = jnp.concatenate((-self.kn*j1, r1, z3, z4))
+        q4 = jnp.concatenate((z1, z2, self.kn*j2, r2))
+        return jnp.where(angle < 0.5*jnp.pi, q1, jnp.where(angle < jnp.pi, q2, jnp.where(angle < 1.5*jnp.pi, q3, q4)))

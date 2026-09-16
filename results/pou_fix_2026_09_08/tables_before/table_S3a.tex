@@ -1,0 +1,43 @@
+% BEGIN GENERATED S3 TARGET ACCURACY
+\begin{table}[t]
+\centering
+\caption{Observed cost at a common accuracy target for the budgets in Table~\ref{tab:supp-efficiency}, at $\varepsilon=10^{-3}$. A budget qualifies when both median errors satisfy $E_f,E_\rho\leq\tau$; deterministic entries use their single-run errors. The least reported computation time among qualifying tested budgets is shown. A dash denotes no qualifying tested budget, not impossibility. $N_\tau$ is the smallest model size among qualifying tested budgets, selected independently of minimum time. Model size counts coefficients, trainable network parameters, or discrete unknowns as in Table~\ref{tab:supp-efficiency}; it is not memory usage. No interpolation or extrapolation is used; these are aggregate-budget comparisons, not seedwise success probabilities or measured stopping times. Timing inherits the accounting and hardware limitations of Table~\ref{tab:supp-efficiency}.}
+\label{tab:supp-target-accuracy}
+\begin{tabular}{lcllrr}
+\toprule
+Problem & $\tau$ & Method & Fastest budget & $T_{\rm comp}$ (s) & $N_\tau$\\
+\midrule
+1D & $10^{-2}$ & OE-$S_N$-Krylov & 32x16 & 0.08 & 512\\
+1D & $10^{-2}$ & MM-APRFM & J=32 & 2.21 & 64\\
+1D & $10^{-2}$ & OE-APNN & 5000 steps & 120.72 & 25474\\
+1D & $10^{-2}$ & OE-APRFM & J=64 & 15.53 & 64\\
+\addlinespace
+1D & $10^{-3}$ & OE-$S_N$-Krylov & 32x16 & 0.08 & 512\\
+1D & $10^{-3}$ & MM-APRFM & J=32 & 2.21 & 64\\
+1D & $10^{-3}$ & OE-APNN & --- & --- & ---\\
+1D & $10^{-3}$ & OE-APRFM & J=64 & 15.53 & 64\\
+\addlinespace
+1D & $10^{-4}$ & OE-$S_N$-Krylov & 32x16 & 0.08 & 512\\
+1D & $10^{-4}$ & MM-APRFM & J=32 & 2.21 & 64\\
+1D & $10^{-4}$ & OE-APNN & --- & --- & ---\\
+1D & $10^{-4}$ & OE-APRFM & J=64 & 15.53 & 64\\
+\addlinespace
+2D & $10^{-2}$ & OE-$S_N$-Krylov & 12x12x16 & 0.33 & 2304\\
+2D & $10^{-2}$ & MM-APRFM & J=64 & 4.19 & 128\\
+2D & $10^{-2}$ & OE-APNN & --- & --- & ---\\
+2D & $10^{-2}$ & OE-APRFM & J=128 & 59.06 & 512\\
+\addlinespace
+2D & $10^{-3}$ & OE-$S_N$-Krylov & 24x24x16 & 0.77 & 9216\\
+2D & $10^{-3}$ & MM-APRFM & J=64 & 4.19 & 128\\
+2D & $10^{-3}$ & OE-APNN & --- & --- & ---\\
+2D & $10^{-3}$ & OE-APRFM & --- & --- & ---\\
+\addlinespace
+2D & $10^{-4}$ & OE-$S_N$-Krylov & --- & --- & ---\\
+2D & $10^{-4}$ & MM-APRFM & J=64 & 4.19 & 128\\
+2D & $10^{-4}$ & OE-APNN & --- & --- & ---\\
+2D & $10^{-4}$ & OE-APRFM & --- & --- & ---\\
+\addlinespace
+\bottomrule
+\end{tabular}
+\end{table}
+% END GENERATED S3 TARGET ACCURACY

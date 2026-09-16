@@ -16,6 +16,7 @@ from geometry.uniform_mesh import (
     UniformMeshXYV,
 )
 from modules.partition_of_unity import psi_a as psi
+from modules.partition_of_unity import psi_b as continuous_psi
 from functools import partial
 
 seedX, seedXV = 1, 42
@@ -260,7 +261,9 @@ class RandomFeatureSpaceXV(nn.Module):
     def setup(self):
         super().setup()
         self._dim = 2
-        self._psi = psi
+        # Continuous 1-D operators differentiate normalized psi_b patches.
+        # Boundary traces and reconstructed fields must use the same space.
+        self._psi = continuous_psi
         self._mesh = UniformMeshXV(domain=self.domain, strides=self.strides)
         self._center = self._mesh.center_of_cell
         self._radius = self._mesh.radius_of_cell

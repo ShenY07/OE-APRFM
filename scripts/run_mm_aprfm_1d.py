@@ -18,6 +18,7 @@ VENDORED_SRC = ROOT / "baselines" / "mm_oerfm" / "original" / "src"
 sys.path.insert(0, str(CURRENT_SRC))
 from configuration.p1_manufactured_1d import get_config as get_p1_config
 from configuration.p2_heterogeneous_1d import get_config as get_p2_config
+from configuration.p6_angular_manufactured_1d import get_config as get_p6_config
 
 # Keep the original MM implementation isolated from the OE implementation.
 sys.path.insert(0, str(VENDORED_SRC))
@@ -55,7 +56,7 @@ def integral(fn, quadratures, argnum):
 
 
 def run(problem, epsilon, seed, output_dir, *, partitions, rho_features, g_features, rcond, collocation):
-    config = (get_p1_config if problem == "p1" else get_p2_config)(epsilon)
+    config = {"p1": get_p1_config, "p2": get_p2_config, "p6": get_p6_config}[problem](epsilon)
     model = config.model
     px, pv = partitions
     domain = {"x": tuple(config.mesh.domain.x), "v": (-1.0, 1.0)}
@@ -95,6 +96,14 @@ def run(problem, epsilon, seed, output_dir, *, partitions, rho_features, g_featu
     quadrature = leggauss(8)
 
     def rhs(x, v):
+        if problem == "p6":
+            # OE source convention: eps*v*f_x = rho-f+eps^2*q.
+            # MM equations require <q> and eps*(q-<q>), respectively.
+            a = 0.25 * jnp.cos(jnp.pi*x).squeeze()
+            ap = -0.25*jnp.pi*jnp.sin(jnp.pi*x).squeeze()
+            rp = 0.5*jnp.pi*jnp.cos(2*jnp.pi*x).squeeze()
+            velocity = v.squeeze()
+            return jnp.array([ap/3, velocity*(rp+a)+epsilon*(velocity**2-1/3)*ap, 0.0])
         q = source(x, v).squeeze()
         average = integral(source, quadrature, 1)(x)
         return jnp.array([average, q - average, 0.0])
@@ -106,12 +115,32 @@ def run(problem, epsilon, seed, output_dir, *, partitions, rho_features, g_featu
     started = perf_counter()
     left = np.asarray(bc_fn(*sample.pts_left))
     right = np.asarray(bc_fn(*sample.pts_right))
-    interior = np.asarray(eq_fn(*sample.pts_int)).reshape(-1, unknowns)
+    batch_size = int(os.environ.get("MM_ASSEMBLY_BATCH_SIZE", "0"))
+    if batch_size > 0:
+        ix, iv = sample.pts_int
+        # Preserve point and residual ordering; only bound JAX temporaries.
+        first = np.asarray(eq_fn(ix[:batch_size], iv[:batch_size]))
+        check = np.concatenate([
+            np.asarray(eq_fn(ix[k:k+1], iv[k:k+1]))
+            for k in range(min(2, len(ix)))
+        ], axis=0)
+        np.testing.assert_allclose(first[:len(check)], check, rtol=1e-11, atol=1e-12)
+        interior = np.empty((len(ix),) + first.shape[1:], dtype=first.dtype)
+        interior[:len(first)] = first
+        for start in range(batch_size, len(ix), batch_size):
+            interior[start:start+batch_size] = np.asarray(
+                eq_fn(ix[start:start+batch_size], iv[start:start+batch_size]))
+        interior = interior.reshape(-1, unknowns)
+    else:
+        interior = np.asarray(eq_fn(*sample.pts_int)).reshape(-1, unknowns)
     rhs_interior = np.asarray(rhs_fn(*sample.pts_int)).reshape(-1)
     matrix = np.concatenate((left, right, interior), axis=0)
     vector = np.empty(matrix.shape[0])
     boundary_count = left.shape[0]
-    if problem == "p1":
+    if problem == "p6":
+        vector[:boundary_count] = np.asarray(model.exact_solution(*sample.pts_left)).reshape(-1)
+        vector[boundary_count:2*boundary_count] = np.asarray(model.exact_solution(*sample.pts_right)).reshape(-1)
+    elif problem == "p1":
         vector[:boundary_count] = 1.0
         vector[boundary_count : 2 * boundary_count] = 0.0
     else:
@@ -135,10 +164,12 @@ def run(problem, epsilon, seed, output_dir, *, partitions, rho_features, g_featu
     )
     approx = jit(vmap(lambda x, v: constructor.apply(params, x, v)))
     started = perf_counter()
-    if problem == "p1":
+    if problem in ("p1", "p6"):
         x = np.linspace(0.0, 1.0, 257)
         velocity = np.linspace(-1.0, 1.0, 128)
         reference = 1.0 - x[:, None] + np.zeros((1, velocity.size))
+        if problem == "p6":
+            reference = np.asarray(model.exact_solution(x[:,None],velocity[None,:]))
         weights = None
     else:
         reference_path = ROOT / "results" / "references" / f"p2_parity_ref_eps_{epsilon:.0e}_level_B.npz"
@@ -202,7 +233,7 @@ def run(problem, epsilon, seed, output_dir, *, partitions, rho_features, g_featu
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--problem", choices=("p1", "p2"), required=True)
+    parser.add_argument("--problem", choices=("p1", "p2", "p6"), required=True)
     parser.add_argument("--epsilon", type=float, required=True)
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--partitions", type=int, nargs=2, default=(1, 1))

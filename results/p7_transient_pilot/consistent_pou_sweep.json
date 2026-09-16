@@ -1,0 +1,764 @@
+[
+  {
+    "method": "oe_ap",
+    "epsilon": 1,
+    "seed": 11,
+    "J": 256,
+    "N_coef": 512,
+    "N_row": 53248,
+    "initial_weight": 1.0,
+    "boundary_weight": 1.0,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 16384,
+        "physical_rms": 0.08228213167013253,
+        "weighted_loss": 0.020647643489341817
+      },
+      "micro": {
+        "rows": 16384,
+        "physical_rms": 0.007752803786933125,
+        "weighted_loss": 0.017156286200270047
+      },
+      "odd": {
+        "rows": 16384,
+        "physical_rms": 0.01188178120542409,
+        "weighted_loss": 0.009821504589155823
+      },
+      "left": {
+        "rows": 1024,
+        "physical_rms": 0.0847748373359739,
+        "weighted_loss": 0.1585139503935607
+      },
+      "right": {
+        "rows": 1024,
+        "physical_rms": 0.006780717492075245,
+        "weighted_loss": 0.0008339262007224749
+      },
+      "initial": {
+        "rows": 2048,
+        "physical_rms": 0.11993685946977564,
+        "weighted_loss": 0.4967773801786704
+      }
+    },
+    "repeat_macro": true,
+    "assembly_seconds": 81.83869792893529,
+    "linear_seconds": 24.91112446784973,
+    "compute_seconds": 106.74982239678502,
+    "rank": 512,
+    "condition": 31417662120.055626,
+    "training_rms": 0.003635446576540182,
+    "partitions": [
+      1,
+      1,
+      1
+    ],
+    "scale": 0.5,
+    "samples": 1024,
+    "nv": 16,
+    "boundary_samples": 1024,
+    "initial_samples": 2048,
+    "held_out": {
+      "macro_rms": 0.0690930107942717,
+      "micro_rms": 0.005729981322496984,
+      "odd_rms": 0.01110056174325777,
+      "initial_rms": 0.1118994972856423,
+      "left_rms": 0.08373474745145783,
+      "right_rms": 0.006837801251307507
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 1.0142971988182243,
+        "E_rho": 0.9872133892540083,
+        "E_r": 1.1134917474573132,
+        "E_j": 0.899393722381173
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.6870831411124579,
+        "E_rho": 0.576200739165487,
+        "E_r": 0.741806889513447,
+        "E_j": 0.6243269000933577
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.01,
+    "seed": 11,
+    "J": 256,
+    "N_coef": 512,
+    "N_row": 53248,
+    "initial_weight": 1.0,
+    "boundary_weight": 1.0,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 16384,
+        "physical_rms": 0.08563711600929073,
+        "weighted_loss": 0.022958713992324374
+      },
+      "micro": {
+        "rows": 16384,
+        "physical_rms": 0.0007322003211314434,
+        "weighted_loss": 0.036620461173323814
+      },
+      "odd": {
+        "rows": 16384,
+        "physical_rms": 0.013074676889509423,
+        "weighted_loss": 0.04498529845987205
+      },
+      "left": {
+        "rows": 1024,
+        "physical_rms": 0.10171460393064256,
+        "weighted_loss": 0.23475431050254383
+      },
+      "right": {
+        "rows": 1024,
+        "physical_rms": 0.0044980125456968905,
+        "weighted_loss": 0.001060114493818237
+      },
+      "initial": {
+        "rows": 2048,
+        "physical_rms": 0.09230151666657126,
+        "weighted_loss": 0.38058391130155583
+      }
+    },
+    "repeat_macro": true,
+    "assembly_seconds": 58.03083596751094,
+    "linear_seconds": 51.14724477380514,
+    "compute_seconds": 109.17808074131608,
+    "rank": 509,
+    "condition": 2092606333623.8174,
+    "training_rms": 0.0036796353366222276,
+    "partitions": [
+      1,
+      1,
+      1
+    ],
+    "scale": 0.5,
+    "samples": 1024,
+    "nv": 16,
+    "boundary_samples": 1024,
+    "initial_samples": 2048,
+    "held_out": {
+      "macro_rms": 0.08916981184669641,
+      "micro_rms": 0.0006775891248684897,
+      "odd_rms": 0.01327744950915001,
+      "initial_rms": 0.08718722823136267,
+      "left_rms": 0.09872243136114534,
+      "right_rms": 0.004457871759215983
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.03146309118346875,
+        "E_rho": 0.03130918298275051,
+        "E_r": 0.03134289062810082,
+        "E_j": 0.08362001075034164
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.011594753152682534,
+        "E_rho": 0.010998900447932211,
+        "E_r": 0.011546068547349722,
+        "E_j": 0.044132560159579864
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.001,
+    "seed": 11,
+    "J": 256,
+    "N_coef": 512,
+    "N_row": 53248,
+    "initial_weight": 1.0,
+    "boundary_weight": 1.0,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 16384,
+        "physical_rms": 0.08734136525702828,
+        "weighted_loss": 0.02384715460313313
+      },
+      "micro": {
+        "rows": 16384,
+        "physical_rms": 0.0007189419363950521,
+        "weighted_loss": 0.036636588260135196
+      },
+      "odd": {
+        "rows": 16384,
+        "physical_rms": 0.01329467274002265,
+        "weighted_loss": 0.046413567977549225
+      },
+      "left": {
+        "rows": 1024,
+        "physical_rms": 0.10537119303311328,
+        "weighted_loss": 0.2542875087702783
+      },
+      "right": {
+        "rows": 1024,
+        "physical_rms": 0.004378239616343492,
+        "weighted_loss": 0.0010450201651188403
+      },
+      "initial": {
+        "rows": 2048,
+        "physical_rms": 0.09608345003739886,
+        "weighted_loss": 0.40984940307194995
+      }
+    },
+    "repeat_macro": true,
+    "assembly_seconds": 63.92847467213869,
+    "linear_seconds": 4.4695663414895535,
+    "compute_seconds": 68.39804101362824,
+    "rank": 509,
+    "condition": 2095870709285.288,
+    "training_rms": 0.003807845227133492,
+    "partitions": [
+      1,
+      1,
+      1
+    ],
+    "scale": 0.5,
+    "samples": 1024,
+    "nv": 16,
+    "boundary_samples": 1024,
+    "initial_samples": 2048,
+    "held_out": {
+      "macro_rms": 0.09108871639169597,
+      "micro_rms": 0.0006594441489345212,
+      "odd_rms": 0.013460911212359015,
+      "initial_rms": 0.09194381330064678,
+      "left_rms": 0.10290375778897584,
+      "right_rms": 0.004341655640778081
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.037329368475415486,
+        "E_rho": 0.03730350256652601,
+        "E_r": 0.03732834966708679,
+        "E_j": 0.0877620556325781
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.016301857164607966,
+        "E_rho": 0.015863585147003936,
+        "E_r": 0.016301568604311915,
+        "E_j": 0.041544362185232366
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 1,
+    "seed": 11,
+    "J": 256,
+    "N_coef": 512,
+    "N_row": 53248,
+    "initial_weight": 1.0,
+    "boundary_weight": 1.0,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 16384,
+        "physical_rms": 0.038187241430493436,
+        "weighted_loss": 0.03481642998308358
+      },
+      "micro": {
+        "rows": 16384,
+        "physical_rms": 0.04184329286494146,
+        "weighted_loss": 0.04392481066234434
+      },
+      "odd": {
+        "rows": 16384,
+        "physical_rms": 0.02598726534956413,
+        "weighted_loss": 0.04239294887941202
+      },
+      "left": {
+        "rows": 1024,
+        "physical_rms": 0.1153002105926977,
+        "weighted_loss": 0.7364583856018924
+      },
+      "right": {
+        "rows": 1024,
+        "physical_rms": 0.0012901335339712248,
+        "weighted_loss": 0.00010313912850870455
+      },
+      "initial": {
+        "rows": 2048,
+        "physical_rms": 0.11581703047366772,
+        "weighted_loss": 1.4770432411695356
+      }
+    },
+    "repeat_macro": true,
+    "assembly_seconds": 95.90843078121543,
+    "linear_seconds": 18.834169775247574,
+    "compute_seconds": 114.742600556463,
+    "rank": 512,
+    "condition": 2359839.547264725,
+    "training_rms": 0.006621669716161906,
+    "partitions": [
+      1,
+      2,
+      2
+    ],
+    "scale": 0.5,
+    "samples": 1024,
+    "nv": 16,
+    "boundary_samples": 1024,
+    "initial_samples": 2048,
+    "blas_threads": 4,
+    "held_out": {
+      "macro_rms": 0.031018615921669674,
+      "micro_rms": 0.04260206648681287,
+      "odd_rms": 0.027241220147657147,
+      "initial_rms": 0.1073935600334604,
+      "left_rms": 0.11703083862399213,
+      "right_rms": 0.001336781741475037
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.9825120891000985,
+        "E_rho": 0.8967952303382775,
+        "E_r": 1.0649899076657798,
+        "E_j": 0.8884795361059488
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.6680516396729095,
+        "E_rho": 0.5219808046206071,
+        "E_r": 0.7084640216427165,
+        "E_j": 0.6226912728580873
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.01,
+    "seed": 11,
+    "J": 256,
+    "N_coef": 512,
+    "N_row": 53248,
+    "initial_weight": 1.0,
+    "boundary_weight": 1.0,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 16384,
+        "physical_rms": 0.03981802401484692,
+        "weighted_loss": 0.03856369106940909
+      },
+      "micro": {
+        "rows": 16384,
+        "physical_rms": 0.007125084891367401,
+        "weighted_loss": 0.24736290477766337
+      },
+      "odd": {
+        "rows": 16384,
+        "physical_rms": 0.036230295903483416,
+        "weighted_loss": 0.23568851033772442
+      },
+      "left": {
+        "rows": 1024,
+        "physical_rms": 0.11334891011207603,
+        "weighted_loss": 0.9513759618394675
+      },
+      "right": {
+        "rows": 1024,
+        "physical_rms": 0.002386586251744246,
+        "weighted_loss": 0.0009616013314244086
+      },
+      "initial": {
+        "rows": 2048,
+        "physical_rms": 0.10639362862832916,
+        "weighted_loss": 1.5450507742875108
+      }
+    },
+    "repeat_macro": true,
+    "assembly_seconds": 30.55693419277668,
+    "linear_seconds": 4.338520482182503,
+    "compute_seconds": 34.89545467495918,
+    "rank": 512,
+    "condition": 47964848.0873402,
+    "training_rms": 0.007529743011287269,
+    "partitions": [
+      1,
+      2,
+      2
+    ],
+    "scale": 0.5,
+    "samples": 1024,
+    "nv": 16,
+    "boundary_samples": 1024,
+    "initial_samples": 2048,
+    "blas_threads": 4,
+    "held_out": {
+      "macro_rms": 0.0399426777729054,
+      "micro_rms": 0.007136214049814638,
+      "odd_rms": 0.041203115333529175,
+      "initial_rms": 0.10290561754776646,
+      "left_rms": 0.11357939675758878,
+      "right_rms": 0.0024473105615931555
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.06975320907521375,
+        "E_rho": 0.06716392746112798,
+        "E_r": 0.06967818491625148,
+        "E_j": 0.11482146861894049
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.03695198268873364,
+        "E_rho": 0.024579361902466026,
+        "E_r": 0.036816476005855595,
+        "E_j": 0.1321273445790041
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.001,
+    "seed": 11,
+    "J": 256,
+    "N_coef": 512,
+    "N_row": 53248,
+    "initial_weight": 1.0,
+    "boundary_weight": 1.0,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 16384,
+        "physical_rms": 0.040735742123394175,
+        "weighted_loss": 0.040357432524088944
+      },
+      "micro": {
+        "rows": 16384,
+        "physical_rms": 0.007080723621555943,
+        "weighted_loss": 0.24987863315851358
+      },
+      "odd": {
+        "rows": 16384,
+        "physical_rms": 0.036547031225530636,
+        "weighted_loss": 0.23923412362422541
+      },
+      "left": {
+        "rows": 1024,
+        "physical_rms": 0.11926732988146789,
+        "weighted_loss": 1.0476793766408887
+      },
+      "right": {
+        "rows": 1024,
+        "physical_rms": 0.0023551101502981182,
+        "weighted_loss": 0.0009258451348349244
+      },
+      "initial": {
+        "rows": 2048,
+        "physical_rms": 0.10991315353723873,
+        "weighted_loss": 1.6436323722467572
+      }
+    },
+    "repeat_macro": true,
+    "assembly_seconds": 77.1303995847702,
+    "linear_seconds": 46.47371742129326,
+    "compute_seconds": 123.60411700606346,
+    "rank": 512,
+    "condition": 48006294.00362564,
+    "training_rms": 0.007778420601941815,
+    "partitions": [
+      1,
+      2,
+      2
+    ],
+    "scale": 0.5,
+    "samples": 1024,
+    "nv": 16,
+    "boundary_samples": 1024,
+    "initial_samples": 2048,
+    "blas_threads": 4,
+    "held_out": {
+      "macro_rms": 0.04085387486866761,
+      "micro_rms": 0.007087205019401028,
+      "odd_rms": 0.041493970223386654,
+      "initial_rms": 0.10757367043956255,
+      "left_rms": 0.11959994865528668,
+      "right_rms": 0.0024231505336919
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.07691691132533936,
+        "E_rho": 0.0747888490336439,
+        "E_r": 0.07691611572794863,
+        "E_j": 0.12649512584454678
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.04025311974530148,
+        "E_rho": 0.029556916934627205,
+        "E_r": 0.04025184595368535,
+        "E_j": 0.13620149472005716
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 1,
+    "seed": 11,
+    "J": 512,
+    "N_coef": 1024,
+    "N_row": 53248,
+    "initial_weight": 1.0,
+    "boundary_weight": 1.0,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 16384,
+        "physical_rms": 0.19803752963771476,
+        "weighted_loss": 0.02908235643937802
+      },
+      "micro": {
+        "rows": 16384,
+        "physical_rms": 0.3259650336732128,
+        "weighted_loss": 0.08495501897938915
+      },
+      "odd": {
+        "rows": 16384,
+        "physical_rms": 0.6586634953619505,
+        "weighted_loss": 0.10238061302084518
+      },
+      "left": {
+        "rows": 1024,
+        "physical_rms": 0.08019760457667299,
+        "weighted_loss": 0.36236746164445455
+      },
+      "right": {
+        "rows": 1024,
+        "physical_rms": 0.000777242280548028,
+        "weighted_loss": 4.616253884205435e-05
+      },
+      "initial": {
+        "rows": 2048,
+        "physical_rms": 0.10429916102854006,
+        "weighted_loss": 1.2179278995833696
+      }
+    },
+    "repeat_macro": true,
+    "assembly_seconds": 27.526802256703377,
+    "linear_seconds": 5.2378190867602825,
+    "compute_seconds": 32.76462134346366,
+    "rank": 1024,
+    "condition": 2952913.0156205217,
+    "training_rms": 0.0058088923231463556,
+    "partitions": [
+      2,
+      2,
+      2
+    ],
+    "scale": 0.5,
+    "samples": 1024,
+    "nv": 16,
+    "boundary_samples": 1024,
+    "initial_samples": 2048,
+    "blas_threads": 4,
+    "held_out": {
+      "macro_rms": 0.15767830472474328,
+      "micro_rms": 0.2677996756178819,
+      "odd_rms": 0.559303564344251,
+      "initial_rms": 0.09581451087573138,
+      "left_rms": 0.08137302374372485,
+      "right_rms": 0.0008008047815494586
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.8910414966644823,
+        "E_rho": 0.8012627467205564,
+        "E_r": 0.9756592652788421,
+        "E_j": 0.7933440201797343
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.6170189982609324,
+        "E_rho": 0.3756712150943438,
+        "E_r": 0.6360981109700242,
+        "E_j": 0.5962792751302481
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.01,
+    "seed": 11,
+    "J": 512,
+    "N_coef": 1024,
+    "N_row": 53248,
+    "initial_weight": 1.0,
+    "boundary_weight": 1.0,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 16384,
+        "physical_rms": 0.21249374253884146,
+        "weighted_loss": 0.07938324789021
+      },
+      "micro": {
+        "rows": 16384,
+        "physical_rms": 0.006037067491733603,
+        "weighted_loss": 0.18598885144525695
+      },
+      "odd": {
+        "rows": 16384,
+        "physical_rms": 0.037164937570408195,
+        "weighted_loss": 0.20233069964874695
+      },
+      "left": {
+        "rows": 1024,
+        "physical_rms": 0.09817222504733411,
+        "weighted_loss": 0.744505289415244
+      },
+      "right": {
+        "rows": 1024,
+        "physical_rms": 0.001781696124139726,
+        "weighted_loss": 0.0005683846807682325
+      },
+      "initial": {
+        "rows": 2048,
+        "physical_rms": 0.09398907611194983,
+        "weighted_loss": 1.1834620618230374
+      }
+    },
+    "repeat_macro": true,
+    "assembly_seconds": 5.653580151498318,
+    "linear_seconds": 5.15682378411293,
+    "compute_seconds": 10.810403935611248,
+    "rank": 1024,
+    "condition": 48446189.55953936,
+    "training_rms": 0.0067083138633557,
+    "partitions": [
+      2,
+      2,
+      2
+    ],
+    "scale": 0.5,
+    "samples": 1024,
+    "nv": 16,
+    "boundary_samples": 1024,
+    "initial_samples": 2048,
+    "blas_threads": 4,
+    "held_out": {
+      "macro_rms": 0.22817668184467368,
+      "micro_rms": 0.006400546635991596,
+      "odd_rms": 0.04633912269123665,
+      "initial_rms": 0.09112663459908116,
+      "left_rms": 0.0979457054813349,
+      "right_rms": 0.0018600468178258946
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.03131129599937043,
+        "E_rho": 0.026350790625417016,
+        "E_r": 0.031207957625895524,
+        "E_j": 0.07821734913659176
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.012966799104225745,
+        "E_rho": 0.009268352242948271,
+        "E_r": 0.012949131150385073,
+        "E_j": 0.030087461052884044
+      }
+    ]
+  },
+  {
+    "method": "oe_ap",
+    "epsilon": 0.001,
+    "seed": 11,
+    "J": 512,
+    "N_coef": 1024,
+    "N_row": 53248,
+    "initial_weight": 1.0,
+    "boundary_weight": 1.0,
+    "block_average": false,
+    "block_diagnostics": {
+      "macro": {
+        "rows": 16384,
+        "physical_rms": 0.2266702138732021,
+        "weighted_loss": 0.08312801889682894
+      },
+      "micro": {
+        "rows": 16384,
+        "physical_rms": 0.00600395315356106,
+        "weighted_loss": 0.1845618465444254
+      },
+      "odd": {
+        "rows": 16384,
+        "physical_rms": 0.038146303924452694,
+        "weighted_loss": 0.20641464335829068
+      },
+      "left": {
+        "rows": 1024,
+        "physical_rms": 0.10408772809913334,
+        "weighted_loss": 0.8323486771010332
+      },
+      "right": {
+        "rows": 1024,
+        "physical_rms": 0.0017734106350284354,
+        "weighted_loss": 0.0005617750839066411
+      },
+      "initial": {
+        "rows": 2048,
+        "physical_rms": 0.09742032009964818,
+        "weighted_loss": 1.26453592623673
+      }
+    },
+    "repeat_macro": true,
+    "assembly_seconds": 5.825128946453333,
+    "linear_seconds": 5.058605123311281,
+    "compute_seconds": 10.883734069764614,
+    "rank": 1024,
+    "condition": 48337288.54894998,
+    "training_rms": 0.0069493776192032794,
+    "partitions": [
+      2,
+      2,
+      2
+    ],
+    "scale": 0.5,
+    "samples": 1024,
+    "nv": 16,
+    "boundary_samples": 1024,
+    "initial_samples": 2048,
+    "blas_threads": 4,
+    "held_out": {
+      "macro_rms": 0.24063194535224997,
+      "micro_rms": 0.006371866692344792,
+      "odd_rms": 0.047707588557397006,
+      "initial_rms": 0.09564957662515168,
+      "left_rms": 0.10404414435141357,
+      "right_rms": 0.0018486446534168237
+    },
+    "snapshots": [
+      {
+        "t": 0.05,
+        "E_f": 0.035403922127500646,
+        "E_rho": 0.03137620986453939,
+        "E_r": 0.0354029596435006,
+        "E_j": 0.08287945653240258
+      },
+      {
+        "t": 0.1,
+        "E_f": 0.015435989984951161,
+        "E_rho": 0.012705275480061246,
+        "E_r": 0.015435886947093412,
+        "E_j": 0.027630622794718836
+      }
+    ]
+  }
+]

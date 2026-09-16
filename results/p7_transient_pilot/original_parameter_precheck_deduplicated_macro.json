@@ -1,0 +1,321 @@
+{
+  "protocol": "Single-patch parameter sweep aligned to the original 1D RF conventions.\n\nNumPy random stream (not bitwise Flax initialization). Same [0,scale) law,\ncenter/halfwidth coordinates, shared r/j feature pool, unit-L2 row sum.\nSingle patch makes normalized psi_a and psi_b identical on the domain.\n",
+  "runs": [
+    {
+      "method": "oe_ap",
+      "epsilon": 1,
+      "seed": 11,
+      "J": 128,
+      "N_coef": 256,
+      "N_row": 34816,
+      "initial_weight": 1.0,
+      "boundary_weight": 1.0,
+      "block_average": false,
+      "block_diagnostics": {
+        "macro": {
+          "rows": 1024,
+          "physical_rms": 0.25649681736950125,
+          "weighted_loss": 0.010280952916724897
+        },
+        "micro": {
+          "rows": 16384,
+          "physical_rms": 0.010980158795269144,
+          "weighted_loss": 0.005694632619256729
+        },
+        "odd": {
+          "rows": 16384,
+          "physical_rms": 0.016647544276003477,
+          "weighted_loss": 0.00571246945948597
+        },
+        "left": {
+          "rows": 256,
+          "physical_rms": 0.1050160474872267,
+          "weighted_loss": 0.05762482044428121
+        },
+        "right": {
+          "rows": 256,
+          "physical_rms": 0.023391596723602488,
+          "weighted_loss": 0.0021102937425727356
+        },
+        "initial": {
+          "rows": 512,
+          "physical_rms": 0.14746714012103507,
+          "weighted_loss": 0.18082029252408455
+        }
+      },
+      "assembly_seconds": 6.13676830381155,
+      "linear_seconds": 2.0553786046802998,
+      "compute_seconds": 8.19214690849185,
+      "rank": 256,
+      "condition": 239874.34286895778,
+      "training_rms": 0.0027444978677810417,
+      "feature_scale": 1.0,
+      "samples": 1024,
+      "training_positive_angles": 16,
+      "partitions": [
+        1,
+        1,
+        1
+      ],
+      "initial_points": 512,
+      "boundary_points_per_side": 256,
+      "held_out": {
+        "macro_rms": 0.2711102414675616,
+        "micro_rms": 0.00841144495935669,
+        "odd_rms": 0.01716444586985874,
+        "initial_rms": 0.14508221454138776,
+        "left_rms": 0.10652600350346458,
+        "right_rms": 0.02369865074771135
+      },
+      "snapshots": [
+        {
+          "t": 0.05,
+          "E_f": 1.3657301029125806,
+          "E_rho": 1.600238866531904
+        },
+        {
+          "t": 0.1,
+          "E_f": 0.932880107520224,
+          "E_rho": 1.0693886875941658
+        }
+      ]
+    },
+    {
+      "method": "oe_ap",
+      "epsilon": 1,
+      "seed": 11,
+      "J": 256,
+      "N_coef": 512,
+      "N_row": 34816,
+      "initial_weight": 1.0,
+      "boundary_weight": 1.0,
+      "block_average": false,
+      "block_diagnostics": {
+        "macro": {
+          "rows": 1024,
+          "physical_rms": 0.19828636413785383,
+          "weighted_loss": 0.00783261207794036
+        },
+        "micro": {
+          "rows": 16384,
+          "physical_rms": 0.0034556540913028132,
+          "weighted_loss": 0.0032910147769925945
+        },
+        "odd": {
+          "rows": 16384,
+          "physical_rms": 0.0046260815203874395,
+          "weighted_loss": 0.0016017595830795468
+        },
+        "left": {
+          "rows": 256,
+          "physical_rms": 0.08130539897464886,
+          "weighted_loss": 0.03986011165941743
+        },
+        "right": {
+          "rows": 256,
+          "physical_rms": 0.011282318623948146,
+          "weighted_loss": 0.0005377888340225727
+        },
+        "initial": {
+          "rows": 512,
+          "physical_rms": 0.11444921761255061,
+          "weighted_loss": 0.11460515113659892
+        }
+      },
+      "assembly_seconds": 2.455792333930731,
+      "linear_seconds": 3.7421421445906162,
+      "compute_seconds": 6.197934478521347,
+      "rank": 512,
+      "condition": 31050971941.3265,
+      "training_rms": 0.0021948958355049956,
+      "feature_scale": 0.5,
+      "samples": 1024,
+      "training_positive_angles": 16,
+      "partitions": [
+        1,
+        1,
+        1
+      ],
+      "initial_points": 512,
+      "boundary_points_per_side": 256,
+      "held_out": {
+        "macro_rms": 0.1735653630458461,
+        "micro_rms": 0.0025113552863361994,
+        "odd_rms": 0.00442389876341398,
+        "initial_rms": 0.11036777058206182,
+        "left_rms": 0.08365692891021588,
+        "right_rms": 0.011108597526876358
+      },
+      "snapshots": [
+        {
+          "t": 0.05,
+          "E_f": 1.01931975962657,
+          "E_rho": 1.0145330816547702
+        },
+        {
+          "t": 0.1,
+          "E_f": 0.6931452567514551,
+          "E_rho": 0.6052779807653942
+        }
+      ]
+    },
+    {
+      "method": "oe_ap",
+      "epsilon": 1,
+      "seed": 11,
+      "J": 256,
+      "N_coef": 512,
+      "N_row": 34816,
+      "initial_weight": 1.0,
+      "boundary_weight": 1.0,
+      "block_average": false,
+      "block_diagnostics": {
+        "macro": {
+          "rows": 1024,
+          "physical_rms": 0.21630504749395169,
+          "weighted_loss": 0.0037810470712389887
+        },
+        "micro": {
+          "rows": 16384,
+          "physical_rms": 0.008481420124998286,
+          "weighted_loss": 0.002140207151727656
+        },
+        "odd": {
+          "rows": 16384,
+          "physical_rms": 0.01145837443303953,
+          "weighted_loss": 0.0011614394656879789
+        },
+        "left": {
+          "rows": 256,
+          "physical_rms": 0.09570394186958019,
+          "weighted_loss": 0.023974189705301185
+        },
+        "right": {
+          "rows": 256,
+          "physical_rms": 0.01097612654915964,
+          "weighted_loss": 0.0002449961885610282
+        },
+        "initial": {
+          "rows": 512,
+          "physical_rms": 0.1155491393850928,
+          "weighted_loss": 0.056528535639391836
+        }
+      },
+      "assembly_seconds": 2.3639771193265915,
+      "linear_seconds": 3.136521864682436,
+      "compute_seconds": 5.5004989840090275,
+      "rank": 512,
+      "condition": 42635917.78198109,
+      "training_rms": 0.0015883018110829396,
+      "feature_scale": 1.0,
+      "samples": 1024,
+      "training_positive_angles": 16,
+      "partitions": [
+        1,
+        1,
+        1
+      ],
+      "initial_points": 512,
+      "boundary_points_per_side": 256,
+      "held_out": {
+        "macro_rms": 0.1850855359211796,
+        "micro_rms": 0.006968641490110996,
+        "odd_rms": 0.01063424835150329,
+        "initial_rms": 0.11198189555513346,
+        "left_rms": 0.09819758535421458,
+        "right_rms": 0.012167013936081304
+      },
+      "snapshots": [
+        {
+          "t": 0.05,
+          "E_f": 1.0133646563111174,
+          "E_rho": 0.9578885029008327
+        },
+        {
+          "t": 0.1,
+          "E_f": 0.677449892474332,
+          "E_rho": 0.5566110245662294
+        }
+      ]
+    },
+    {
+      "method": "oe_ap",
+      "epsilon": 1,
+      "seed": 11,
+      "J": 256,
+      "N_coef": 512,
+      "N_row": 34816,
+      "initial_weight": 1.0,
+      "boundary_weight": 1.0,
+      "block_average": false,
+      "block_diagnostics": {
+        "macro": {
+          "rows": 1024,
+          "physical_rms": 0.21397401691191015,
+          "weighted_loss": 0.0022530401167821018
+        },
+        "micro": {
+          "rows": 16384,
+          "physical_rms": 0.02852109299631941,
+          "weighted_loss": 0.003194371509960352
+        },
+        "odd": {
+          "rows": 16384,
+          "physical_rms": 0.03191566077480354,
+          "weighted_loss": 0.0024824331360406298
+        },
+        "left": {
+          "rows": 256,
+          "physical_rms": 0.10476508120258923,
+          "weighted_loss": 0.018191613054217164
+        },
+        "right": {
+          "rows": 256,
+          "physical_rms": 0.004009829914321098,
+          "weighted_loss": 2.178529153878198e-05
+        },
+        "initial": {
+          "rows": 512,
+          "physical_rms": 0.12414961738640103,
+          "weighted_loss": 0.044142523155311295
+        }
+      },
+      "assembly_seconds": 2.3267702721059322,
+      "linear_seconds": 3.68529524281621,
+      "compute_seconds": 6.012065514922142,
+      "rank": 512,
+      "condition": 108821.15612559764,
+      "training_rms": 0.0014208369904540076,
+      "feature_scale": 2.0,
+      "samples": 1024,
+      "training_positive_angles": 16,
+      "partitions": [
+        1,
+        1,
+        1
+      ],
+      "initial_points": 512,
+      "boundary_points_per_side": 256,
+      "held_out": {
+        "macro_rms": 0.21332531993197926,
+        "micro_rms": 0.024671194492566155,
+        "odd_rms": 0.034301086764487704,
+        "initial_rms": 0.12285798603150826,
+        "left_rms": 0.10684111264859013,
+        "right_rms": 0.004278579419555877
+      },
+      "snapshots": [
+        {
+          "t": 0.05,
+          "E_f": 1.1267960676696511,
+          "E_rho": 1.20060090794071
+        },
+        {
+          "t": 0.1,
+          "E_f": 0.7546931064123107,
+          "E_rho": 0.7067802124989919
+        }
+      ]
+    }
+  ]
+}

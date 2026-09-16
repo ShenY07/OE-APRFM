@@ -1,0 +1,28 @@
+{
+  "protocol": "oe-apnn-p1-p5-v1",
+  "problem": "P1",
+  "epsilon": 0.001,
+  "seed": 23,
+  "dtype": "float64",
+  "network": {
+    "hidden_width": 64,
+    "hidden_transforms": 4,
+    "separate_r_j": true
+  },
+  "optimizer": {
+    "name": "Adam",
+    "learning_rate": 0.001,
+    "scheduler": null
+  },
+  "training": {
+    "steps": 2000,
+    "interior_phase_samples": 512,
+    "boundary_phase_samples": 128,
+    "validation_interval": 200
+  },
+  "parameter_count": 25474,
+  "device": "cpu",
+  "torch": "2.5.1+cu121",
+  "cuda": "12.1",
+  "python": "3.10.12"
+}

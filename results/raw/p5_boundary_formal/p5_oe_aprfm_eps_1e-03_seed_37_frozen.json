@@ -1,0 +1,56 @@
+{
+  "problem": "p5",
+  "method": "oe_aprfm",
+  "epsilon": 0.001,
+  "seed": 37,
+  "relative_l2_f": 0.03624020485705881,
+  "relative_l2_rho": 0.004610183536847811,
+  "residual_half": 0.011706649956841599,
+  "empirical_stability_ratio": 3.1206419548276285,
+  "condition_number": 992233.4811495994,
+  "largest_singular_value": 12.588899885221302,
+  "smallest_effective_singular_value": 1.26874371046579e-05,
+  "singular_value_threshold": 1.2588899885221302e-05,
+  "coefficient_norm": 96807.3972563534,
+  "rank": 321,
+  "num_rows": 58096,
+  "num_columns": 1024,
+  "num_angular": 16,
+  "oversampling_ratio": 56.734375,
+  "partitions": [
+    1,
+    1,
+    2
+  ],
+  "strides": {
+    "theta": 0.7853981633974483,
+    "x": 1.0,
+    "y": 1.0
+  },
+  "features_per_patch": 128,
+  "scale": 0.25,
+  "rcond": 1e-06,
+  "block_weights": [
+    10.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "collocation": [
+    32,
+    32,
+    16
+  ],
+  "feature_seconds": 17.400383986532688,
+  "assembly_seconds": 86.03951008990407,
+  "solve_seconds": 0.2802245132625103,
+  "evaluation_seconds": 6.334020555019379,
+  "total_seconds": 110.05413914471865,
+  "min_rho_h": 0.9959686034677415,
+  "max_rho_h": 1.2017642887100202,
+  "min_f_h": 0.8245756041601151,
+  "correlation_rho": 0.9990869105102307,
+  "negative_fraction_f": 0.0,
+  "negative_fraction_rho": 0.0,
+  "angular_representation": "four_component"
+}

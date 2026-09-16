@@ -1,0 +1,24 @@
+{
+  "problem": "p1",
+  "method": "rfm",
+  "epsilon": 3.1622776601683795e-05,
+  "seed": 23,
+  "relative_l2_f": 0.0008737756441954042,
+  "relative_l2_rho": 0.0008737756415714467,
+  "condition_number": 683991322163.774,
+  "rank": 113,
+  "num_rows": 1088,
+  "num_columns": 128,
+  "oversampling_ratio": 8.5,
+  "partitions": [
+    1,
+    1
+  ],
+  "features_per_patch": 128,
+  "rcond": 1e-12,
+  "feature_seconds": 0.0004346407949924469,
+  "assembly_seconds": 1.4813986271619797,
+  "solve_seconds": 0.016390085220336914,
+  "evaluation_seconds": 0.5561965554952621,
+  "total_seconds": 2.054419908672571
+}

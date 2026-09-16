@@ -1,0 +1,46 @@
+{
+  "problem": "p2",
+  "method": "mm_aprfm",
+  "epsilon": 1.0,
+  "seed": 23,
+  "relative_l2_f": 0.0012103182620603404,
+  "relative_l2_rho": 0.0010101401654802739,
+  "condition_number": 981257.8909693884,
+  "rank": 432,
+  "num_rows": 48640,
+  "num_columns": 1152,
+  "oversampling_ratio": 42.22222222222222,
+  "feature_matrix_sha256": "ff415c87603bb42067f16bfc8cb897fae6e0e8d0c1564fab9ccaf2cf62e98bdb",
+  "partitions": [
+    2,
+    4
+  ],
+  "rho_features_per_patch": 64,
+  "g_features_per_patch": 128,
+  "total_features": 1152,
+  "rcond": 1e-06,
+  "collocation": {
+    "interior": [
+      128,
+      130
+    ],
+    "boundary": 64
+  },
+  "feature_seconds": 0.03191833198070526,
+  "assembly_seconds": 303.849776558578,
+  "solve_seconds": 6.555277433246374,
+  "evaluation_seconds": 3.508812353014946,
+  "total_seconds": 313.94578467682004,
+  "experiment": "E5",
+  "initialization": "U(-1,1)",
+  "physical_scattering": "1/(.01+.5*(tanh(6.5-11*x)+tanh(11*x-4.5)))",
+  "positive_angular_budget": 64,
+  "operator_quadrature": 64,
+  "assembly_batch_size": 16,
+  "angular_sampling": "midpoints; MM uses exactly mirrored OE directions",
+  "spatial_interior_count": 126,
+  "boundary_count_per_side": 128,
+  "reference_refinement_status": "pending",
+  "method_label": "mm",
+  "note": "p2 filename is reused runner plumbing; this is E5 physics, not P2"
+}

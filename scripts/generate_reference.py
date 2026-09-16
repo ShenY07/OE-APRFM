@@ -15,7 +15,7 @@ from numerical.parity_reference import solve_parity_gmres_2d, solve_parity_si_ds
 
 GRIDS = {
     "p2": {"A": (512, 256), "B": (1024, 512)},
-    "p5": {"A": (32, 32, 8), "B": (64, 64, 16)},
+    "p5": {"A": (32, 32, 8), "B": (64, 64, 16), "C": (96, 96, 24)},
 }
 
 
@@ -23,26 +23,30 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--problem", choices=("p2", "p5"), required=True)
     parser.add_argument("--epsilon", type=float, required=True)
-    parser.add_argument("--level", choices=("A", "B"), required=True)
+    parser.add_argument("--level", choices=("A", "B", "C"), required=True)
     parser.add_argument("--max-iter", type=int, default=100)
-    parser.add_argument("--output-dir", type=Path, default=Path("results/references"))
+    parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--p5-constant-inflow", action="store_true")
     args = parser.parse_args()
     grid = GRIDS[args.problem][args.level]
     if args.problem == "p2":
         result = solve_parity_si_dsa_1d(p2_config(args.epsilon), grid=grid)
     else:
         result = solve_parity_gmres_2d(
-            p5_config(args.epsilon), grid=grid, max_iter=args.max_iter
+            p5_config(args.epsilon, constant_inflow=args.p5_constant_inflow), grid=grid, max_iter=args.max_iter
         )
     if not result["converged"]:
         raise RuntimeError(f"{args.problem} level {args.level} did not converge")
-    args.output_dir.mkdir(parents=True, exist_ok=True)
+    output_dir = args.output_dir or Path(
+        "results/references_p5_smooth" if args.problem == "p5" else "results/references"
+    )
+    output_dir.mkdir(parents=True, exist_ok=True)
     stem = f"{args.problem}_parity_ref_eps_{args.epsilon:.0e}_level_{args.level}"
     arrays = {key: value for key, value in result.items() if isinstance(value, np.ndarray)}
     metadata = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     metadata.update(problem=args.problem, epsilon=args.epsilon, level=args.level, grid=grid)
-    np.savez_compressed(args.output_dir / f"{stem}.npz", **arrays)
-    (args.output_dir / f"{stem}.json").write_text(json.dumps(metadata, indent=2) + "\n")
+    np.savez_compressed(output_dir / f"{stem}.npz", **arrays)
+    (output_dir / f"{stem}.json").write_text(json.dumps(metadata, indent=2) + "\n")
     print(json.dumps(metadata, indent=2))
 
 

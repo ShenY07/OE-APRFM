@@ -423,8 +423,17 @@ class RandomFeatureFunctionsXYV(nn.Module):
         invar_y: jnp.ndarray,
         invar_theta: jnp.ndarray,
     ):
-        invar = jnp.concatenate([invar_x, invar_y, invar_theta])
-        invar = self._tarnsform_fn(invar)
+        # A full-circle angular coordinate must be periodic.  A raw theta
+        # coordinate creates an artificial discontinuity at 0/2pi and badly
+        # conditions the micro space, especially for vacuum transport.
+        invar = jnp.concatenate(
+            [
+                (invar_x - self._center[0]) / self._radius[0],
+                (invar_y - self._center[1]) / self._radius[1],
+                jnp.cos(invar_theta),
+                jnp.sin(invar_theta),
+            ]
+        )
         invar = self._feat_layer(invar)
         invar = self._acti_fn(invar)
         return invar

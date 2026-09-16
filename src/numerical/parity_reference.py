@@ -6,7 +6,9 @@ from time import perf_counter
 
 import numpy as np
 from scipy.linalg import solve_banded
+from scipy.sparse import lil_matrix
 from scipy.sparse.linalg import LinearOperator, gmres
+from scipy.sparse.linalg import spsolve
 from scipy.special import roots_legendre
 
 
@@ -26,10 +28,8 @@ def solve_parity_si_dsa_1d(
     dx = (xmax - xmin) / nx
     x_faces = np.linspace(xmin, xmax, nx + 1)
     x = 0.5 * (x_faces[:-1] + x_faces[1:])
-    full_v = np.linspace(-1.0, 1.0, full_nv)
-    dv = full_v[1] - full_v[0]
-    full_w = np.full(full_nv, dv)
-    full_w[[0, -1]] *= 0.5
+    # Standard S_N angular discretization on [-1, 1].
+    full_v, full_w = roots_legendre(full_nv)
     v, w = full_v[npos:], full_w[npos:]
     eps = float(config.model.knudsen_number)
     sigma_s = _field_1d(config.model.coeff.scattering, x, (nx,))
@@ -103,9 +103,94 @@ def solve_parity_si_dsa_1d(
     }
 
 
+def solve_parity_gmres_1d(
+    config, *, grid=(256, 128), tol=1.0e-9, max_iter=200,
+    restart=500, report_every=50,
+):
+    """Solve the same diamond-difference fixed point with restarted GMRES.
+
+    This is the robust fallback for diffusive regimes where the notebook DSA
+    correction is not consistent enough with the transport sweep to converge.
+    Boundary face values are eliminated from the Krylov unknowns.
+    """
+    started = perf_counter()
+    nx, full_nv = map(int, grid)
+    npos = full_nv // 2
+    xmin, xmax = map(float, config.mesh.domain.x)
+    dx = (xmax - xmin) / nx
+    x_faces = np.linspace(xmin, xmax, nx + 1)
+    x = 0.5 * (x_faces[:-1] + x_faces[1:])
+    # Standard S_N angular discretization on [-1, 1].
+    full_v, full_w = roots_legendre(full_nv)
+    v, w = full_v[npos:], full_w[npos:]
+    eps = float(config.model.knudsen_number)
+    sigma_s = _field_1d(config.model.coeff.scattering, x, (nx,))
+    sigma_a = _field_1d(config.model.coeff.absorption, x, (nx,))
+    sigma_t = sigma_s + eps**2 * sigma_a
+    xx, vv = np.meshgrid(x, v, indexing="ij")
+    source_p = np.broadcast_to(np.asarray(config.model.source(xx, vv), float), (nx, npos))
+    source_m = np.broadcast_to(np.asarray(config.model.source(xx, -vv), float), (nx, npos))
+    left = np.broadcast_to(np.asarray(config.model.bdy_cond.f_l(v), float), (npos,))
+    right = np.broadcast_to(np.asarray(config.model.bdy_cond.f_r(-v), float), (npos,))
+
+    def unpack(vector):
+        fp = np.empty((nx + 1, npos)); fm = np.empty_like(fp)
+        fp[0] = left; fp[1:] = vector[:nx*npos].reshape(nx, npos)
+        fm[-1] = right; fm[:-1] = vector[nx*npos:].reshape(nx, npos)
+        return fp, fm
+
+    def pack(fp, fm):
+        return np.concatenate((fp[1:].ravel(), fm[:-1].ravel()))
+
+    def sweep_vector(vector):
+        fp, fm = unpack(vector)
+        even = 0.25 * (fp[1:] + fp[:-1] + fm[1:] + fm[:-1])
+        density = even @ w
+        common = sigma_s[:, None] * density[:, None]
+        q_p, q_m = common + eps**2 * source_p, common + eps**2 * source_m
+        new_m = fm.copy()
+        for index in range(nx - 1, -1, -1):
+            denom = 0.5 * sigma_t[index] + eps * v / dx
+            ratio = (0.5 * sigma_t[index] - eps * v / dx) / denom
+            new_m[index] = q_m[index] / denom - ratio * new_m[index + 1]
+        # Recompute the positive collision source with the updated negative flux.
+        even = 0.25 * (fp[1:] + fp[:-1] + new_m[1:] + new_m[:-1])
+        density = even @ w
+        q_p = sigma_s[:, None] * density[:, None] + eps**2 * source_p
+        new_p = fp.copy()
+        for index in range(nx):
+            denom = 0.5 * sigma_t[index] + eps * v / dx
+            ratio = (0.5 * sigma_t[index] - eps * v / dx) / denom
+            new_p[index + 1] = q_p[index] / denom - ratio * new_p[index]
+        return pack(new_p, new_m)
+
+    zero = np.zeros(2 * nx * npos)
+    affine = sweep_vector(zero)
+    operator = LinearOperator((zero.size, zero.size),
+                              matvec=lambda z: z-(sweep_vector(z)-affine), dtype=float)
+    history=[]
+    def callback(residual):
+        history.append(float(residual))
+        if len(history) == 1 or len(history) % report_every == 0:
+            print(f"1D GMRES iteration {len(history)}: residual={history[-1]:.6e}", flush=True)
+    solution, info = gmres(operator, affine, x0=zero, rtol=tol, atol=0.0,
+                           restart=restart, maxiter=max_iter,
+                           callback=callback, callback_type="pr_norm")
+    fp, fm = unpack(solution)
+    positive = 0.5 * (fp[1:] + fp[:-1]); negative = 0.5 * (fm[1:] + fm[:-1])
+    even = 0.5 * (positive + negative)
+    velocity = np.concatenate((-v[::-1], v)); weights = np.concatenate((w[::-1], w))
+    distribution = np.concatenate((negative[:, ::-1], positive), axis=1)
+    residual = np.linalg.norm(operator @ solution-affine)/max(np.linalg.norm(affine),1e-300)
+    return {"x":x,"velocity":velocity,"weights":weights,"f":distribution,
+            "r":even,"j":(positive-negative)/(2.0*eps),"rho":even@w,
+            "iterations":len(history),"converged":info==0,
+            "relative_residual":float(residual),"runtime_seconds":perf_counter()-started}
+
+
 def solve_parity_gmres_2d(
     config, *, grid=(32, 32, 8), tol=1.0e-9, max_iter=100,
-    restart=100, report_every=50
+    restart=500, report_every=50
 ):
     """Four-quadrant matrix-free parity solve from parity_si_2d.ipynb."""
     started = perf_counter()
@@ -184,9 +269,34 @@ def solve_parity_gmres_2d(
         if len(history) == 1 or len(history) % report_every == 0:
             print(f"GMRES iteration {len(history)}: residual={history[-1]:.6e}", flush=True)
 
+    initial = np.ones_like(zero)
+    if eps < 1.0e-2:
+        # Diffusion-limit initial guess.  It removes the slowly damped isotropic
+        # mode responsible for Krylov stagnation in strongly diffusive P5 runs.
+        q_average = source.mean(axis=2)
+        diffusion = 1.0 / (2.0 * sigma_s)
+        nxi, nyi = nx-2, ny-2
+        matrix = lil_matrix((nxi*nyi, nxi*nyi), dtype=float)
+        rhs = q_average[1:-1, 1:-1].reshape(-1)
+        def idx(i, j): return i*nyi+j
+        for i in range(nxi):
+            for j in range(nyi):
+                ii, jj, row = i+1, j+1, idx(i,j)
+                de = 2*diffusion[ii,jj]*diffusion[ii+1,jj]/(diffusion[ii,jj]+diffusion[ii+1,jj])
+                dw = 2*diffusion[ii,jj]*diffusion[ii-1,jj]/(diffusion[ii,jj]+diffusion[ii-1,jj])
+                dn = 2*diffusion[ii,jj]*diffusion[ii,jj+1]/(diffusion[ii,jj]+diffusion[ii,jj+1])
+                ds = 2*diffusion[ii,jj]*diffusion[ii,jj-1]/(diffusion[ii,jj]+diffusion[ii,jj-1])
+                matrix[row,row]=(de+dw)/dx**2+(dn+ds)/dy**2+sigma_a[ii,jj]
+                if i+1<nxi: matrix[row,idx(i+1,j)]=-de/dx**2
+                if i>0: matrix[row,idx(i-1,j)]=-dw/dx**2
+                if j+1<nyi: matrix[row,idx(i,j+1)]=-dn/dy**2
+                if j>0: matrix[row,idx(i,j-1)]=-ds/dy**2
+        rho0=np.zeros((nx,ny)); rho0[1:-1,1:-1]=spsolve(matrix.tocsr(),rhs).reshape(nxi,nyi)
+        initial=np.broadcast_to(rho0[:,:,None],zero.shape).copy()
+    effective_restart = min(restart, max(50, 16_000_000 // zero.size))
     solution, info = gmres(
-        operator, affine.ravel(), x0=np.ones(zero.size), rtol=tol, atol=0.0,
-        restart=restart, maxiter=max_iter, callback=callback, callback_type="pr_norm"
+        operator, affine.ravel(), x0=initial.ravel(), rtol=tol, atol=0.0,
+        restart=effective_restart, maxiter=max_iter, callback=callback, callback_type="pr_norm"
     )
     distribution = solution.reshape(nx, ny, nang)
     quadrants = distribution.reshape(nx, ny, 4, na)

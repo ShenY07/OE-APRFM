@@ -1,0 +1,8 @@
+{
+  "problem": "p5",
+  "epsilon": 1.0,
+  "coarse_level": "A",
+  "fine_level": "B",
+  "relative_difference_f_BA": 0.001650216813188331,
+  "relative_difference_rho_BA": 0.0001583120293084533
+}

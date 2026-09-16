@@ -1,0 +1,289 @@
+{
+  "mm_grid": {
+    "state": "completed",
+    "started": 1789026214.0767267,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "mm_grid"
+    ],
+    "returncode": 0,
+    "finished": 1789026243.2202148
+  },
+  "p5_1e-5": {
+    "state": "completed",
+    "started": 1789026243.220958,
+    "command": [
+      "/usr/bin/python3",
+      "scripts/run_p3_oe_aprfm.py",
+      "--problem",
+      "p5",
+      "--epsilon",
+      "0.001",
+      "--seed",
+      "11",
+      "--partitions",
+      "1",
+      "1",
+      "2",
+      "--features",
+      "128",
+      "--scale",
+      ".25",
+      "--rcond",
+      "1e-5",
+      "--block-weights",
+      "10",
+      "1",
+      "1",
+      "1",
+      "--collocation",
+      "32",
+      "32",
+      "16",
+      "--output-dir",
+      "/mnt/store2/sheny-y23/OE-APRFM/results/comparison_repairs_2026_09_10/p5_1e-5"
+    ],
+    "returncode": 0,
+    "finished": 1789026440.2982316
+  },
+  "p5_1e-6": {
+    "state": "completed",
+    "started": 1789026440.2988687,
+    "command": [
+      "/usr/bin/python3",
+      "scripts/run_p3_oe_aprfm.py",
+      "--problem",
+      "p5",
+      "--epsilon",
+      "0.001",
+      "--seed",
+      "11",
+      "--partitions",
+      "1",
+      "1",
+      "2",
+      "--features",
+      "128",
+      "--scale",
+      ".25",
+      "--rcond",
+      "1e-6",
+      "--block-weights",
+      "10",
+      "1",
+      "1",
+      "1",
+      "--collocation",
+      "32",
+      "32",
+      "16",
+      "--output-dir",
+      "/mnt/store2/sheny-y23/OE-APRFM/results/comparison_repairs_2026_09_10/p5_1e-6"
+    ],
+    "returncode": 0,
+    "finished": 1789026644.203019
+  },
+  "p5_1e-7": {
+    "state": "completed",
+    "started": 1789026644.2034938,
+    "command": [
+      "/usr/bin/python3",
+      "scripts/run_p3_oe_aprfm.py",
+      "--problem",
+      "p5",
+      "--epsilon",
+      "0.001",
+      "--seed",
+      "11",
+      "--partitions",
+      "1",
+      "1",
+      "2",
+      "--features",
+      "128",
+      "--scale",
+      ".25",
+      "--rcond",
+      "1e-7",
+      "--block-weights",
+      "10",
+      "1",
+      "1",
+      "1",
+      "--collocation",
+      "32",
+      "32",
+      "16",
+      "--output-dir",
+      "/mnt/store2/sheny-y23/OE-APRFM/results/comparison_repairs_2026_09_10/p5_1e-7"
+    ],
+    "returncode": 0,
+    "finished": 1789026901.360429
+  },
+  "reference_1024_128": {
+    "state": "completed",
+    "started": 1789026901.3621373,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "reference_1024_128"
+    ],
+    "returncode": 0,
+    "finished": 1789026911.5962207
+  },
+  "reference_512_256": {
+    "state": "completed",
+    "started": 1789026911.5968525,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "reference_512_256"
+    ],
+    "returncode": 0,
+    "finished": 1789026919.2258377
+  },
+  "reference_1024_256": {
+    "state": "completed",
+    "started": 1789026919.226398,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "reference_1024_256"
+    ],
+    "returncode": 0,
+    "finished": 1789026926.4822917
+  },
+  "timing_oe_32_0": {
+    "state": "completed",
+    "started": 1789026926.4828267,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_oe_32_0"
+    ],
+    "returncode": 0,
+    "finished": 1789027241.5411012
+  },
+  "timing_oe_32_1": {
+    "state": "completed",
+    "started": 1789027241.5418801,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_oe_32_1"
+    ],
+    "returncode": 0,
+    "finished": 1789027558.6301646
+  },
+  "timing_oe_32_2": {
+    "state": "completed",
+    "started": 1789027558.631513,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_oe_32_2"
+    ],
+    "returncode": 0,
+    "finished": 1789027765.338755
+  },
+  "timing_oe_64_0": {
+    "state": "completed",
+    "started": 1789027765.340027,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_oe_64_0"
+    ],
+    "returncode": 0,
+    "finished": 1789028043.7040977
+  },
+  "timing_oe_64_1": {
+    "state": "completed",
+    "started": 1789028043.7048652,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_oe_64_1"
+    ],
+    "returncode": 0,
+    "finished": 1789028211.004575
+  },
+  "timing_oe_64_2": {
+    "state": "completed",
+    "started": 1789028211.0051317,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_oe_64_2"
+    ],
+    "returncode": 0,
+    "finished": 1789028429.152041
+  },
+  "timing_mm_32_0": {
+    "state": "completed",
+    "started": 1789028429.152541,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_mm_32_0"
+    ],
+    "returncode": 0,
+    "finished": 1789028629.0555687
+  },
+  "timing_mm_32_1": {
+    "state": "completed",
+    "started": 1789028629.0568635,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_mm_32_1"
+    ],
+    "returncode": 0,
+    "finished": 1789028823.2593617
+  },
+  "timing_mm_32_2": {
+    "state": "completed",
+    "started": 1789028823.2607436,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_mm_32_2"
+    ],
+    "returncode": 0,
+    "finished": 1789029066.9660077
+  },
+  "timing_mm_64_0": {
+    "state": "completed",
+    "started": 1789029066.9669576,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_mm_64_0"
+    ],
+    "returncode": 0,
+    "finished": 1789029389.590578
+  },
+  "timing_mm_64_1": {
+    "state": "completed",
+    "started": 1789029389.592026,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_mm_64_1"
+    ],
+    "returncode": 0,
+    "finished": 1789029712.5932207
+  },
+  "timing_mm_64_2": {
+    "state": "completed",
+    "started": 1789029712.5942261,
+    "command": [
+      "/usr/bin/python3",
+      "/mnt/store2/sheny-y23/OE-APRFM/scripts/continue_comparison_repairs.py",
+      "timing_mm_64_2"
+    ],
+    "returncode": 0,
+    "finished": 1789030056.6913667
+  }
+}

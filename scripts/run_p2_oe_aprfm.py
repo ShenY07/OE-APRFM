@@ -41,6 +41,8 @@ def run(
     block_weights: tuple[float, float, float, float] | None = None,
     collocation: tuple[int, int] | None = None,
     tag: str = "",
+    reference_level: str = "B",
+    evaluation_stride: int = 1,
 ):
     config = get_config(epsilon)
     model = config.model
@@ -62,8 +64,8 @@ def run(
     dummy = (jnp.zeros((1,)), jnp.ones((1,)))
     ip = interior.init(key, *dummy)
     bp = boundary.init(key, *dummy)
-    interior_fn = vmap(lambda x, v: interior.apply(ip, x, v))
-    boundary_fn = vmap(lambda x, v: boundary.apply(bp, x, v))
+    interior_fn = jax.jit(vmap(lambda x, v: interior.apply(ip, x, v)))
+    boundary_fn = jax.jit(vmap(lambda x, v: boundary.apply(bp, x, v)))
     feature_seconds = perf_counter() - started
     started = perf_counter()
     lx, lv = sampler.pts_left
@@ -92,10 +94,19 @@ def run(
     constructor = OddEvenDecompositionConstructor1D(**common, coefficients=jnp.asarray(coefficients.reshape(-1)))
     cp = constructor.init(key, *dummy)
     approximation = jax.jit(vmap(lambda x, v: constructor.apply(cp, x, v)))
-    ref_path = reference_dir / f"p2_parity_ref_eps_{epsilon:.0e}_level_B.npz"
+    ref_path = reference_dir / f"p2_parity_ref_eps_{epsilon:.0e}_level_{reference_level}.npz"
     with np.load(ref_path) as ref:
         x, velocity, reference_f, weights = ref["x"], ref["velocity"], ref["f"], ref["weights"]
         reference_rho = ref["rho"]
+    if evaluation_stride < 1:
+        raise ValueError("evaluation_stride must be positive")
+    if evaluation_stride > 1:
+        x = x[::evaluation_stride]
+        velocity = velocity[::evaluation_stride]
+        reference_f = reference_f[::evaluation_stride, ::evaluation_stride]
+        weights = weights[::evaluation_stride]
+        weights = weights * (2.0 / weights.sum())
+        reference_rho = 0.5 * (reference_f @ weights)
     started = perf_counter()
     numerical = np.empty_like(reference_f)
     for begin in range(0, x.size, 32):
@@ -110,14 +121,20 @@ def run(
         "problem": "p2", "method": "oe_aprfm", "epsilon": epsilon, "seed": seed,
         "relative_l2_f": error_f, "relative_l2_rho": error_rho,
         "residual_half": diagnostics["normalized_residual_rms"],
-        "empirical_stability_ratio": diagnostics["normalized_residual_rms"] / (error_f + error_rho),
+        "empirical_stability_ratio": np.hypot(error_f, error_rho) / diagnostics["normalized_residual_rms"],
         "condition_number": diagnostics["condition_number"], "rank": diagnostics["rank"],
+        "largest_singular_value": diagnostics["largest_singular_value"],
+        "smallest_effective_singular_value": diagnostics["smallest_effective_singular_value"],
+        "singular_value_threshold": diagnostics["singular_value_threshold"],
         "num_rows": int(matrix.shape[0]), "num_columns": int(matrix.shape[1]),
         "oversampling_ratio": float(matrix.shape[0] / matrix.shape[1]),
         "partitions": partitions, "strides": dict(config.mesh.strides),
         "features_per_patch": features, "scale": scale, "rcond": rcond,
         "block_weights": block_weights,
         "collocation": dict(model.collocation_sizes),
+        "reference_level": reference_level,
+        "evaluation_stride": evaluation_stride,
+        "evaluation_grid": [int(x.size), int(velocity.size)],
         "feature_seconds": feature_seconds, "assembly_seconds": assembly_seconds,
         "solve_seconds": solve_seconds, "evaluation_seconds": evaluation_seconds,
         "total_seconds": feature_seconds + assembly_seconds + solve_seconds + evaluation_seconds,
@@ -143,8 +160,10 @@ def main():
     parser.add_argument("--block-weights", type=float, nargs=4)
     parser.add_argument("--collocation", type=int, nargs=2)
     parser.add_argument("--tag", default="")
+    parser.add_argument("--reference-level", choices=("A", "B", "C", "D"), default="B")
+    parser.add_argument("--evaluation-stride", type=int, default=1)
     args = parser.parse_args()
-    print(json.dumps(run(args.epsilon, args.seed, args.output_dir, args.reference_dir, partitions=tuple(args.partitions), features=args.features, scale=args.scale, rcond=args.rcond, block_weights=None if args.block_weights is None else tuple(args.block_weights), collocation=None if args.collocation is None else tuple(args.collocation), tag=args.tag), indent=2))
+    print(json.dumps(run(args.epsilon, args.seed, args.output_dir, args.reference_dir, partitions=tuple(args.partitions), features=args.features, scale=args.scale, rcond=args.rcond, block_weights=None if args.block_weights is None else tuple(args.block_weights), collocation=None if args.collocation is None else tuple(args.collocation), tag=args.tag, reference_level=args.reference_level, evaluation_stride=args.evaluation_stride), indent=2))
 
 
 if __name__ == "__main__":

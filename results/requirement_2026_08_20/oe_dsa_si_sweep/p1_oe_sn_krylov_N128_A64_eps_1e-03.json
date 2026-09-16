@@ -1,0 +1,19 @@
+{
+  "problem": "p1",
+  "method": "oe_sn_krylov_N128_A64",
+  "epsilon": 0.001,
+  "grid": [
+    128,
+    64
+  ],
+  "tolerance": 1e-08,
+  "max_iterations": 5,
+  "dsa_relaxation": 0.01,
+  "stopping_criterion": "preconditioned relative GMRES residual < tolerance",
+  "iterations": 214,
+  "converged": true,
+  "relative_l2_f": 3.864373319270276e-06,
+  "relative_l2_rho": 3.8643661851632845e-06,
+  "runtime_seconds": 0.8607867024838924,
+  "relative_residual": 6.680725597864479e-09
+}

@@ -1,0 +1,59 @@
+{
+  "problem": "p2",
+  "method": "oe_aprfm",
+  "epsilon": 1.0,
+  "seed": 37,
+  "relative_l2_f": 0.0038162604937144766,
+  "relative_l2_rho": 0.003651487457043406,
+  "residual_half": 4.525778070920523e-05,
+  "empirical_stability_ratio": 116.70436276533371,
+  "condition_number": 976873.0215746443,
+  "rank": 704,
+  "largest_singular_value": 9.4228257336457,
+  "smallest_effective_singular_value": 9.645906402919009e-06,
+  "singular_value_threshold": 9.422825733645699e-06,
+  "num_rows": 12352,
+  "num_columns": 1152,
+  "oversampling_ratio": 10.722222222222221,
+  "partitions": [
+    2,
+    4
+  ],
+  "strides": {
+    "v": 0.25,
+    "x": 0.5
+  },
+  "features_per_patch": 72,
+  "scale": 1.0,
+  "rcond": 1e-06,
+  "block_weights": null,
+  "collocation": {
+    "boundary": 128,
+    "interior": [
+      128,
+      32
+    ]
+  },
+  "reference_level": "B",
+  "evaluation_stride": 1,
+  "evaluation_grid": [
+    512,
+    128
+  ],
+  "feature_seconds": 21.40025194734335,
+  "assembly_seconds": 124.61844115331769,
+  "solve_seconds": 1.8863974176347256,
+  "evaluation_seconds": 6.2214073948562145,
+  "total_seconds": 154.12649791315198,
+  "experiment": "E5",
+  "initialization": "U(-1,1)",
+  "physical_scattering": "1/(.01+.5*(tanh(6.5-11*x)+tanh(11*x-4.5)))",
+  "positive_angular_budget": 32,
+  "operator_quadrature": 64,
+  "angular_sampling": "midpoints; MM uses exactly mirrored OE directions",
+  "spatial_interior_count": 126,
+  "boundary_count_per_side": 128,
+  "reference_refinement_status": "pending",
+  "method_label": "oe",
+  "note": "p2 filename is reused runner plumbing; this is E5 physics, not P2"
+}

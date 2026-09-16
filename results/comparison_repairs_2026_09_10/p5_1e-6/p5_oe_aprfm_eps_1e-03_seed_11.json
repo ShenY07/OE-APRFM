@@ -1,0 +1,64 @@
+{
+  "problem": "p5",
+  "method": "oe_aprfm",
+  "epsilon": 0.001,
+  "seed": 11,
+  "relative_l2_f": 0.0005415793017327611,
+  "relative_l2_rho": 0.00041174982131154155,
+  "residual_half": 0.000913154931289866,
+  "empirical_stability_ratio": 0.7450300924324933,
+  "condition_number": 971119.1387215387,
+  "largest_singular_value": 12.803045084434222,
+  "smallest_effective_singular_value": 1.3183804719665196e-05,
+  "singular_value_threshold": 1.2803045084434222e-05,
+  "coefficient_norm": 5827.42226398875,
+  "rank": 317,
+  "num_rows": 58096,
+  "num_columns": 1024,
+  "num_angular": 16,
+  "oversampling_ratio": 56.734375,
+  "partitions": [
+    1,
+    1,
+    2
+  ],
+  "strides": {
+    "theta": 0.7853981633974483,
+    "x": 1.0,
+    "y": 1.0
+  },
+  "features_per_patch": 128,
+  "scale": 0.25,
+  "rcond": 1e-06,
+  "block_weights": [
+    10.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "collocation": [
+    32,
+    32,
+    16
+  ],
+  "feature_seconds": 23.276575807482004,
+  "assembly_seconds": 161.11154648661613,
+  "solve_seconds": 0.3506290651857853,
+  "evaluation_seconds": 8.747092723846436,
+  "total_seconds": 193.48584408313036,
+  "min_rho_h": 0.9995933249625584,
+  "max_rho_h": 1.2023649547769528,
+  "min_f_h": 0.9986309477199456,
+  "correlation_rho": 0.9999707079771132,
+  "negative_fraction_f": 0.0,
+  "negative_fraction_rho": 0.0,
+  "angular_representation": "four_component",
+  "residual_definition": "complete_normalized_training_residual_v2",
+  "boundary_implementation": "independent_pair_traces_v2",
+  "source_sha256": {
+    "scripts/run_p3_oe_aprfm.py": "b1ceca3c114e79b22c3d4880f5086cc5adfc20d8cca3218e7011215a0ab5b366",
+    "src/solver/streaming_least_squares.py": "af112a17cefc3faf268a11d190094e9b2ad97d5e349a80a970a849f9ee97ea9c",
+    "src/constraints/continuous_2d_odd_even_v2.py": "fc1bdeb9877b6cf41a5526bf905cb1305fc4d18be04bba3b18b6200b22e7289d",
+    "src/modules/function_space_v2.py": "aad976bf7d507f1638761a12f61e49ae0cf286d71be18d2c1314d0849d7f33d5"
+  }
+}

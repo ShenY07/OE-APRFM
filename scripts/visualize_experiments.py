@@ -93,15 +93,15 @@ def plot_exact_2d():
 
 def plot_p5_coefficients():
     config = p5_config(1.0e-3)
-    x = np.linspace(-1.0, 1.0, 401)
-    y = np.linspace(-1.0, 1.0, 401)
+    x = np.linspace(0.0, 1.0, 401)
+    y = np.linspace(0.0, 1.0, 401)
     xx, yy = np.meshgrid(x, y, indexing="ij")
     scattering = np.asarray(config.model.coeff.scattering(xx, yy))
     absorption = np.asarray(config.model.coeff.absorption(xx, yy))
     source = np.asarray(config.model.source(xx, yy, 0.0))
     fig, axes = plt.subplots(1, 3, figsize=(12, 3.7), constrained_layout=True)
-    for axis, field, title in zip(axes, (scattering, absorption, source), (r"$\sigma_s$", r"$\sigma_a$", "Gaussian source")):
-        image = axis.imshow(field.T, origin="lower", extent=(-1, 1, -1, 1), cmap="viridis")
+    for axis, field, title in zip(axes, (scattering, absorption, source), (r"$\sigma_s$", r"$\sigma_a$", "smooth internal source")):
+        image = axis.imshow(field.T, origin="lower", extent=(0, 1, 0, 1), cmap="viridis")
         axis.set(xlabel="x", ylabel="y", title=title)
         fig.colorbar(image, ax=axis)
     save(fig, "p5_smoothed_problem_fields.png")

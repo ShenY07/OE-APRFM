@@ -34,7 +34,9 @@ def solve(
     if damping < 0:
         raise ValueError("damping must be nonnegative")
 
-    row_scale = np.max(np.abs(A), axis=1, keepdims=True)
+    # Use the same unit-L2 row normalization as the streaming 2-D solver so
+    # formulation comparisons are not confounded by different row metrics.
+    row_scale = np.linalg.norm(A, axis=1, keepdims=True)
     row_scale = np.where(row_scale > 1e-30, row_scale, 1.0)
     A /= row_scale
     b /= row_scale
@@ -86,11 +88,16 @@ def solve(
     if not return_diagnostics:
         return x
 
+    threshold = (rcond if rcond is not None else np.finfo(float).eps * max(A_solve.shape)) * singular_values[0]
+    effective = singular_values[singular_values > threshold]
+    smallest_effective = float(effective[-1]) if effective.size else float("nan")
     diagnostics = {
         "rank": int(rank),
-        "condition_number": float(singular_values[0] / singular_values[-1]),
+        "condition_number": float(singular_values[0] / smallest_effective),
         "largest_singular_value": float(singular_values[0]),
         "smallest_singular_value": float(singular_values[-1]),
+        "smallest_effective_singular_value": smallest_effective,
+        "singular_value_threshold": float(threshold),
         "coefficient_norm": float(np.linalg.norm(x)),
     }
     residual_l2 = float(np.linalg.norm(A @ x - b))

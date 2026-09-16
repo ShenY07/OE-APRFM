@@ -91,15 +91,15 @@ class OddEvenDecompositionConstructor2D(RandomFeatureSpaceXYV):
         invar_y: jnp.ndarray,
         invar_theta: jnp.ndarray,
     ) -> jnp.ndarray:
-        invar_theta_2 = invar_theta + jnp.pi * 0.5
-        invar_theta_3 = invar_theta + jnp.pi
-        invar_theta_4 = invar_theta + jnp.pi * 1.5
+        angle = jnp.mod(invar_theta, 2.0 * jnp.pi)
+        base = jnp.arctan2(jnp.abs(jnp.sin(angle)), jnp.abs(jnp.cos(angle)))
+        invar_theta_3 = base + jnp.pi
 
         feat_j1_v = self._feats_fn_j1(
-            invar_x, invar_y, invar_theta
+            invar_x, invar_y, base
         )  # (Mp_j, Jn_j)
         feat_r1_v = self._feats_fn_r1(
-            invar_x, invar_y, invar_theta
+            invar_x, invar_y, base
         )  # (Mp_r, Jn_r)
         feat_j1_negv = self._feats_fn_j1(
             invar_x, invar_y, invar_theta_3
@@ -109,16 +109,16 @@ class OddEvenDecompositionConstructor2D(RandomFeatureSpaceXYV):
         )  # (Mp_r, Jn_r)
 
         feat_j2_v = self._feats_fn_j2(
-            invar_x, invar_y, invar_theta_2
+            invar_x, invar_y, -base
         )  # (Mp_j, Jn_j)
         feat_r2_v = self._feats_fn_r2(
-            invar_x, invar_y, invar_theta_2
+            invar_x, invar_y, -base
         )  # (Mp_r, Jn_r)
         feat_j2_negv = self._feats_fn_j2(
-            invar_x, invar_y, invar_theta_4
+            invar_x, invar_y, jnp.pi - base
         )  # (Mp_j, Jn_j)
         feat_r2_negv = self._feats_fn_r2(
-            invar_x, invar_y, invar_theta_4
+            invar_x, invar_y, jnp.pi - base
         )  # (Mp_r, Jn_r)
 
         feat_j1_outvar = 0.5 * (feat_j1_v - feat_j1_negv)  # j_new
@@ -174,8 +174,21 @@ class OddEvenDecompositionConstructor2D(RandomFeatureSpaceXYV):
             coeff_r2,
         )
 
-        approx_solution = (self.kn * approx_j1 + approx_r1) + (
-            self.kn * approx_j2 + approx_r2
+        quadrant_1 = angle < 0.5 * jnp.pi
+        quadrant_2 = angle < jnp.pi
+        quadrant_3 = angle < 1.5 * jnp.pi
+        approx_solution = jnp.where(
+            quadrant_1,
+            approx_r1 + self.kn * approx_j1,
+            jnp.where(
+                quadrant_2,
+                approx_r2 - self.kn * approx_j2,
+                jnp.where(
+                    quadrant_3,
+                    approx_r1 - self.kn * approx_j1,
+                    approx_r2 + self.kn * approx_j2,
+                ),
+            ),
         )
         return approx_solution
 

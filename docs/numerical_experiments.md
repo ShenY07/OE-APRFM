@@ -72,7 +72,7 @@ P2 的数值参考解由原输运方程 SI-DSA sweep 生成。正式误差计算
 | 数据集 | 当前状态 | 已有数据 | 结果位置 |
 |---|---|---|---|
 | OE-APRFM 正式结果 | 已有 | P1–P5，\(\varepsilon=1,10^{-3}\)；P2 为 5 个种子，其余当前为 seed 11 | `results/domain_decomposition`、`results/consistency`、`results/quadrant/final` |
-| MM-APRFM 正式结果 | 集群排队 | P1–P5，两个尺度，固定 seed 11，共 10 个任务 | `results/baselines/mm_aprfm` |
+| MM-APRFM 正式结果 | 本机运行 | P1–P5，两个尺度，固定 seed 11，共 10 个任务 | `results/baselines/mm_aprfm` |
 | RFM | 待运行 | — | — |
 | OE-APNN | 已完成归档数据评估 | P1–P5，两个尺度，seeds 7/11/17 | `results/baselines/oe_apnn_imported` |
 | SI-DSA | 部分完成 | P2 两个尺度 | `results/references`、`results/tables/iterative_solver_summary.csv` |

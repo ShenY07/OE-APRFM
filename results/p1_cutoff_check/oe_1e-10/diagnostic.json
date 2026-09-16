@@ -1,0 +1,16 @@
+{
+  "method": "oe",
+  "epsilon": 0.001,
+  "seed": 11,
+  "rcond": 1e-10,
+  "Ef": 5.177229108810563e-07,
+  "Erho": 3.831926723589517e-07,
+  "rank": 127,
+  "Ncoef": 128,
+  "Nrow": 2944,
+  "initialization": "legacy U(0,1)",
+  "residual_units": "raw OE; row-normalized MM",
+  "matrix_sha256": "da70c98c7e1e0847004e0b62d2b315ee4e6be5b5344f537dbe3f7e5eac5ff1bb",
+  "coefficient_norm": 405.6075296290726,
+  "raw_residual_norm": 1.893483105602372e-05
+}

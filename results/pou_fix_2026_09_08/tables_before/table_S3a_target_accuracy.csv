@@ -1,0 +1,25 @@
+problem,tolerance,method,budget,compute_seconds,N_tau,N_tau_budget,status
+p1,0.01,OE-$S_N$-Krylov,32x16,0.07776467502117157,512,32x16,attained
+p1,0.01,MM-APRFM,J=32,2.205697439610958,64,J=32,attained
+p1,0.01,OE-APNN,5000 steps,120.72022555023432,25474,5000 steps,attained
+p1,0.01,OE-APRFM,J=64,15.52807280793786,64,J=32,attained
+p1,0.001,OE-$S_N$-Krylov,32x16,0.07776467502117157,512,32x16,attained
+p1,0.001,MM-APRFM,J=32,2.205697439610958,64,J=32,attained
+p1,0.001,OE-APNN,,,,,not attained in tested budgets
+p1,0.001,OE-APRFM,J=64,15.52807280793786,64,J=32,attained
+p1,0.0001,OE-$S_N$-Krylov,32x16,0.07776467502117157,512,32x16,attained
+p1,0.0001,MM-APRFM,J=32,2.205697439610958,64,J=32,attained
+p1,0.0001,OE-APNN,,,,,not attained in tested budgets
+p1,0.0001,OE-APRFM,J=64,15.52807280793786,64,J=32,attained
+p3,0.01,OE-$S_N$-Krylov,12x12x16,0.33280228823423386,2304,12x12x16,attained
+p3,0.01,MM-APRFM,J=64,4.188598323613405,128,J=64,attained
+p3,0.01,OE-APNN,,,,,not attained in tested budgets
+p3,0.01,OE-APRFM,J=128,59.06231753155589,512,J=128,attained
+p3,0.001,OE-$S_N$-Krylov,24x24x16,0.7728756330907345,9216,24x24x16,attained
+p3,0.001,MM-APRFM,J=64,4.188598323613405,128,J=64,attained
+p3,0.001,OE-APNN,,,,,not attained in tested budgets
+p3,0.001,OE-APRFM,,,,,not attained in tested budgets
+p3,0.0001,OE-$S_N$-Krylov,,,,,not attained in tested budgets
+p3,0.0001,MM-APRFM,J=64,4.188598323613405,128,J=64,attained
+p3,0.0001,OE-APNN,,,,,not attained in tested budgets
+p3,0.0001,OE-APRFM,,,,,not attained in tested budgets

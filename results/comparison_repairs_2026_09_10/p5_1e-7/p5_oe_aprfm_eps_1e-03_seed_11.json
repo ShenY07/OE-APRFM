@@ -1,0 +1,64 @@
+{
+  "problem": "p5",
+  "method": "oe_aprfm",
+  "epsilon": 0.001,
+  "seed": 11,
+  "relative_l2_f": 0.0002160155298192977,
+  "relative_l2_rho": 0.00015485770076916836,
+  "residual_half": 0.0004362811263179288,
+  "empirical_stability_ratio": 0.6092142268950924,
+  "condition_number": 9753701.936239185,
+  "largest_singular_value": 12.803045084434222,
+  "smallest_effective_singular_value": 1.3126344405569152e-06,
+  "singular_value_threshold": 1.2803045084434223e-06,
+  "coefficient_norm": 15338.959294303539,
+  "rank": 436,
+  "num_rows": 58096,
+  "num_columns": 1024,
+  "num_angular": 16,
+  "oversampling_ratio": 56.734375,
+  "partitions": [
+    1,
+    1,
+    2
+  ],
+  "strides": {
+    "theta": 0.7853981633974483,
+    "x": 1.0,
+    "y": 1.0
+  },
+  "features_per_patch": 128,
+  "scale": 0.25,
+  "rcond": 1e-07,
+  "block_weights": [
+    10.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "collocation": [
+    32,
+    32,
+    16
+  ],
+  "feature_seconds": 22.349923379719257,
+  "assembly_seconds": 209.18168573826551,
+  "solve_seconds": 0.6344820223748684,
+  "evaluation_seconds": 12.356227811425924,
+  "total_seconds": 244.52231895178556,
+  "min_rho_h": 0.9997231492676644,
+  "max_rho_h": 1.2012516978571566,
+  "min_f_h": 0.9993385546539302,
+  "correlation_rho": 0.9999959956617122,
+  "negative_fraction_f": 0.0,
+  "negative_fraction_rho": 0.0,
+  "angular_representation": "four_component",
+  "residual_definition": "complete_normalized_training_residual_v2",
+  "boundary_implementation": "independent_pair_traces_v2",
+  "source_sha256": {
+    "scripts/run_p3_oe_aprfm.py": "b1ceca3c114e79b22c3d4880f5086cc5adfc20d8cca3218e7011215a0ab5b366",
+    "src/solver/streaming_least_squares.py": "af112a17cefc3faf268a11d190094e9b2ad97d5e349a80a970a849f9ee97ea9c",
+    "src/constraints/continuous_2d_odd_even_v2.py": "fc1bdeb9877b6cf41a5526bf905cb1305fc4d18be04bba3b18b6200b22e7289d",
+    "src/modules/function_space_v2.py": "aad976bf7d507f1638761a12f61e49ae0cf286d71be18d2c1314d0849d7f33d5"
+  }
+}

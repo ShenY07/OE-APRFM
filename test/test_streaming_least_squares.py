@@ -12,7 +12,7 @@ from solver.streaming_least_squares import StreamingQRLeastSquares
 def _normalized_dense_solve(A, b, *, damping=0.0):
     A = np.asarray(A, dtype=np.float64).copy()
     b = np.asarray(b, dtype=np.float64).reshape(-1, 1).copy()
-    row_scale = np.max(np.abs(A), axis=1, keepdims=True)
+    row_scale = np.linalg.norm(A, axis=1, keepdims=True)
     row_scale[row_scale <= 1e-30] = 1.0
     A /= row_scale
     b /= row_scale
@@ -55,3 +55,24 @@ def test_streaming_qr_matches_damped_dense_lstsq():
     actual, _ = stream.solve(damping=damping)
 
     np.testing.assert_allclose(actual, expected, rtol=2e-12, atol=2e-12)
+
+
+def test_reported_residual_includes_truncated_directions_and_damping():
+    rng = np.random.default_rng(31)
+    A = rng.normal(size=(53, 4))
+    A[:, 3] = A[:, 0] + 1e-4 * A[:, 3]
+    b = rng.normal(size=(53, 1))
+    factors = np.linspace(0.3, 1.4, len(A))
+    scale = np.linalg.norm(A, axis=1)
+    An = A / scale[:, None] * factors[:, None]
+    bn = b / scale[:, None] * factors[:, None]
+    for damping in (0.0, 0.01):
+        stream = StreamingQRLeastSquares(4, rcond=1e-2)
+        stream.add(A[:20], b[:20], row_factors=factors[:20])
+        stream.add(A[20:], b[20:], row_factors=factors[20:])
+        x, diagnostic = stream.solve(damping=damping)
+        expected = np.linalg.norm(An @ x - bn)
+        np.testing.assert_allclose(diagnostic['normalized_residual_l2'], expected,
+                                   rtol=1e-12, atol=1e-12)
+        if not damping:
+            assert diagnostic['rank'] < 4

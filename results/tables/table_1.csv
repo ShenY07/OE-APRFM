@@ -1,0 +1,6 @@
+problem,partition,M,J,Ncoef,Nrow,ratio,angular_order,scale,rcond
+P1 manufactured 1D,1×1,1,64,128,2944,23.0000,8,1.0,1e-12
+P2 heterogeneous 1D,2×4,8,64,1024,2944,2.8750,8,1.0,1e-6
+P3 smooth manufactured 2D (four component),1×1×1,1,128,512,15856,30.9688,32,1.0,1e-12
+P4 perforated domain (four component),1×1×1,1,128,512,14736,28.7812,32,1.0,1e-12
+P5 heterogeneous medium,2×2×1,4,96,768,5952,7.7500,32,1.0,1e-12

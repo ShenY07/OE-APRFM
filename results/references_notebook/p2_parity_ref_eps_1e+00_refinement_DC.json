@@ -1,0 +1,8 @@
+{
+  "problem": "p2",
+  "epsilon": 1.0,
+  "coarse_level": "C",
+  "fine_level": "D",
+  "relative_difference_f_DC": 0.0014855881475073225,
+  "relative_difference_rho_DC": 2.124172461107205e-05
+}

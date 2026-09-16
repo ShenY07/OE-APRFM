@@ -16,9 +16,18 @@ def _base(problem: str, dimension: int, epsilon: float):
         hidden_sizes=[64] * 4,
         device_ids=[0],
         dataset=dict(interior_samples=4096, boundary_samples=1024),
-        regularizers=dict(equation=1.0, boundary=10.0),
+        regularizers=dict(macro=1.0, even=1.0, odd=1.0, boundary=1.0),
         iteration_steps=20000,
+        validation_interval=200,
         Adam=dict(lr=1.0e-3),
+    )
+    config.protocol = dict(
+        name="oe-apnn-p1-p5-v1",
+        dtype="float64",
+        seeds=(7, 11, 17),
+        epsilon_values=(1.0, 1.0e-3),
+        checkpoint_selection="minimum_fixed_validation_physics_loss",
+        evaluation_is_independent=True,
     )
     return config
 

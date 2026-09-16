@@ -1,0 +1,14 @@
+{
+  "output": "results/p7_transient_pilot",
+  "features": 64,
+  "seeds": [
+    11
+  ],
+  "epsilons": [
+    1,
+    0.01,
+    0.001
+  ],
+  "nx": 64,
+  "nt": 200
+}

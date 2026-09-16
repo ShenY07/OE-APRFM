@@ -1,0 +1,16 @@
+{
+  "method": "oe",
+  "replay_relative_field_change": 0.0,
+  "replay_matches": true,
+  "metrics": [
+    {
+      "quadrature": 64,
+      "Rtr_absolute_L2": 0.030087294132416207
+    },
+    {
+      "quadrature": 128,
+      "Rtr_absolute_L2": 0.030077689508758994
+    }
+  ],
+  "note": "Physical normalized angular measure; independent Gauss x/v quadrature; AD x derivative. No theoretical certification."
+}

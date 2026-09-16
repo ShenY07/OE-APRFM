@@ -3,10 +3,18 @@
   "method": "oe_aprfm",
   "epsilon": 0.001,
   "seed": 37,
-  "relative_l2_f": 0.0035444968016168734,
-  "relative_l2_rho": 0.001971157407933723,
-  "condition_number": 8279078670315.168,
-  "rank": 475,
+  "relative_l2_f": 0.003715110870030812,
+  "relative_l2_rho": 0.0014324172051448742,
+  "residual_half": 0.00017434706247126234,
+  "empirical_stability_ratio": 22.83773252070735,
+  "condition_number": 974192.7857513999,
+  "rank": 496,
+  "largest_singular_value": 12.82952518329133,
+  "smallest_effective_singular_value": 1.3169390464533005e-05,
+  "singular_value_threshold": 1.282952518329133e-05,
+  "num_rows": 3008,
+  "num_columns": 1024,
+  "oversampling_ratio": 2.9375,
   "partitions": [
     2,
     4
@@ -19,9 +27,22 @@
   "scale": 1.0,
   "rcond": 1e-06,
   "block_weights": null,
-  "feature_seconds": 26.895510230213404,
-  "assembly_seconds": 65.31365865468979,
-  "solve_seconds": 88.74586155638099,
-  "evaluation_seconds": 26.13453532755375,
-  "total_seconds": 207.08956576883793
+  "collocation": {
+    "boundary": 64,
+    "interior": [
+      32,
+      32
+    ]
+  },
+  "reference_level": "B",
+  "evaluation_stride": 1,
+  "evaluation_grid": [
+    1024,
+    512
+  ],
+  "feature_seconds": 19.030772790312767,
+  "assembly_seconds": 76.17205472663045,
+  "solve_seconds": 0.35979247093200684,
+  "evaluation_seconds": 10.956793636083603,
+  "total_seconds": 106.51941362395883
 }

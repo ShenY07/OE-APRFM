@@ -1,0 +1,144 @@
+% Table S1: Certified deterministic-reference refinement for the smooth boundary-driven P5 problem. Both kinetic and density B/C discrepancies are below 10\% of the corresponding median OE-APRFM errors, so both $E_f$ and $E_\rho$ are reportable.
+\begin{table}[t]
+\centering
+\caption{Certified deterministic-reference refinement for the smooth boundary-driven P5 problem. Both kinetic and density B/C discrepancies are below 10\% of the corresponding median OE-APRFM errors, so both $E_f$ and $E_\rho$ are reportable.}
+\label{tab:p5-reference}
+\begin{tabular}{clrrrrrrr}
+\toprule
+$\varepsilon$ & Level & Spatial grid & $N_{\rm ang}$ & Iterations & Rel. residual & CPU (s) & $\delta_f$ & $\delta_\rho$\\
+\midrule
+$1$ & A & $32\times32$ & 8 & 244 & $9.88\times10^{-10}$ & $3.38$ & --- & ---\\
+ & B & $64\times64$ & 16 & 536 & $9.86\times10^{-10}$ & $260.04$ & $1.65\times10^{-3}$ & $1.58\times10^{-4}$\\
+ & C & $96\times96$ & 24 & 776 & $9.90\times10^{-10}$ & $76.81$ & $6.32\times10^{-4}$ & $4.39\times10^{-5}$\\
+\midrule
+$10^{-3}$ & A & $32\times32$ & 8 & 448 & $9.99\times10^{-10}$ & $11.83$ & --- & ---\\
+ & B & $64\times64$ & 16 & 3470 & $9.98\times10^{-10}$ & $540.58$ & $4.93\times10^{-5}$ & $4.93\times10^{-5}$\\
+ & C & $96\times96$ & 24 & 7880 & $1.00\times10^{-9}$ & $906.29$ & $1.09\times10^{-5}$ & $1.09\times10^{-5}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table S3: Accuracy--cost sweep at $\varepsilon=10^{-3}$. Randomized-method values are medians over seeds 11, 23, and 37; the deterministic OE--$S_N$--Krylov entries are single reproducible solves with Gauss--Legendre quadrature, a common $10^{-12}$ tolerance, and true residuals below $10^{-12}$. Since the 1D linear manufactured solution is represented exactly by diamond difference, its $10^{-11}$--$10^{-10}$ errors are an algebraic roundoff floor rather than a discretization-convergence curve. The 2D OE-APRFM entries use the final normalized four-component representation. Solve time excludes independent test-grid evaluation. Budget definitions are method-specific. All runs use CPU float64 in the same environment.
+\begin{table}[t]
+\centering
+\caption{Accuracy--cost sweep at $\varepsilon=10^{-3}$. Randomized-method values are medians over seeds 11, 23, and 37; the deterministic OE--$S_N$--Krylov entries are single reproducible solves with Gauss--Legendre quadrature, a common $10^{-12}$ tolerance, and true residuals below $10^{-12}$. Since the 1D linear manufactured solution is represented exactly by diamond difference, its $10^{-11}$--$10^{-10}$ errors are an algebraic roundoff floor rather than a discretization-convergence curve. The 2D OE-APRFM entries use the final normalized four-component representation. Solve time excludes independent test-grid evaluation. Budget definitions are method-specific. All runs use CPU float64 in the same environment.}
+\label{tab:supp-efficiency}
+\begin{tabular}{llrrrrrr}
+\toprule
+Problem & Method & Budget & Model size & Residual budget & $E_f$ & $E_\rho$ & $T_{\rm solve}$ (s)\\
+\midrule
+1D manufactured & OE-$S_N$-Krylov & 32x16 & 512 & 512 & $1.95\times10^{-11}$ & $1.95\times10^{-11}$ & $0.08$\\
+ &  & 64x32 & 2048 & 2048 & $1.51\times10^{-10}$ & $1.51\times10^{-10}$ & $0.19$\\
+ &  & 128x64 & 8192 & 8192 & $9.80\times10^{-12}$ & $9.80\times10^{-12}$ & $0.94$\\
+ &  & 256x128 & 32768 & 32768 & $1.44\times10^{-11}$ & $1.44\times10^{-11}$ & $17.65$\\
+ & MM-APRFM & J=32 & 64 & 3008 & $5.34\times10^{-11}$ & $5.34\times10^{-11}$ & $2.21$\\
+ &  & J=64 & 128 & 3008 & $7.25\times10^{-11}$ & $7.25\times10^{-11}$ & $2.54$\\
+ &  & J=128 & 256 & 3008 & $6.93\times10^{-11}$ & $6.93\times10^{-11}$ & $3.21$\\
+ & OE-APNN & 500 steps & 25474 & 640 & $2.48\times10^{-2}$ & $1.63\times10^{-2}$ & $12.50$\\
+ &  & 2000 steps & 25474 & 640 & $1.42\times10^{-2}$ & $8.02\times10^{-3}$ & $47.77$\\
+ &  & 5000 steps & 25474 & 640 & $4.75\times10^{-3}$ & $2.33\times10^{-3}$ & $120.72$\\
+ & OE-APRFM & J=32 & 64 & 2944 & $5.79\times10^{-5}$ & $2.77\times10^{-5}$ & $16.60$\\
+ &  & J=64 & 128 & 2944 & $1.21\times10^{-8}$ & $4.73\times10^{-9}$ & $15.53$\\
+ &  & J=128 & 256 & 2944 & $3.23\times10^{-12}$ & $2.67\times10^{-12}$ & $16.51$\\
+\midrule
+2D manufactured & OE-$S_N$-Krylov & 12x12x16 & 2304 & 2304 & $2.98\times10^{-3}$ & $2.98\times10^{-3}$ & $0.33$\\
+ &  & 16x16x16 & 4096 & 4096 & $1.75\times10^{-3}$ & $1.75\times10^{-3}$ & $0.41$\\
+ &  & 24x24x16 & 9216 & 9216 & $8.04\times10^{-4}$ & $8.04\times10^{-4}$ & $0.77$\\
+ &  & 32x32x16 & 16384 & 16384 & $4.57\times10^{-4}$ & $4.57\times10^{-4}$ & $3.24$\\
+ & MM-APRFM & J=64 & 128 & 10280 & $5.55\times10^{-6}$ & $5.55\times10^{-6}$ & $4.19$\\
+ &  & J=128 & 256 & 10280 & $3.97\times10^{-8}$ & $3.97\times10^{-8}$ & $5.44$\\
+ &  & J=256 & 512 & 10280 & $8.08\times10^{-8}$ & $8.08\times10^{-8}$ & $9.02$\\
+ & OE-APNN & 500 steps & 25730 & 640 & $1.19\times10^{-1}$ & $7.93\times10^{-2}$ & $18.66$\\
+ &  & 2000 steps & 25730 & 640 & $4.53\times10^{-2}$ & $2.20\times10^{-2}$ & $69.45$\\
+ &  & 5000 steps & 25730 & 640 & $2.09\times10^{-2}$ & $1.17\times10^{-2}$ & $173.85$\\
+ & OE-APRFM & J=32 & 128 & 13808 & $3.48\times10^{-2}$ & $1.94\times10^{-2}$ & $39.67$\\
+ &  & J=64 & 256 & 13808 & $1.03\times10^{-2}$ & $5.81\times10^{-3}$ & $43.34$\\
+ &  & J=128 & 512 & 13808 & $1.16\times10^{-3}$ & $4.86\times10^{-4}$ & $59.06$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% BEGIN GENERATED S3 TARGET ACCURACY
+\begin{table}[t]
+\centering
+\caption{Observed cost at a common accuracy target for the budgets in Table~\ref{tab:supp-efficiency}, at $\varepsilon=10^{-3}$. A budget qualifies when both median errors satisfy $E_f,E_\rho\leq\tau$; deterministic entries use their single-run errors. The least reported computation time among qualifying tested budgets is shown. A dash denotes no qualifying tested budget, not impossibility. $N_\tau$ is the smallest model size among qualifying tested budgets, selected independently of minimum time. Model size counts coefficients, trainable network parameters, or discrete unknowns as in Table~\ref{tab:supp-efficiency}; it is not memory usage. No interpolation or extrapolation is used; these are aggregate-budget comparisons, not seedwise success probabilities or measured stopping times. Timing inherits the accounting and hardware limitations of Table~\ref{tab:supp-efficiency}.}
+\label{tab:supp-target-accuracy}
+\begin{tabular}{lcllrr}
+\toprule
+Problem & $\tau$ & Method & Fastest budget & $T_{\rm comp}$ (s) & $N_\tau$\\
+\midrule
+1D & $10^{-2}$ & OE-$S_N$-Krylov & 32x16 & 0.08 & 512\\
+1D & $10^{-2}$ & MM-APRFM & J=32 & 2.21 & 64\\
+1D & $10^{-2}$ & OE-APNN & 5000 steps & 120.72 & 25474\\
+1D & $10^{-2}$ & OE-APRFM & J=64 & 15.53 & 64\\
+\addlinespace
+1D & $10^{-3}$ & OE-$S_N$-Krylov & 32x16 & 0.08 & 512\\
+1D & $10^{-3}$ & MM-APRFM & J=32 & 2.21 & 64\\
+1D & $10^{-3}$ & OE-APNN & --- & --- & ---\\
+1D & $10^{-3}$ & OE-APRFM & J=64 & 15.53 & 64\\
+\addlinespace
+1D & $10^{-4}$ & OE-$S_N$-Krylov & 32x16 & 0.08 & 512\\
+1D & $10^{-4}$ & MM-APRFM & J=32 & 2.21 & 64\\
+1D & $10^{-4}$ & OE-APNN & --- & --- & ---\\
+1D & $10^{-4}$ & OE-APRFM & J=64 & 15.53 & 64\\
+\addlinespace
+2D & $10^{-2}$ & OE-$S_N$-Krylov & 12x12x16 & 0.33 & 2304\\
+2D & $10^{-2}$ & MM-APRFM & J=64 & 4.19 & 128\\
+2D & $10^{-2}$ & OE-APNN & --- & --- & ---\\
+2D & $10^{-2}$ & OE-APRFM & J=128 & 59.06 & 512\\
+\addlinespace
+2D & $10^{-3}$ & OE-$S_N$-Krylov & 24x24x16 & 0.77 & 9216\\
+2D & $10^{-3}$ & MM-APRFM & J=64 & 4.19 & 128\\
+2D & $10^{-3}$ & OE-APNN & --- & --- & ---\\
+2D & $10^{-3}$ & OE-APRFM & --- & --- & ---\\
+\addlinespace
+2D & $10^{-4}$ & OE-$S_N$-Krylov & --- & --- & ---\\
+2D & $10^{-4}$ & MM-APRFM & J=64 & 4.19 & 128\\
+2D & $10^{-4}$ & OE-APNN & --- & --- & ---\\
+2D & $10^{-4}$ & OE-APRFM & --- & --- & ---\\
+\addlinespace
+\bottomrule
+\end{tabular}
+\end{table}
+% END GENERATED S3 TARGET ACCURACY
+
+% Table S4: Parity feature-budget sweep at $\varepsilon=10^{-3}$. Values are medians over seeds 11, 23, and 37. At every budget, the unconstrained and parity-constrained spaces use identical coefficient and residual dimensions; $\eta_{\rm col}=N_{\rm row}/N_{\rm coef}$.
+\begin{table}[t]
+\centering
+\caption{Parity feature-budget sweep at $\varepsilon=10^{-3}$. Values are medians over seeds 11, 23, and 37. At every budget, the unconstrained and parity-constrained spaces use identical coefficient and residual dimensions; $\eta_{\rm col}=N_{\rm row}/N_{\rm coef}$.}
+\label{tab:parity-budget}
+\begin{tabular}{llrrrrr}
+\toprule
+Angular space & $J$ & $N_{\rm coef}$ & $N_{\rm row}$ & $\eta_{\rm col}$ & $E_f$ & $E_\rho$\\
+\midrule
+Unconstrained & 16 & 32 & 812 & $25.375$ & $4.27\times10^{-1}$ & $2.26\times10^{-1}$\\
+ & 32 & 64 & 1452 & $22.688$ & $7.97\times10^{-2}$ & $3.64\times10^{-2}$\\
+ & 64 & 128 & 2944 & $23.000$ & $1.42\times10^{-2}$ & $5.30\times10^{-3}$\\
+ & 128 & 256 & 6266 & $24.477$ & $3.26\times10^{-3}$ & $1.13\times10^{-3}$\\
+Parity-constrained & 16 & 32 & 812 & $25.375$ & $1.12\times10^{-2}$ & $1.04\times10^{-2}$\\
+ & 32 & 64 & 1452 & $22.688$ & $6.81\times10^{-5}$ & $4.83\times10^{-5}$\\
+ & 64 & 128 & 2944 & $23.000$ & $1.21\times10^{-8}$ & $4.73\times10^{-9}$\\
+ & 128 & 256 & 6266 & $24.477$ & $2.10\times10^{-12}$ & $1.37\times10^{-12}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table S5: Random-feature resolution at $\varepsilon=10^{-3}$ using the same runs as Table 7. Values are medians over seeds 11, 23, and 37. Residual dimensions are fixed within each problem; all runs use $\texttt{rcond}=10^{-12}$. P3 uses the final normalized four-component representation. No legacy two-component P3 results are included. The rank fraction is the median of seedwise effective-rank ratios.
+\begin{table}[t]
+\centering
+\caption{Random-feature resolution at $\varepsilon=10^{-3}$ using the same runs as Table 7. Values are medians over seeds 11, 23, and 37. Residual dimensions are fixed within each problem; all runs use $\texttt{rcond}=10^{-12}$. P3 uses the final normalized four-component representation. No legacy two-component P3 results are included. The rank fraction is the median of seedwise effective-rank ratios.}
+\label{tab:feature-resolution}
+\begin{tabular}{lrrrrrr}
+\toprule
+Problem & $J$ & $N_{\rm coef}$ & $N_{\rm row}$ & $E_f$ & $E_\rho$ & $r_{\rm eff}/N_{\rm coef}$\\
+\midrule
+1D manufactured & 32 & 64 & 2944 & $5.79\times10^{-5}$ & $2.77\times10^{-5}$ & $1.000000$\\
+1D manufactured & 64 & 128 & 2944 & $1.21\times10^{-8}$ & $4.73\times10^{-9}$ & $1.000000$\\
+1D manufactured & 128 & 256 & 2944 & $3.23\times10^{-12}$ & $2.67\times10^{-12}$ & $0.902344$\\
+2D manufactured (four component) & 32 & 128 & 13808 & $3.48\times10^{-2}$ & $1.94\times10^{-2}$ & $1.000000$\\
+2D manufactured (four component) & 64 & 256 & 13808 & $1.03\times10^{-2}$ & $5.81\times10^{-3}$ & $1.000000$\\
+2D manufactured (four component) & 128 & 512 & 13808 & $1.16\times10^{-3}$ & $4.86\times10^{-4}$ & $1.000000$\\
+\bottomrule
+\end{tabular}
+\end{table}

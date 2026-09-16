@@ -37,12 +37,13 @@ def records():
     for problem in ("P1", "P2", "P3", "P4"):
         for epsilon, label in ((1.0, "eps_1e0"), (1e-3, "eps_1e-3")):
             apnn = {}
-            for path in (ROOT / "results/baselines/oe_apnn_imported" / problem / label).glob("seed_*/metrics.json"):
-                data = json.loads(path.read_text())
-                if data.get("evaluation_status") == "complete":
-                    apnn[int(data["seed"])] = {"method": "OE-APNN", "problem": problem,
-                        "epsilon": epsilon, "seed": int(data["seed"]),
-                        "E_f": float(data["E_f"]), "E_rho": float(data["E_rho"])}
+            for root in (ROOT / "results/baselines/oe_apnn", ROOT / "results/baselines/oe_apnn_imported"):
+                for path in (root / problem / label).glob("seed_*/metrics.json"):
+                    data = json.loads(path.read_text())
+                    if data.get("evaluation_status") == "complete":
+                        apnn[int(data["seed"])] = {"method": "OE-APNN", "problem": problem,
+                            "epsilon": epsilon, "seed": int(data["seed"]),
+                            "E_f": float(data["E_f"]), "E_rho": float(data["E_rho"])}
             oe_paths = list((ROOT / "results/baselines/oe_aprfm_3seed").glob("*.json"))
             oe_paths += list((ROOT / "results/quadrant/final").glob("*.json"))
             oe_paths += list((ROOT / "results/consistency/p2").glob("*fixed.json"))

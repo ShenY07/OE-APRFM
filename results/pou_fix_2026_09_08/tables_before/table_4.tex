@@ -1,0 +1,23 @@
+% Table 4: Structural comparison for seed 11. All configurations use $N_{\rm coef}=128$. Residual dimensions differ in Block A, so it is not a fixed-cost benchmark. In Block B, the projection-rescaled OE equations are fixed and only the angular approximation space is changed; both configurations have identical coefficient and residual dimensions.
+\begin{table}[t]
+\centering
+\caption{Structural comparison for seed 11. All configurations use $N_{\rm coef}=128$. Residual dimensions differ in Block A, so it is not a fixed-cost benchmark. In Block B, the projection-rescaled OE equations are fixed and only the angular approximation space is changed; both configurations have identical coefficient and residual dimensions.}
+\label{tab:mechanism}
+\begin{tabular}{lrrrr}
+\toprule
+Configuration & $N_{\rm row}$ & $E_f(1)$ & $E_f(10^{-3})$ & $E_f(10^{-6})$\\
+\midrule
+\multicolumn{5}{l}{\emph{A. Transport formulation}}\\
+\addlinespace
+Direct RFM & 1088 & $9.80\times10^{-11}$ & $1.28\times10^{-6}$ & $1.15\times10^{-3}$\\
+MM-APRFM & 3008 & --- & --- & $9.27\times10^{-11}$\\
+OE w/o proj./rescale & 1984 & $5.73\times10^{-7}$ & $1.54\times10^{-3}$ & $2.91\times10^{-2}$\\
+OE-APRFM & 2944 & $5.60\times10^{-7}$ & $5.21\times10^{-7}$ & $5.24\times10^{-7}$\\
+\addlinespace
+\multicolumn{5}{l}{\emph{B. Angular approximation space}}\\
+\addlinespace
+Unconstrained & 2944 & $8.29\times10^{-2}$ & $1.42\times10^{-2}$ & $1.41\times10^{-2}$\\
+Parity-constrained & 2944 & $5.60\times10^{-7}$ & $5.21\times10^{-7}$ & $5.24\times10^{-7}$\\
+\bottomrule
+\end{tabular}
+\end{table}

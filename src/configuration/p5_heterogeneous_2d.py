@@ -1,89 +1,82 @@
-"""P5: heterogeneous 2D benchmark with a smooth manufactured solution."""
+"""P5: smooth, non-manufactured heterogeneous transport in two dimensions."""
 
 import jax.numpy as jnp
 
 from configuration.experiment_defaults import build_config
 
 
-SOURCE_CENTER = (-0.65, 0.55)
-SOURCE_WIDTH = 0.12
-SOURCE_AMPLITUDE = 1.0
-INTERFACE_WIDTH = 0.02
-
-
 def scattering(x, y):
-    """Fixed tanh regularization; the channel blend has precedence."""
-    radius = jnp.sqrt(x**2 + y**2 + 1.0e-30)
-    disk_weight = 0.5 * (1.0 - jnp.tanh((radius - 0.35) / INTERFACE_WIDTH))
-    disk_medium = 1.0 + 9.0 * disk_weight
-    channel_distance = jnp.abs(y - 0.35 * x)
-    channel_weight = 0.5 * (
-        1.0 - jnp.tanh((channel_distance - 0.10) / INTERFACE_WIDTH)
-    )
-    return (1.0 - channel_weight) * disk_medium + 0.05 * channel_weight
+    """Smoothly stratified scattering coefficient, 1 <= sigma_s <= 2."""
+    return 1.0 + y + 0.0 * x
 
 
 def absorption(x, y):
-    """Use the manuscript's optional absorption 0.1 inside the disk."""
-    radius = jnp.sqrt(x**2 + y**2 + 1.0e-30)
-    disk_weight = 0.5 * (1.0 - jnp.tanh((radius - 0.35) / INTERFACE_WIDTH))
-    return 0.01 + 0.09 * disk_weight
+    """Constant absorption in the participating medium."""
+    return 0.1 + 0.0 * x + 0.0 * y
 
 
-def exact_solution(x, y, theta):
-    """Positive, genuinely two-dimensional, angle-independent exact solution."""
-    return jnp.exp(-0.35 * x - 0.2 * y) * (
-        1.0 + 0.15 * jnp.cos(jnp.pi * x) * jnp.cos(jnp.pi * y)
-    ) + 0.0 * theta
+def source(x, y, theta):
+    """The replacement P5 is driven entirely by boundary irradiation."""
+    return 0.0 * x + 0.0 * y + 0.0 * theta
 
 
-def get_config(epsilon: float = 1.0):
-    def source(x, y, theta):
-        base = jnp.exp(-0.35 * x - 0.2 * y)
-        cx, cy = jnp.cos(jnp.pi * x), jnp.cos(jnp.pi * y)
-        sx, sy = jnp.sin(jnp.pi * x), jnp.sin(jnp.pi * y)
-        dx = base * (-0.35 * (1.0 + 0.15 * cx * cy) - 0.15 * jnp.pi * sx * cy)
-        dy = base * (-0.2 * (1.0 + 0.15 * cx * cy) - 0.15 * jnp.pi * cx * sy)
-        return (jnp.cos(theta) * dx + jnp.sin(theta) * dy) / epsilon + absorption(x, y) * exact_solution(x, y, theta)
-
+def get_config(epsilon: float = 1.0, *, constant_inflow: bool = False):
+    left_right = (lambda y: 1.0 + 0.0 * y) if constant_inflow else (lambda y: 1.0 + 0.2 * y)
+    top_value = 1.0 if constant_inflow else 1.2
     config = build_config(
         problem="p5",
         dimension=2,
-        domain={"x": (-1.0, 1.0), "y": (-1.0, 1.0), "theta": (0.0, 0.5 * jnp.pi)},
-        partitions=(1, 1, 1),
+        domain={"x": (0.0, 1.0), "y": (0.0, 1.0), "theta": (0.0, 0.5 * jnp.pi)},
+        partitions=(2, 2, 1),
         knudsen_number=epsilon,
         scattering=scattering,
         absorption=absorption,
         source=source,
         boundary={
-            "f_l": lambda y: exact_solution(-1.0, y, 0.0),
-            "f_r": lambda y: exact_solution(1.0, y, 0.0),
-            "f_b": lambda x: exact_solution(x, -1.0, 0.0),
-            "f_t": lambda x: exact_solution(x, 1.0, 0.0),
+            "f_l": left_right,
+            "f_r": left_right,
+            "f_b": lambda x: 1.0 + 0.0 * x,
+            "f_t": lambda x: top_value + 0.0 * x,
         },
-        exact_solution=exact_solution,
+        reference="oe_sn_refined",
         outputs=(
             "relative_l2_rho",
             "relative_l2_f",
-            "scaled_condition_number",
-            "cuts",
+            "normalized_residual",
+            "correlation_rho",
+            "minimum_f",
+            "minimum_rho",
             "time",
-            "memory",
-            "iterations",
         ),
     )
+
+    # One frozen approximation space for both Knudsen numbers.  The v2 2-D
+    # odd-even representation has four components (j1, r1, j2, r2).
+    config.model.Jn = {"j": 64, "r": 64, "f": 64}
+    config.model.Mp = {"j": 4, "r": 4, "f": 4}
+    config.model.num_unknowns = {"j/r": 1024, "f": 0}
+    config.model.num_quads = 16
+    config.model.collocation_sizes = {
+        "interior": (32, 32, 16),
+        "boundary": (32, 32, 16),
+    }
     config.problem_data = {
-        "source_center": SOURCE_CENTER,
-        "source_width": SOURCE_WIDTH,
-        "source_amplitude": SOURCE_AMPLITUDE,
-        "coefficient_regularization": "tanh",
-        "interface_width": INTERFACE_WIDTH,
-        "absorption_background": 0.01,
-        "absorption_disk": 0.1,
-        "channel_precedence": True,
+        "physical_interpretation": (
+            "Radiative transport in a smoothly stratified participating medium "
+            "subject to diffuse external irradiation."
+        ),
+        "scattering": "1 + x2",
+        "scattering_range": (1.0, 2.0),
+        "absorption": 0.1,
+        "source": "0",
+        "source_range": (0.0, 0.0),
+        "source_epsilon_independent": True,
+        "boundary_condition": "constant diffuse inflow 1" if constant_inflow else "diffuse inflow 1 + 0.2 x2",
+        "angular_components": ("j1", "r1", "j2", "r2"),
+        "adaptive_sampling": False,
         "description": (
-            "Smooth heterogeneous manufactured benchmark with an analytic "
-            "reference at epsilon 1 and 1e-3."
+            "Non-manufactured smooth heterogeneous 2-D generalization test "
+            "with a deterministic OE-S_N reference."
         ),
     }
     return config

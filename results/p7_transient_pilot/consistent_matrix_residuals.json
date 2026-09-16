@@ -1,0 +1,101 @@
+[
+  {
+    "partitions": [
+      1,
+      1,
+      1
+    ],
+    "epsilon": 1,
+    "rhs_norm": 5.270661652904085,
+    "residual_norm": 0.8388984986586406,
+    "relative_residual": 0.1591637926893705
+  },
+  {
+    "partitions": [
+      1,
+      1,
+      1
+    ],
+    "epsilon": 0.01,
+    "rhs_norm": 6.966996695556878,
+    "residual_norm": 0.8490952890715141,
+    "relative_residual": 0.12187393308410996
+  },
+  {
+    "partitions": [
+      1,
+      1,
+      1
+    ],
+    "epsilon": 0.001,
+    "rhs_norm": 6.967451067126974,
+    "residual_norm": 0.878680398579691,
+    "relative_residual": 0.12611217360755927
+  },
+  {
+    "partitions": [
+      1,
+      2,
+      2
+    ],
+    "epsilon": 1,
+    "rhs_norm": 8.716817642105045,
+    "residual_norm": 1.5279852602118833,
+    "relative_residual": 0.17529164001679018
+  },
+  {
+    "partitions": [
+      1,
+      2,
+      2
+    ],
+    "epsilon": 0.01,
+    "rhs_norm": 11.991170188542744,
+    "residual_norm": 1.7375279691686116,
+    "relative_residual": 0.14490061785869532
+  },
+  {
+    "partitions": [
+      1,
+      2,
+      2
+    ],
+    "epsilon": 0.001,
+    "rhs_norm": 11.992077418351506,
+    "residual_norm": 1.7949116366354385,
+    "relative_residual": 0.14967478727986536
+  },
+  {
+    "partitions": [
+      2,
+      2,
+      2
+    ],
+    "epsilon": 1,
+    "rhs_norm": 8.872591113563754,
+    "residual_norm": 1.3404325839840951,
+    "relative_residual": 0.15107566288442414
+  },
+  {
+    "partitions": [
+      2,
+      2,
+      2
+    ],
+    "epsilon": 0.01,
+    "rhs_norm": 12.045832773462799,
+    "residual_norm": 1.547978854798496,
+    "relative_residual": 0.12850741695573953
+  },
+  {
+    "partitions": [
+      2,
+      2,
+      2
+    ],
+    "epsilon": 0.001,
+    "rhs_norm": 12.046631682795963,
+    "residual_norm": 1.603605589670108,
+    "relative_residual": 0.13311651189271848
+  }
+]

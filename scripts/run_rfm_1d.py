@@ -15,9 +15,11 @@ from scipy.linalg import lstsq
 from constraints.continuous1d import PointwiseBoundaryConstraint1D,PointwiseInteriorConstraint1D
 from modules.generator import Sample1D
 from modules.solution import Constructor1D
+import modules.func_space as original_function_space
 jax.config.update("jax_enable_x64",True)
 
 def run(problem,epsilon,seed,output_dir,partitions,features,rcond):
+ original_function_space.seedXV=seed
  c=(p1_config if problem=="p1" else p2_config)(epsilon); m=c.model; px,pv=partitions
  domain={"x":tuple(c.mesh.domain.x),"v":(-1.,1.)}; strides={"x":1./px,"v":2./pv}; unknowns=px*pv*features
  common=dict(domain=domain,strides=strides,Jn={"f":features},scale=1.,init_rng=random.key(seed),kn=epsilon,activation=jnp.tanh)
@@ -37,7 +39,7 @@ def run(problem,epsilon,seed,output_dir,partitions,features,rcond):
   xx,vv=np.meshgrid(x[begin:begin+64],velocity,indexing="ij"); f[begin:begin+64]=np.asarray(approx(jnp.asarray(xx.reshape(-1,1)),jnp.asarray(vv.reshape(-1,1)))).reshape(xx.shape)
  rho=np.trapezoid(f,velocity,axis=1)/2; rr=np.trapezoid(ref,velocity,axis=1)/2
  ef=float(np.linalg.norm(f-ref)/np.linalg.norm(ref)) if weights is None else float(np.sqrt(np.sum(weights[None,:]*(f-ref)**2)/np.sum(weights[None,:]*ref**2))); er=float(np.linalg.norm(rho-rr)/np.linalg.norm(rr)); evaluation=perf_counter()-t
- rec=dict(problem=problem,method="rfm",epsilon=epsilon,seed=seed,relative_l2_f=ef,relative_l2_rho=er,condition_number=cond,rank=int(rank),num_rows=int(A.shape[0]),num_columns=unknowns,oversampling_ratio=float(A.shape[0]/unknowns),partitions=list(partitions),features_per_patch=features,rcond=rcond,feature_seconds=feature,assembly_seconds=assembly,solve_seconds=solve,evaluation_seconds=evaluation,total_seconds=feature+assembly+solve+evaluation)
+ rec=dict(problem=problem,method="rfm",epsilon=epsilon,seed=seed,relative_l2_f=ef,relative_l2_rho=er,condition_number=cond,rank=int(rank),num_rows=int(A.shape[0]),num_columns=unknowns,oversampling_ratio=float(A.shape[0]/unknowns),partitions=list(partitions),features_per_patch=features,rcond=rcond,interior_collocation=[30,32],boundary_collocation_per_side=64,collision_quadrature_order=8,evaluation_grid=[257,128],feature_scale=1.0,row_scaling="unit-L2",feature_seconds=feature,assembly_seconds=assembly,solve_seconds=solve,evaluation_seconds=evaluation,total_seconds=feature+assembly+solve+evaluation)
  output_dir.mkdir(parents=True,exist_ok=True); stem=f"{problem}_rfm_eps_{epsilon:.0e}_seed_{seed}"; (output_dir/f"{stem}.json").write_text(json.dumps(rec,indent=2)+"\n"); np.savez_compressed(output_dir/f"{stem}.npz",x=x,velocity=velocity,f=f,rho=rho,reference_f=ref,reference_rho=rr,error_f=np.abs(f-ref),error_rho=np.abs(rho-rr)); return rec
 
 if __name__=="__main__":

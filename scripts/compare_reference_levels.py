@@ -56,15 +56,18 @@ def main() -> None:
     parser.add_argument("--problem", choices=("p2", "p5"), required=True)
     parser.add_argument("--epsilon", type=float, required=True)
     parser.add_argument("--directory", type=Path, default=Path("results/references"))
+    parser.add_argument("--coarse-level", choices=("A", "B", "C"), default="A")
+    parser.add_argument("--fine-level", choices=("B", "C", "D"), default="B")
     args = parser.parse_args()
     prefix = f"{args.problem}_parity_ref_eps_{args.epsilon:.0e}_level_"
-    with np.load(args.directory / f"{prefix}A.npz") as source:
+    with np.load(args.directory / f"{prefix}{args.coarse_level}.npz") as source:
         a = {key: source[key] for key in source.files}
-    with np.load(args.directory / f"{prefix}B.npz") as source:
+    with np.load(args.directory / f"{prefix}{args.fine_level}.npz") as source:
         b = {key: source[key] for key in source.files}
     error_f, error_rho = compare_p2(a, b) if args.problem == "p2" else compare_p5(a, b)
-    record = {"problem": args.problem, "epsilon": args.epsilon, "relative_difference_f_BA": error_f, "relative_difference_rho_BA": error_rho}
-    output = args.directory / f"{args.problem}_parity_ref_eps_{args.epsilon:.0e}_refinement.json"
+    pair = f"{args.fine_level}{args.coarse_level}"
+    record = {"problem": args.problem, "epsilon": args.epsilon, "coarse_level": args.coarse_level, "fine_level": args.fine_level, f"relative_difference_f_{pair}": error_f, f"relative_difference_rho_{pair}": error_rho}
+    output = args.directory / f"{args.problem}_parity_ref_eps_{args.epsilon:.0e}_refinement_{pair}.json"
     output.write_text(json.dumps(record, indent=2) + "\n")
     print(json.dumps(record, indent=2))
 

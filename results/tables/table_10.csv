@@ -1,0 +1,7 @@
+problem,epsilon,best_J,median_Ef_at_best_J,rank_loss_starts_at
+P1,1e+00,128,9.27581532e-12,128
+P1,1e-03,128,9.22281433e-12,128
+P1,1e-06,128,9.16763917e-12,128
+P3,1e+00,256,1.17042010e-02,none through J=256
+P3,1e-03,256,5.08152401e-03,none through J=256
+P3,1e-06,256,5.24624980e-03,none through J=256

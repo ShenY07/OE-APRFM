@@ -35,8 +35,15 @@ def deterministic(method, data, sample="seed 11", note=""):
 
 
 def apnn(problem, label):
-    records = [read(path) for path in
-               (RESULTS / "baselines/oe_apnn_imported" / problem / label).glob("seed_*/metrics.json")]
+    by_seed = {}
+    for root in (RESULTS / "baselines/oe_apnn", RESULTS / "baselines/oe_apnn_imported"):
+        for path in (root / problem / label).glob("seed_*/metrics.json"):
+            record = read(path)
+            if record.get("evaluation_status") == "complete":
+                by_seed[int(record["seed"])] = record
+    records = list(by_seed.values())
+    if len(records) != 3:
+        raise RuntimeError(f"{problem}/{label}: expected seeds 7,11,17, found {sorted(by_seed)}")
     ef = np.array([r["E_f"] for r in records], float)
     er = np.array([r["E_rho"] for r in records], float)
     tm = np.array([r["train_time_s"] for r in records], float)

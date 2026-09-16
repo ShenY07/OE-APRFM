@@ -1,0 +1,19 @@
+% Table S1: Certified deterministic-reference refinement for the smooth boundary-driven P5 problem. Both kinetic and density B/C discrepancies are below 10\% of the corresponding median OE-APRFM errors, so both $E_f$ and $E_\rho$ are reportable.
+\begin{table}[t]
+\centering
+\caption{Certified deterministic-reference refinement for the smooth boundary-driven P5 problem. Both kinetic and density B/C discrepancies are below 10\% of the corresponding median OE-APRFM errors, so both $E_f$ and $E_\rho$ are reportable.}
+\label{tab:p5-reference}
+\begin{tabular}{clrrrrrrr}
+\toprule
+$\varepsilon$ & Level & Spatial grid & $N_{\rm ang}$ & Iterations & Rel. residual & CPU (s) & $\delta_f$ & $\delta_\rho$\\
+\midrule
+$1$ & A & $32\times32$ & 8 & 244 & $9.88\times10^{-10}$ & $3.38$ & --- & ---\\
+ & B & $64\times64$ & 16 & 536 & $9.86\times10^{-10}$ & $260.04$ & $1.65\times10^{-3}$ & $1.58\times10^{-4}$\\
+ & C & $96\times96$ & 24 & 776 & $9.90\times10^{-10}$ & $76.81$ & $6.32\times10^{-4}$ & $4.39\times10^{-5}$\\
+\midrule
+$10^{-3}$ & A & $32\times32$ & 8 & 448 & $9.99\times10^{-10}$ & $11.83$ & --- & ---\\
+ & B & $64\times64$ & 16 & 3470 & $9.98\times10^{-10}$ & $540.58$ & $4.93\times10^{-5}$ & $4.93\times10^{-5}$\\
+ & C & $96\times96$ & 24 & 7880 & $1.00\times10^{-9}$ & $906.29$ & $1.09\times10^{-5}$ & $1.09\times10^{-5}$\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,3 @@
+iterations,converged,relative_residual,runtime_seconds,problem,epsilon,level,grid
+438,True,9.583640069072669e-10,3.2995127886533737,p5,1.0,A,"[32, 32, 8]"
+1005,True,9.931243172684004e-10,172.33305069804192,p5,1.0,B,"[64, 64, 16]"

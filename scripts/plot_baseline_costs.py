@@ -70,7 +70,12 @@ def collect():
                                  time_min=np.min([x["total_seconds"] for x in vals]), time_max=np.max([x["total_seconds"] for x in vals]),
                                  resource=int(vals[0]["num_columns"]), resource_type="线性未知数", sample="3 seeds"))
 
-            apnn = [read(p) for p in (RESULTS / "baselines/oe_apnn_imported" / problem / label).glob("seed_*/metrics.json")]
+            apnn_by_seed = {}
+            for root in (RESULTS / "baselines/oe_apnn", RESULTS / "baselines/oe_apnn_imported"):
+                for path in (root / problem / label).glob("seed_*/metrics.json"):
+                    data = read(path)
+                    if data.get("evaluation_status") == "complete": apnn_by_seed[int(data["seed"])] = data
+            apnn = list(apnn_by_seed.values())
             if problem != "P5":
                 rows.append(dict(problem=problem, epsilon=epsilon, method="OE-APNN",
                                  time=np.median([x["train_time_s"] for x in apnn]),

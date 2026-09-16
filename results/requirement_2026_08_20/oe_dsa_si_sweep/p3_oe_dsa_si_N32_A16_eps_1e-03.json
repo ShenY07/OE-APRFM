@@ -1,0 +1,20 @@
+{
+  "problem": "p3",
+  "method": "oe_dsa_si_N32_A16",
+  "epsilon": 0.001,
+  "grid": [
+    32,
+    32,
+    4
+  ],
+  "tolerance": 1e-08,
+  "max_iterations": 20,
+  "dsa_relaxation": null,
+  "stopping_criterion": "preconditioned relative GMRES residual < tolerance",
+  "iterations": 231,
+  "converged": true,
+  "relative_l2_f": 0.0004573127501376567,
+  "relative_l2_rho": 0.0004573126942930038,
+  "runtime_seconds": 3.235599961131811,
+  "relative_residual": 9.945932025603556e-09
+}

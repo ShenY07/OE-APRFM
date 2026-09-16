@@ -12,7 +12,9 @@ from jax.nn.initializers import uniform
 from geometry.uniform_mesh import (
     UniformMeshXYV,
 )
-from modules.partition_of_unity import psi_a as psi
+# V2 is the continuous overlapping-patch space.  Its differential operators
+# use psi_b/dpsi_b, so evaluation must use the same partition of unity.
+from modules.partition_of_unity import psi_b as psi
 from functools import partial
 import jax
 
@@ -116,8 +118,18 @@ class RandomFeatureFunctionsXYV(nn.Module):
 
     def setup(self):
         self._mesh = UniformMeshXYV(domain=self.domain, strides=self.strides)
-        center_xy = self._mesh.center_of_cell(self.query_index)[:2]
-        radius_xy = self._mesh.radius_of_cell[:2]
+        center = self._mesh.center_of_cell(self.query_index)
+        center_xy = center[:2]
+        radius = self._mesh.radius_of_cell
+        radius_xy = radius[:2]
+        self._theta_center = center[2]
+        self._theta_radius = radius[2]
+        theta_min, theta_max = self.domain["theta"]
+        theta_stride = self.strides["theta"]
+        num_theta_cells = int(round(float((theta_max - theta_min) / theta_stride)))
+        self._theta_centers = theta_min + (
+            jnp.arange(num_theta_cells) + 0.5
+        ) * theta_stride
 
         self._center = jnp.array([center_xy[0], center_xy[1], 0.0, 0.0])
         self._radius = jnp.array([radius_xy[0], radius_xy[1], 1.0, 1.0])
@@ -160,4 +172,25 @@ class RandomFeatureFunctionsXYV(nn.Module):
         )
         out = self._feat_layer(invar_new)
         out = self._acti_fn(out)
-        return out
+        # Localize every V2 feature on the independent folded angular domain.
+        # Antipodal and reflected directions share the same folded coordinate,
+        # so this preserves the j/r parity construction while making the theta
+        # entry of the mesh a genuine overlapping angular decomposition.
+        folded_theta = jnp.arctan2(
+            jnp.abs(jnp.sin(invar_theta)), jnp.abs(jnp.cos(invar_theta))
+        )
+        angular_window = psi(
+            (folded_theta - self._theta_center) / self._theta_radius
+        )
+        angular_normalizer = jnp.sum(
+            psi(
+                (folded_theta - self._theta_centers)
+                / self._theta_radius
+            )
+        )
+        normalized_window = jnp.where(
+            angular_normalizer > 0.0,
+            angular_window / angular_normalizer,
+            0.0,
+        )
+        return normalized_window * out

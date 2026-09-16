@@ -1,0 +1,14 @@
+{
+  "iterations": 767,
+  "converged": true,
+  "relative_residual": 2.4123595958554966e-10,
+  "runtime_seconds": 356.1705643981695,
+  "problem": "p5",
+  "epsilon": 0.001,
+  "level": "A",
+  "grid": [
+    32,
+    32,
+    8
+  ]
+}

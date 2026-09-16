@@ -1,0 +1,28 @@
+{
+  "problem": "p1",
+  "perturbation": "sin(pi*x)",
+  "observed_loglog_slope_gamma": 1.0000000000000002,
+  "theoretical_prefactor_pi_over_sqrt3": 1.8137993642342178,
+  "direct_rfm": {
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "partitions": [
+      1,
+      1
+    ],
+    "num_columns": 128,
+    "num_rows": 1088,
+    "interior_collocation": [
+      30,
+      32
+    ],
+    "boundary_collocation_per_side": 64,
+    "collision_quadrature_order": 8,
+    "feature_scale": 1.0,
+    "rcond": 1e-12,
+    "row_scaling": "unit-L2"
+  }
+}

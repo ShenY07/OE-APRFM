@@ -1,76 +1,66 @@
-"""Neural representation of the two OE variables r and j."""
+"""Locked compact residual networks used by the OE-APNN comparison."""
 
 from __future__ import annotations
 
-import math
 from typing import Iterable
 
 import torch
 from torch import nn
 
 
-class ResidualBlock(nn.Module):
-    def __init__(self, width: int):
-        super().__init__()
-        self.layers = nn.Sequential(
-            nn.Linear(width, width), nn.Tanh(), nn.Linear(width, width)
-        )
-
-    def forward(self, value: torch.Tensor) -> torch.Tensor:
-        return torch.tanh(value + self.layers(value))
-
-
 class PeriodicResNet(nn.Module):
-    """Residual MLP; positive frequency enables spatial Fourier features."""
+    """Compatibility name for the archived compact residual MLP.
+
+    The network consumes ``(x,v)`` in 1D or ``(x,y,vx,vy)`` in 2D.  Spatial
+    and velocity coordinates are already in [-1,1], except 1D x which is
+    scaled here.  State-dict keys intentionally match the trained archive.
+    """
 
     def __init__(
         self,
         spatial_dim: int,
         angular_dim: int,
         hidden_sizes: Iterable[int],
-        frequency: int = 1,
+        frequency: int = 0,
     ):
         super().__init__()
         widths = list(hidden_sizes)
-        if not widths or len(set(widths)) != 1:
-            raise ValueError("hidden_sizes must be a nonempty constant-width sequence")
+        if widths != [64] * 4:
+            raise ValueError("locked OE-APNN requires four width-64 transforms")
+        if frequency != 0:
+            raise ValueError("locked OE-APNN does not use Fourier features")
         self.spatial_dim = spatial_dim
         self.angular_dim = angular_dim
-        self.frequency = frequency
-        input_size = (
-            2 * spatial_dim * frequency + angular_dim
-            if frequency > 0
-            else spatial_dim + angular_dim
-        )
-        self.input = nn.Linear(input_size, widths[0])
-        self.blocks = nn.ModuleList(ResidualBlock(widths[0]) for _ in widths)
-        self.output = nn.Linear(widths[0], 1)
+        input_size = spatial_dim + angular_dim
+        self.input = nn.Linear(input_size, 64)
+        self.residual = nn.ModuleList(nn.Linear(64, 64) for _ in range(3))
+        self.output = nn.Linear(64, 1)
+        self.apply(self._initialize)
+
+    @staticmethod
+    def _initialize(layer):
+        if isinstance(layer, nn.Linear):
+            nn.init.xavier_normal_(layer.weight)
+            nn.init.zeros_(layer.bias)
 
     def forward(self, inputs: list[torch.Tensor]) -> torch.Tensor:
         if len(inputs) != self.spatial_dim + self.angular_dim:
             raise ValueError("incorrect number of spatial/angular inputs")
-        features = []
-        for coordinate in inputs[: self.spatial_dim]:
-            if self.frequency > 0:
-                for k in range(1, self.frequency + 1):
-                    phase = 2.0 * math.pi * k * coordinate
-                    features.extend((torch.cos(phase), torch.sin(phase)))
-            else:
-                features.append(coordinate)
-        features.extend(inputs[self.spatial_dim :])
-        value = torch.tanh(self.input(torch.cat(features, dim=-1)))
-        for block in self.blocks:
-            value = block(value)
+        values = list(inputs)
+        if self.spatial_dim == 1:
+            values[0] = 2.0 * values[0] - 1.0
+        value = torch.tanh(self.input(torch.cat(values, dim=-1)))
+        for layer in self.residual:
+            value = value + torch.tanh(layer(value))
         return self.output(value)
 
 
 def build_networks(config: object) -> dict[str, nn.Module]:
-    dim = int(config.problem.dimension)
-    angular_dim = 1 if dim == 1 else 2
-    arguments = (
-        dim,
-        angular_dim,
-        list(config.model.hidden_sizes),
-        int(config.rte.freq),
-    )
+    dimension = int(config.problem.dimension)
+    angular_dim = 1 if dimension == 1 else 2
+    arguments = (dimension, angular_dim, list(config.model.hidden_sizes), int(config.rte.freq))
     return {"r": PeriodicResNet(*arguments), "j": PeriodicResNet(*arguments)}
+
+
+def parameter_count(networks: dict[str, nn.Module]) -> int:
+    return sum(parameter.numel() for net in networks.values() for parameter in net.parameters())

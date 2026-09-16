@@ -1,0 +1,19 @@
+{
+  "problem": "p1",
+  "method": "oe_sn_krylov_N64_A32",
+  "epsilon": 0.001,
+  "grid": [
+    64,
+    32
+  ],
+  "tolerance": 1e-08,
+  "max_iterations": 20,
+  "dsa_relaxation": 0.01,
+  "stopping_criterion": "||u^(k)-u^(k-1)||_2 < tolerance",
+  "iterations": 657,
+  "converged": true,
+  "relative_l2_f": 0.00021754378779151648,
+  "relative_l2_rho": 0.00021754343584954317,
+  "runtime_seconds": 1.0649784170091152,
+  "relative_residual": 9.760652779983955e-09
+}

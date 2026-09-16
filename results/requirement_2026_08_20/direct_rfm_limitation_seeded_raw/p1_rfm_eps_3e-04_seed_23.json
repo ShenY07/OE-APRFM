@@ -1,0 +1,36 @@
+{
+  "problem": "p1",
+  "method": "rfm",
+  "epsilon": 0.00031622776601683794,
+  "seed": 23,
+  "relative_l2_f": 1.7810534276326035e-05,
+  "relative_l2_rho": 1.7810505007142794e-05,
+  "condition_number": 981063362630.9666,
+  "rank": 114,
+  "num_rows": 1088,
+  "num_columns": 128,
+  "oversampling_ratio": 8.5,
+  "partitions": [
+    1,
+    1
+  ],
+  "features_per_patch": 128,
+  "rcond": 1e-12,
+  "interior_collocation": [
+    30,
+    32
+  ],
+  "boundary_collocation_per_side": 64,
+  "collision_quadrature_order": 8,
+  "evaluation_grid": [
+    257,
+    128
+  ],
+  "feature_scale": 1.0,
+  "row_scaling": "unit-L2",
+  "feature_seconds": 0.00034909695386886597,
+  "assembly_seconds": 1.4324996247887611,
+  "solve_seconds": 0.028692808002233505,
+  "evaluation_seconds": 0.772532157599926,
+  "total_seconds": 2.2340736873447895
+}

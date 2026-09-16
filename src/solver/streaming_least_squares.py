@@ -115,7 +115,11 @@ class StreamingQRLeastSquares:
                 f"RHS block contains non-finite values before row {self.num_rows}"
             )
 
-        row_scale = np.max(np.abs(A), axis=1)
+        # The frozen experiment protocol uses unit-L2 row scaling.  Infinity
+        # norm scaling changes the relative least-squares metric according to
+        # the random shape of each feature row and is especially harmful when
+        # different parity equations occupy separate blocks.
+        row_scale = np.linalg.norm(A, axis=1)
         row_scale[row_scale <= 1e-30] = 1.0
         A /= row_scale[:, None]
         b /= row_scale
@@ -213,17 +217,27 @@ class StreamingQRLeastSquares:
             lapack_driver="gelsd",
         )
         x = scaled_x / column_scale[:, None]
-        condition_number = float(singular_values[0] / singular_values[-1])
+        threshold = (self.rcond if self.rcond is not None else np.finfo(float).eps * max(solve_A.shape)) * singular_values[0]
+        effective = singular_values[singular_values > threshold]
+        smallest_effective = float(effective[-1]) if effective.size else float("nan")
+        condition_number = float(singular_values[0] / smallest_effective)
 
-        residual_l2 = float("nan")
-        if not damping and R_aug.shape[0] > self.num_columns:
-            residual_l2 = float(abs(R_aug[self.num_columns, self.num_columns]))
+        # Evaluate the data residual of the returned (possibly truncated or
+        # damped) solution, not only the orthogonal QR tail. The latter omits
+        # unresolved singular directions. Regularization is not part of this
+        # data-residual diagnostic.
+        residual_l2 = float(np.linalg.norm(
+            R_aug[:, :self.num_columns] @ x - R_aug[:, -1:]
+        ))
         relative_residual = float("nan")
         if self._rhs_norm_squared > 0 and np.isfinite(residual_l2):
             relative_residual = residual_l2 / np.sqrt(self._rhs_norm_squared)
         diagnostics: dict[str, float | int] = {
             "rank": int(rank),
             "condition_number": condition_number,
+            "largest_singular_value": float(singular_values[0]),
+            "smallest_effective_singular_value": smallest_effective,
+            "singular_value_threshold": float(threshold),
             "normalized_residual_l2": residual_l2,
             "normalized_residual_rms": residual_l2 / np.sqrt(self.num_rows),
             "relative_normalized_residual": relative_residual,

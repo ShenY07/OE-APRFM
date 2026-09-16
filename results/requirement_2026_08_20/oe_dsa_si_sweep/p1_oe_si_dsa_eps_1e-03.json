@@ -1,0 +1,19 @@
+{
+  "problem": "p1",
+  "method": "oe_si_dsa",
+  "epsilon": 0.001,
+  "grid": [
+    64,
+    32
+  ],
+  "tolerance": 1e-08,
+  "max_iterations": 1000,
+  "dsa_relaxation": 0.0001,
+  "stopping_criterion": "||u^(k)-u^(k-1)||_2 < tolerance",
+  "iterations": 1000,
+  "converged": false,
+  "relative_l2_f": 0.8489325905031838,
+  "relative_l2_rho": 0.848925232503935,
+  "runtime_seconds": 1.2377822026610374,
+  "final_difference": 0.003942498064310438
+}

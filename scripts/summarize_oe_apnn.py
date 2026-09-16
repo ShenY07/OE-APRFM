@@ -5,11 +5,16 @@ import json
 from pathlib import Path
 import numpy as np
 
-root = Path("results/baselines/oe_apnn_imported")
+roots = [Path("results/baselines/oe_apnn"), Path("results/baselines/oe_apnn_imported")]
 rows = []
 for problem in range(1, 6):
     for label, epsilon in (("eps_1e0", 1.0), ("eps_1e-3", 1e-3)):
-        records = [json.loads(p.read_text()) for p in (root/f"P{problem}"/label).glob("seed_*/metrics.json")]
+        by_seed = {}
+        for root in roots:
+            for path in (root/f"P{problem}"/label).glob("seed_*/metrics.json"):
+                record=json.loads(path.read_text())
+                if record.get("evaluation_status") == "complete": by_seed[int(record["seed"])]=record
+        records = list(by_seed.values())
         if not records or any(r.get("E_f") is None for r in records):
             continue
         row = [f"P{problem}", epsilon]
