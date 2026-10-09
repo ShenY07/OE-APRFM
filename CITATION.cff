@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this research code, please cite the software and the associated paper when its bibliographic details are available."
+type: software
+title: "OE-APRFM: Parity-Embedded Asymptotic Preserving Random Feature Methods"
+authors:
+  - family-names: Shen
+    given-names: Yan
+repository-code: "https://github.com/ShenY07/OE-APRFM"
+url: "https://github.com/ShenY07/OE-APRFM"
+abstract: "Research implementation of parity-embedded random-feature methods for multiscale radiative transfer equations, with steady benchmarks and an implicit transient extension."
+keywords:
+  - radiative transfer
+  - asymptotic preserving
+  - random feature methods
+  - parity embedding

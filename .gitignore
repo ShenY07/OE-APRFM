@@ -1,0 +1,36 @@
+# Generated experiments and local archives
+/results/*
+!/results/README.md
+/.release-backup/
+*.npz
+*.npy
+*.pkl
+*.pt
+*.log
+/data/
+/ckpts/
+
+# Python, testing, and environment files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage*
+htmlcov/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+.mplconfig/
+.cache/
+
+# Machine-specific and private configuration
+.env
+.env.*
+.vscode/
+.idea/
+.agents/
+.codex/
+.aws/
+.DS_Store

@@ -1,0 +1,8 @@
+# Tested CPU runtime (Python 3.10).
+jax==0.6.2
+jaxlib==0.6.2
+flax==0.10.6
+ml-collections==0.1.1
+numpy==2.2.6
+scipy==1.15.3
+matplotlib==3.10.9
