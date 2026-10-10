@@ -39,8 +39,18 @@ python scripts/run_p3_oe_aprfm.py --problem p4 --epsilon 0.001 --seed 11 \
 These are executable starting configurations, not a promise to regenerate
 all manuscript tables at these small budgets. Use each runner's `--help` to
 set partitions, collocation counts, feature counts and SVD cutoff. The P1
-parity comparison uses `--variant full` and `--variant full_angular` at matched
-budgets. `oe_original` is the unprojected parity-residual control. Record every
+parity comparison uses `--variant full` (projected basis) and
+`--variant full_angular` (unprojected positive-half-range basis) at matched
+coefficient and residual counts within each feature budget. Both reconstruct
+even `r` and odd `j`. The latter now evaluates raw features at `abs(v)` and
+uses `sign(v)` only for the odd contribution, consistently with its inflow
+training rows. It is not a physical solution with parity constraints removed.
+Production reconstruction always uses the corrected half-range rule; the old
+signed-velocity switch has been removed. Historical error reproduction is
+kept outside the published production tree and is not a manuscript-result
+entry point; earlier source versions remain in Git history.
+`oe_original` uses the projected parity basis with the original two-equation
+residual formulation. Record every
 changed parameter rather than interpreting two differently configured runs
 as a single-factor comparison.
 

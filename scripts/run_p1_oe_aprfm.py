@@ -182,7 +182,8 @@ def run(
 
     started = perf_counter()
     constructor = constructor_class(
-        **common, coefficients=jnp.asarray(coefficients.reshape(-1))
+        **common,
+        coefficients=jnp.asarray(coefficients.reshape(-1)),
     )
     constructor_params = constructor.init(key, *dummy)
     approximation = vmap(
@@ -233,6 +234,11 @@ def run(
         "problem": problem,
         "method": "oe_aprfm",
         "variant": variant,
+        "reconstruction_rule": (
+            "positive_half_range_extension"
+            if variant == "full_angular"
+            else "projected_parity_basis"
+        ),
         "epsilon": epsilon,
         "seed": seed,
         "relative_l2_f": relative_l2_f,

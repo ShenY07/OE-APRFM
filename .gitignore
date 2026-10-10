@@ -34,3 +34,22 @@ dist/
 .codex/
 .aws/
 .DS_Store
+
+# Selected manuscript artifacts (raw experiments remain ignored)
+!/results/table.md
+!/results/figure.md
+!/results/JSC_all_figures_20261010.zip
+!/results/figure/
+/results/figure/*
+!/results/figure/new/
+/results/figure/new/*
+!/results/figure/new/*.pdf
+!/results/oe_apnn_parity_20261010/
+/results/oe_apnn_parity_20261010/*
+!/results/oe_apnn_parity_20261010/summary.csv
+!/results/oe_apnn_parity_20261010/seedwise.csv
+!/results/oe_apnn_parity_20261010/figures/
+/results/oe_apnn_parity_20261010/figures/*
+!/results/oe_apnn_parity_20261010/figures/p1_cost_accuracy.pdf
+!/results/oe_apnn_parity_20261010/figures/p3_cost_accuracy.pdf
+!/results/published_data/

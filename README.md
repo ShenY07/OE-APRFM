@@ -91,14 +91,38 @@ scripts/             Experiment runners, references and diagnostics
 baselines/           Comparison implementations and attribution
 test/                Regression and consistency tests
 docs/                Reproduction guide and numerical assumptions
-results/             Generated locally; outputs are not versioned
+results/             Selected manuscript tables, figures and summary data; raw runs generated locally
 ```
 
-Large results, old tuning sweeps, exploratory P7 scripts and notebook outputs
-are excluded from the current source tree. Earlier versions remain in Git
-history. This code release does not bundle the historical experiment archive;
-run the experiments to generate data. No accuracy or speedup claim is implied
-by a successful quick-start run.
+## Manuscript results (10 October 2026)
+
+The current [25 tables](results/table.md), [figure index](results/figure.md),
+and [PDF bundle](results/JSC_all_figures_20261010.zip) are versioned alongside
+selected summary data. Panels are exported separately as square vector PDFs;
+E6 legends use one row for three entries and two rows for four entries.
+See [the result inventory](results/README.md) for the included artifacts and
+which historical inputs are not bundled.
+
+The 1D unprojected control now extends positive-half-range features consistently
+with its inflow rows. Both controls preserve parity; this is a comparison of
+basis constructions. The 2D runner uses physical-direction inflow traces and
+records the corrected boundary-implementation label. The P3/P4 rerun launcher
+is `scripts/refresh_manuscript_2d_tables.py`. Unused candidate constraint
+modules and defective historical reproduction entry points are excluded from
+the production source tree.
+
+OE-APNN now enforces even/odd parity in its network outputs; old checkpoints
+are not results for this revised protocol. See [the baseline guide](baselines/oe-apnn/README.md)
+for the retraining commands. Mixed-scale transport differences remain relative
+to an archived reference and do not establish fine accuracy rankings. CPU
+archive timings, shared-host CPU reruns, and concurrent GPU training do not
+establish controlled speedup factors.
+
+Large raw fields, model checkpoints, local audit scripts that require the
+historical backup, and exploratory studies are not included. This release is
+not a self-contained archive of every historical experiment. Run the documented
+experiments to generate new data; a successful quick start is not an accuracy
+or speedup claim.
 
 ## Tests
 

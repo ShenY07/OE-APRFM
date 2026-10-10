@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import random
 import platform
@@ -308,6 +309,8 @@ def train(
         "relative_l2_rho"
     )
     summary = {
+        "protocol": str(config.protocol.name),
+        "parity_projection": str(config.protocol.parity_projection),
         "method": "OE-APNN",
         "problem": str(config.problem.name).upper(),
         "dimension": int(config.problem.dimension),
@@ -355,6 +358,7 @@ def train(
         "seed": seed,
         "dtype": "float64",
         "network": {
+            "parity_projection": str(config.protocol.parity_projection),
             "hidden_width": 64,
             "hidden_transforms": 4,
             "separate_r_j": True,
@@ -379,6 +383,11 @@ def train(
         "torch": torch.__version__,
         "cuda": torch.version.cuda,
         "python": platform.python_version(),
+        "cpu_threads": torch.get_num_threads(),
+        "source_sha256": {
+            name: hashlib.sha256((Path(__file__).parent / name).read_bytes()).hexdigest()
+            for name in ("ap_eqn.py", "config.py", "networks.py", "data_pipeline.py", "train.py")
+        },
     }
     (output_dir / "config.json").write_text(
         json.dumps(config_summary, indent=2) + "\n", encoding="utf-8"
@@ -401,6 +410,7 @@ def parse_args():
     parser.add_argument("--quadrature-points", type=int, default=None)
     parser.add_argument("--seed", type=int, default=11)
     parser.add_argument("--device", type=int, default=0)
+    parser.add_argument("--require-cuda", action="store_true")
     parser.add_argument("--log-every", type=int, default=100)
     parser.add_argument("--output-dir", type=Path, default=None)
     parser.add_argument("--skip-evaluation", action="store_true")
@@ -409,6 +419,10 @@ def parse_args():
 
 def main():
     args = parse_args()
+    if args.require_cuda:
+        if not torch.cuda.is_available() or args.device >= torch.cuda.device_count():
+            raise RuntimeError(f"Requested cuda:{args.device} is unavailable; refusing CPU fallback")
+        torch.cuda.set_device(args.device)
     config = get_config(args.problem, args.epsilon)
     config.seed = args.seed
     config.model.device_ids = [args.device]

@@ -388,7 +388,7 @@ def run(
     record["angular_representation"] = angular_representation
     record["residual_definition"] = "complete_normalized_training_residual_v2"
     record["boundary_implementation"] = (
-        "independent_pair_traces_v2"
+        "physical_inflow_trace_v3"
         if angular_representation == "four_component"
         else "legacy_two_component"
     )

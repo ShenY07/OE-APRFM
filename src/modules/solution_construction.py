@@ -89,7 +89,7 @@ class OddEvenDecompositionConstructor1D(RandomFeatureSpaceXV):
 
 
 class OddEvenConstructor1D(RandomFeatureSpaceXV):
-    """Odd/even decomposition for 1D RTE solution without the embedding of the odd/even functions."""
+    """Unprojected positive-half-range features with even/odd reconstruction."""
 
     domain: Dict[str, Tuple[jnp.ndarray, jnp.ndarray]]
     strides: Dict[str, Tuple[jnp.ndarray, jnp.ndarray]]
@@ -137,8 +137,9 @@ class OddEvenConstructor1D(RandomFeatureSpaceXV):
         invar_x: jnp.ndarray,
         invar_v: jnp.ndarray,
     ) -> jnp.ndarray:
-        feat_j_outvar = self._feats_fn_j(invar_x, invar_v)  # (Mp_j, Jn_j)
-        feat_r_outvar = self._feats_fn_r(invar_x, invar_v)  # (Mp_r, Jn_r)
+        feature_v = jnp.abs(invar_v)
+        feat_j_outvar = self._feats_fn_j(invar_x, feature_v)
+        feat_r_outvar = self._feats_fn_r(invar_x, feature_v)
 
         coeff_j = self.coefficients[: self._Mp_j * self._Jn_j].reshape(
             self._Mp_j, self._Jn_j
@@ -149,7 +150,7 @@ class OddEvenConstructor1D(RandomFeatureSpaceXV):
 
         approx_j = jnp.sum(feat_j_outvar * coeff_j)
         approx_r = jnp.sum(feat_r_outvar * coeff_r)
-        sign = jnp.where(invar_v > 0, 1.0, -1.0)
+        sign = jnp.sign(invar_v)
         approx_solution = approx_r + self.kn * approx_j * sign
         return approx_solution
 

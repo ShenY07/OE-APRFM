@@ -22,7 +22,8 @@ def _base(problem: str, dimension: int, epsilon: float):
         Adam=dict(lr=1.0e-3),
     )
     config.protocol = dict(
-        name="oe-apnn-p1-p5-v1",
+        name="oe-apnn-p1-p5-v2-hard-parity",
+        parity_projection="antipodal_even_r_odd_j",
         dtype="float64",
         seeds=(7, 11, 17),
         epsilon_values=(1.0, 1.0e-3),

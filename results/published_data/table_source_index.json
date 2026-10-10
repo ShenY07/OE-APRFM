@@ -1,0 +1,380 @@
+[
+  {
+    "table": "tab:configurations",
+    "sources": [
+      {
+        "path": "results/table_refresh_20261010/manifest.json",
+        "sha256": "56f909efd5b15c19c6eb4e550c787ac834870f347d3e72db4c902c28a1254677"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:mechanism",
+    "sources": [
+      {
+        "path": "results/review_audit_20261010/parity_mechanism/audit.json",
+        "sha256": "73efb7812dd9e53e9ad8ba24f2115ce323435558104eb3d150d42a00187bec69"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:knudsen-accuracy",
+    "sources": [
+      {
+        "path": "results/table_refresh_20261010/table_provenance.json",
+        "sha256": "76edc062520cfb65b570ced8a101b38d871ca5e340f839e8f9dffc604b6d259d"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/requirement_2026_08_20/tables_frozen/table_S2a_knudsen_seedwise.csv",
+        "sha256": "1d3aefad3aeb8f4ca328f368715f4b0ab471872682460eacdcaf14aab4948651"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:efficiency-summary",
+    "sources": [
+      {
+        "path": "results/table_refresh_20261010/table_provenance.json",
+        "sha256": "76edc062520cfb65b570ced8a101b38d871ca5e340f839e8f9dffc604b6d259d"
+      },
+      {
+        "path": "results/oe_apnn_parity_20261010/summary.csv",
+        "sha256": "ce49dcb3924ce26577c7b6acf0409ca575e43f402ef4104051240186d93b2afe"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/requirement_2026_08_20/tables_frozen/table_S3_accuracy_cost_sweep.csv",
+        "sha256": "abf0980e44cabead250b2a15c06c7622cc522a8f9e55b4fa7aae0838057c2102"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:transient-comparison",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/e6_mm_comparison/seedwise.csv",
+        "sha256": "bb0d9ed86cb0d3b6f66147fdc8806a963642957674905185bbf2a836b200983d"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:supp-configurations",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/requirement_2026_08_20/tables_frozen/table_supp_configurations.tex",
+        "sha256": "5eafad69124aac8c9c02894dd0f1c7cce6f7395f8b39a4aa27516fb8d247a7b3"
+      },
+      {
+        "path": "results/p5_e5_verification_20261010/verification.json",
+        "sha256": "d81e2beb9ea6ef9dd24e1f0a5b028bccf58176335dea79772c4a338c0b0c84df"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:minimum-gain",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/minimum_gain/p1_J16_seed11_refined128.json",
+        "sha256": "890999b07e5f0766ff6378864bccdfafc47b2244ec543cdd429b96af66d7f0f8"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:feature-resolution",
+    "sources": [
+      {
+        "path": "results/figure_refresh_20261010/figure_sources.json",
+        "sha256": "b57d4a661f87d19cb68946243fe606cc233043e64e786dbee0898d970b718db5"
+      },
+      {
+        "path": "results/table_refresh_20261010/table_provenance.json",
+        "sha256": "76edc062520cfb65b570ced8a101b38d871ca5e340f839e8f9dffc604b6d259d"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:collocation",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/requirement_2026_08_20/tables_frozen/table_3_collocation_refinement.csv",
+        "sha256": "e9e7d9cc5a6341d445a2addcb7f4174b397c19f1f09e4db9c72e51f936d9cbe8"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:parity-budget",
+    "sources": [
+      {
+        "path": "results/review_audit_20261010/parity/audit.json",
+        "sha256": "e71b70bdc10b20243b402f705ec315c5db649c800e09a8a30c5749ede975ecda"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:angular-manufactured",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/requirement_2026_08_20/tables_frozen/table_6_angular_manufactured.csv",
+        "sha256": "e4cf72a530154273e8ed858a74e6619d6c1d7e374cf622cddc71de947279c483"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:angular-mm",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/p6_mm_comparison/summary.csv",
+        "sha256": "02ebb7a6fa127c93fdb3f3929927b7b4f699322f3fa1e3b7d3cfedc919ff659d"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/p6_mm_comparison/seedwise.csv",
+        "sha256": "736671a592d2836c66982a282a7924561245d6e5ea815e5974cdd9d8450fa320"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:p34-components",
+    "sources": [
+      {
+        "path": "results/table_refresh_20261010/table_provenance.json",
+        "sha256": "76edc062520cfb65b570ced8a101b38d871ca5e340f839e8f9dffc604b6d259d"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:supp-efficiency",
+    "sources": [
+      {
+        "path": "results/figure_refresh_20261010/figure_sources.json",
+        "sha256": "b57d4a661f87d19cb68946243fe606cc233043e64e786dbee0898d970b718db5"
+      },
+      {
+        "path": "results/oe_apnn_parity_20261010/summary.csv",
+        "sha256": "ce49dcb3924ce26577c7b6acf0409ca575e43f402ef4104051240186d93b2afe"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/requirement_2026_08_20/tables_frozen/table_S3_accuracy_cost_sweep.csv",
+        "sha256": "abf0980e44cabead250b2a15c06c7622cc522a8f9e55b4fa7aae0838057c2102"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:supp-efficiency-2d",
+    "sources": [
+      {
+        "path": "results/table_refresh_20261010/table_provenance.json",
+        "sha256": "76edc062520cfb65b570ced8a101b38d871ca5e340f839e8f9dffc604b6d259d"
+      },
+      {
+        "path": "results/oe_apnn_parity_20261010/summary.csv",
+        "sha256": "ce49dcb3924ce26577c7b6acf0409ca575e43f402ef4104051240186d93b2afe"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/requirement_2026_08_20/tables_frozen/table_S3_accuracy_cost_sweep.csv",
+        "sha256": "abf0980e44cabead250b2a15c06c7622cc522a8f9e55b4fa7aae0838057c2102"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:slab-diffusion",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/e3_slab/summary.csv",
+        "sha256": "fb119e925f584060f0acc75f1851dca114e290eaaa9c9e7095e47945e172f60e"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:mixed-budget",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/e5_mixed/physical_metrics.csv",
+        "sha256": "d09549118b363f46b77054008e66ff37ee6f045b521f26ddd6f67ce261a25ce1"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/e5_mixed/summary.csv",
+        "sha256": "85748e155619307736b0caddae14cf3403e316288c570b513cd1fecedb65dab2"
+      },
+      {
+        "path": "results/p5_e5_verification_20261010/verification.json",
+        "sha256": "d81e2beb9ea6ef9dd24e1f0a5b028bccf58176335dea79772c4a338c0b0c84df"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:mixed-timing",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/efficiency_refresh_2026_10_06/e5_timing/status.json",
+        "sha256": "47d12490e08642ecbf76192f594b62475d91d934818ba6d17299cf4998762052"
+      },
+      {
+        "path": "results/p5_e5_verification_20261010/verification.json",
+        "sha256": "d81e2beb9ea6ef9dd24e1f0a5b028bccf58176335dea79772c4a338c0b0c84df"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:extended",
+    "sources": [
+      {
+        "path": "results/table_refresh_20261010/table_provenance.json",
+        "sha256": "76edc062520cfb65b570ced8a101b38d871ca5e340f839e8f9dffc604b6d259d"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e+00_seed_11_pou_b.json",
+        "sha256": "c1b87c918ed3ba3cd681884ccb2a53ee046c6122bbd7144702b673c26efbd75e"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e+00_seed_23_pou_b.json",
+        "sha256": "43784a32507b84710317a2b74cf5c94fc4d35b0bdda3c2def77e89ebd87649c7"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e+00_seed_37_pou_b.json",
+        "sha256": "cb8ea37af34973138a0f45067f90478abd54e4c7d61518b14c7b5ad2a94d0124"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e-03_seed_11_pou_b.json",
+        "sha256": "780e1a797c603b86260b6242f39e5324424b03545d4749f6de2f9860883370d1"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e-03_seed_23_pou_b.json",
+        "sha256": "55c5c4a8759ce4e499ba0fa7ec2be0bdc7433484942f0e9e5f956a9a23c91d18"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/pou_fix_2026_09_08/p2/p2_oe_aprfm_eps_1e-03_seed_37_pou_b.json",
+        "sha256": "7713e2a3585ddcf30ad09ceec19090050285bddc9d9b703e8ecd821fcfd22def"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:p5-cutoff",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/comparison_repairs_2026_09_10/p5_1e-5/p5_oe_aprfm_eps_1e-03_seed_11.json",
+        "sha256": "6ea1b4e679bd9631faa7ca095c52fe6b7807c0ef03868ac4f11385ae0c85ad77"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/comparison_repairs_2026_09_10/p5_1e-7/p5_oe_aprfm_eps_1e-03_seed_11.json",
+        "sha256": "706c45f709c4308e971b2ec1dfdd955dfcc5bcae61a6dd1f2e7f04d1b821890b"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/comparison_repairs_2026_09_10/p5_1e-6/p5_oe_aprfm_eps_1e-03_seed_11.json",
+        "sha256": "4fa429cf9913aca321be39aff77fc23d4538c7940e0bebe0460e94ab46c79222"
+      },
+      {
+        "path": "results/p5_e5_verification_20261010/verification.json",
+        "sha256": "d81e2beb9ea6ef9dd24e1f0a5b028bccf58176335dea79772c4a338c0b0c84df"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:p5-reference",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/references_p5_boundary/p5_parity_ref_eps_1e+00_level_A.json",
+        "sha256": "92d49a854f91b4c7bbe7945f833289527604a0119f9dcd859832e235ec188d3a"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/references_p5_boundary/p5_parity_ref_eps_1e+00_level_B.json",
+        "sha256": "ffc6b6fa76a547aa65036ba947351ad85b849c001833acab05338f9b4dc0f4eb"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/references_p5_boundary/p5_parity_ref_eps_1e+00_level_C.json",
+        "sha256": "6afd6495d0afe6d566d55ac324bd88242f4d354870ccda96e581a56c9c6a00ae"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/references_p5_boundary/p5_parity_ref_eps_1e+00_refinement_BA.json",
+        "sha256": "94c269c32ce2d7bbcd023559d0bf25dc25fe024618bbf5d45f93da5b49e56db8"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/references_p5_boundary/p5_parity_ref_eps_1e+00_refinement_CB.json",
+        "sha256": "984a9130056e3e93bef624bde3e3d3a7d8297b024404189f6d9cbd3b8c563b72"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/references_p5_boundary/p5_parity_ref_eps_1e-03_level_A.json",
+        "sha256": "bbea980374ca3451d5e3c249c31936ca76acb3ccc51d562a634e30cb361d882d"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/references_p5_boundary/p5_parity_ref_eps_1e-03_level_B.json",
+        "sha256": "a57cebcb214ff48d89bc0719144d12f5ca01f6e28bfde761cd2f523fdca6d662"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/references_p5_boundary/p5_parity_ref_eps_1e-03_level_C.json",
+        "sha256": "a097d54c35a0bfdac22090826382999789a8081cd0a1bda73cd941fc7f1b284b"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/references_p5_boundary/p5_parity_ref_eps_1e-03_refinement_BA.json",
+        "sha256": "42e2d5b69b26706720d5059f1e6b555d2826b6e4eba99ba3f433b0cf7966fca2"
+      },
+      {
+        "path": ".release-backup/20261009/original-worktree/results/references_p5_boundary/p5_parity_ref_eps_1e-03_refinement_CB.json",
+        "sha256": "641d929136fec22d68bae2da4fa3cfce6c84c69b0922362ef3af43086fccb178"
+      },
+      {
+        "path": "results/p5_e5_verification_20261010/verification.json",
+        "sha256": "d81e2beb9ea6ef9dd24e1f0a5b028bccf58176335dea79772c4a338c0b0c84df"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:transient-config",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/e6_periodic/completion.json",
+        "sha256": "6bf1d000deeb2141d43f8ca6ba305fbdcbb8d1bd433926d140f3094354002984"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:time-refinement",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/e6_periodic/time_refinement.csv",
+        "sha256": "3491f546d1322a9a9e28bf831566c6a00f9b6819d2361cf657093ae28769bd88"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:be-refinement",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/e6_periodic/time_refinement.csv",
+        "sha256": "3491f546d1322a9a9e28bf831566c6a00f9b6819d2361cf657093ae28769bd88"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:transient-field-checks",
+    "sources": [
+      {
+        "path": ".release-backup/20261009/original-worktree/results/e6_periodic/assembly_feature_checks.csv",
+        "sha256": "5963f968327b0ac7ebfbeec3306af62961f3b602d96fc97d6150c450269cf95e"
+      }
+    ],
+    "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  }
+]

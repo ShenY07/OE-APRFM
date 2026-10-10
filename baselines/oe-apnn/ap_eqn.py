@@ -59,11 +59,11 @@ class OERadiativeTransferSolver1D(_OESolver):
 
     @staticmethod
     def model_r(net, x, v):
-        return net([x, v])
+        return 0.5 * (net([x, v]) + net([x, -v]))
 
     @staticmethod
     def model_j(net, x, v):
-        return net([x, v])
+        return 0.5 * (net([x, v]) - net([x, -v]))
 
     def _quadrature_inputs(self, x):
         shape = (*x.shape[:-1], self.vquads.numel(), 1)
@@ -160,10 +160,12 @@ class OERadiativeTransferSolver2D(_OESolver):
         return net([x, y, torch.cos(theta), torch.sin(theta)])
 
     def model_r(self, net, x, y, theta):
-        return self._raw(net, x, y, theta)
+        vx, vy = torch.cos(theta), torch.sin(theta)
+        return 0.5 * (net([x, y, vx, vy]) + net([x, y, -vx, -vy]))
 
     def model_j(self, net, x, y, theta):
-        return self._raw(net, x, y, theta)
+        vx, vy = torch.cos(theta), torch.sin(theta)
+        return 0.5 * (net([x, y, vx, vy]) - net([x, y, -vx, -vy]))
 
     def _quadrature_inputs(self, x, y):
         shape = (*x.shape[:-1], self.theta_quads.numel(), 1)

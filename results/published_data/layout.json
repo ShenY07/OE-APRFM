@@ -1,0 +1,312 @@
+[
+  {
+    "name": "E1_fixed_space_minimum_gain",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "E2_parity_budget_distribution_error",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 1,
+    "legend_rows": 2
+  },
+  {
+    "name": "E2_parity_budget_density_error",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 1,
+    "legend_rows": 2
+  },
+  {
+    "name": "E2_p1_fixed_collocation_distribution_error_vs_features",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 1,
+    "legend_columns": 1,
+    "legend_rows": 1
+  },
+  {
+    "name": "E2_p3_fixed_collocation_distribution_error_vs_features",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 1,
+    "legend_columns": 1,
+    "legend_rows": 1
+  },
+  {
+    "name": "E3_slab_diffusion_density_error",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 1,
+    "legend_columns": 1,
+    "legend_rows": 1
+  },
+  {
+    "name": "E3_slab_diffusion_scaled_current_error",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 1,
+    "legend_columns": 1,
+    "legend_rows": 1
+  },
+  {
+    "name": "E3_slab_fick_defect",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 1,
+    "legend_columns": 1,
+    "legend_rows": 1
+  },
+  {
+    "name": "E4_P5_seed11_same_version_distribution_relative_L2_error",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 1,
+    "legend_columns": 1,
+    "legend_rows": 1
+  },
+  {
+    "name": "E4_P5_seed11_same_version_density_relative_L2_error",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 1,
+    "legend_columns": 1,
+    "legend_rows": 1
+  },
+  {
+    "name": "E4_P5_seed11_same_version_rank",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 1,
+    "legend_columns": 1,
+    "legend_rows": 1
+  },
+  {
+    "name": "E4_P5_seed11_same_version_coefficient_norm",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 1,
+    "legend_columns": 1,
+    "legend_rows": 1
+  },
+  {
+    "name": "E4_P5_seed11_same_version_normalized_training_residual_RMS",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 1,
+    "legend_columns": 1,
+    "legend_rows": 1
+  },
+  {
+    "name": "E5_budget_dependence_distribution_error_old_reference_pending_reassessment",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "E5_budget_dependence_density_error_old_reference_pending_reassessment",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "E5_budget_dependence_physical_flux_error_old_reference_pending_reassessment",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "E5_seed11_repeated_wall_time_not_speedup",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "E6_eps1e+00_ct_distribution_error_three_times",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "E6_eps1e+00_be_distribution_error_three_times",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "E6_eps1e-03_ct_distribution_error_three_times",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "E6_eps1e-03_be_distribution_error_three_times",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "E6_discrete_diffusion_fixed_dt",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 3,
+    "legend_columns": 3,
+    "legend_rows": 1
+  },
+  {
+    "name": "E6_time_refinement_seed11_CT",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "E6_eps1e+00_seed11_rho_evolution",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 4,
+    "legend_columns": 2,
+    "legend_rows": 2
+  },
+  {
+    "name": "E6_eps1e+00_seed11_q_evolution",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 4,
+    "legend_columns": 2,
+    "legend_rows": 2
+  },
+  {
+    "name": "E6_eps1e+00_seed11_cosine_amplitude_CT_BE",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 3,
+    "legend_columns": 3,
+    "legend_rows": 1
+  },
+  {
+    "name": "E6_eps1e-03_seed11_rho_evolution",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 4,
+    "legend_columns": 2,
+    "legend_rows": 2
+  },
+  {
+    "name": "E6_eps1e-03_seed11_q_evolution",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 4,
+    "legend_columns": 2,
+    "legend_rows": 2
+  },
+  {
+    "name": "E6_eps1e-03_seed11_cosine_amplitude_CT_BE",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 3,
+    "legend_columns": 3,
+    "legend_rows": 1
+  },
+  {
+    "name": "p1_cost_accuracy",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  },
+  {
+    "name": "p3_cost_accuracy",
+    "size_inches": [
+      3.6,
+      3.6
+    ],
+    "legend_entries": 2,
+    "legend_columns": 2,
+    "legend_rows": 1
+  }
+]
