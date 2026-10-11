@@ -1,0 +1,143 @@
+{
+  "summary": [
+    {
+      "problem": "p1",
+      "domain": "expanded",
+      "angular_locations": 32,
+      "num_rows": 2944,
+      "num_columns": 128,
+      "relative_l2_f": 2.058892665119064e-08,
+      "relative_l2_rho": 7.637275559339662e-09,
+      "assembly_seconds": 11.069914097897708,
+      "solve_seconds": 0.023475555004552007
+    },
+    {
+      "problem": "p1",
+      "domain": "reduced",
+      "angular_locations": 16,
+      "num_rows": 1504,
+      "num_columns": 128,
+      "relative_l2_f": 2.0588927064669162e-08,
+      "relative_l2_rho": 7.637277897217869e-09,
+      "assembly_seconds": 10.523915258934721,
+      "solve_seconds": 0.011546354042366147
+    },
+    {
+      "problem": "p3",
+      "domain": "expanded",
+      "angular_locations": 16,
+      "num_rows": 3392,
+      "num_columns": 128,
+      "relative_l2_f": 0.034079624610201975,
+      "relative_l2_rho": 0.01859308113306797,
+      "assembly_seconds": 12.943996713962406,
+      "solve_seconds": 0.0444944710470736
+    },
+    {
+      "problem": "p3",
+      "domain": "reduced",
+      "angular_locations": 4,
+      "num_rows": 1232,
+      "num_columns": 128,
+      "relative_l2_f": 0.034079624610184725,
+      "relative_l2_rho": 0.01859308113306499,
+      "assembly_seconds": 12.70888971700333,
+      "solve_seconds": 0.012362820096313953
+    }
+  ],
+  "checks": [
+    {
+      "problem": "p1",
+      "seed": 11,
+      "gram_relative_difference": 3.7093487171151987e-16,
+      "rhs_relative_difference": 9.072828424175277e-16,
+      "relative_field_difference": 1.0414889180418765e-14,
+      "ranks": [
+        113,
+        113
+      ],
+      "evaluation_shape": [
+        257,
+        128
+      ]
+    },
+    {
+      "problem": "p1",
+      "seed": 23,
+      "gram_relative_difference": 3.887654432408684e-16,
+      "rhs_relative_difference": 8.441080159174198e-16,
+      "relative_field_difference": 3.314466724446232e-15,
+      "ranks": [
+        108,
+        108
+      ],
+      "evaluation_shape": [
+        257,
+        128
+      ]
+    },
+    {
+      "problem": "p1",
+      "seed": 37,
+      "gram_relative_difference": 3.9096737089981764e-16,
+      "rhs_relative_difference": 8.297802438068698e-16,
+      "relative_field_difference": 3.327509162354187e-15,
+      "ranks": [
+        114,
+        114
+      ],
+      "evaluation_shape": [
+        257,
+        128
+      ]
+    },
+    {
+      "problem": "p3",
+      "seed": 11,
+      "gram_relative_difference": 3.8581307149243815e-16,
+      "rhs_relative_difference": 2.3068627723369496e-15,
+      "relative_field_difference": 1.2229199966081476e-14,
+      "ranks": [
+        128,
+        128
+      ],
+      "evaluation_shape": [
+        65,
+        65,
+        64
+      ]
+    },
+    {
+      "problem": "p3",
+      "seed": 23,
+      "gram_relative_difference": 3.6911179679301903e-16,
+      "rhs_relative_difference": 1.9017738580468903e-15,
+      "relative_field_difference": 1.8620863208183195e-14,
+      "ranks": [
+        128,
+        128
+      ],
+      "evaluation_shape": [
+        65,
+        65,
+        64
+      ]
+    },
+    {
+      "problem": "p3",
+      "seed": 37,
+      "gram_relative_difference": 3.8464265536979027e-16,
+      "rhs_relative_difference": 1.932312037247529e-15,
+      "relative_field_difference": 7.048677740616843e-14,
+      "ranks": [
+        128,
+        128
+      ],
+      "evaluation_shape": [
+        65,
+        65,
+        64
+      ]
+    }
+  ]
+}

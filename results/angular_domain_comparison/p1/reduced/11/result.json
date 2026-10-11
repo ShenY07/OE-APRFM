@@ -1,0 +1,56 @@
+{
+  "problem": "p1",
+  "method": "oe_aprfm",
+  "variant": "full",
+  "reconstruction_rule": "projected_parity_basis",
+  "epsilon": 0.001,
+  "seed": 11,
+  "relative_l2_f": 1.0050472361522653e-06,
+  "relative_l2_rho": 8.749366013694768e-07,
+  "relative_l2_r": null,
+  "relative_l2_j": null,
+  "residual_half": 2.0930380091135202e-07,
+  "empirical_stability_ratio": 6.366483406444604,
+  "condition_number": 84946190.01724413,
+  "largest_singular_value": 7.693614482988822,
+  "smallest_effective_singular_value": 9.057044796743695e-08,
+  "singular_value_threshold": 7.693614482988822e-08,
+  "rank": 113,
+  "coefficient_norm": 75.36871612739527,
+  "num_rows": 1504,
+  "num_columns": 128,
+  "oversampling_ratio": 11.75,
+  "feature_seconds": 6.448614435037598,
+  "assembly_seconds": 11.02595270308666,
+  "solve_seconds": 0.013701512943953276,
+  "evaluation_seconds": 3.8360277691390365,
+  "total_seconds": 21.385848860256374,
+  "rcond": 1e-08,
+  "partitions": [
+    1,
+    1
+  ],
+  "strides": {
+    "v": 1.0,
+    "x": 1.0
+  },
+  "features_per_patch": 64,
+  "scale": 1.0,
+  "block_weights": null,
+  "collocation": {
+    "boundary": 32,
+    "interior": [
+      32,
+      16
+    ]
+  },
+  "boundary_rows": 64,
+  "reduced_interior_points": 480,
+  "reduced_angular_locations": 16,
+  "angular_domain": "reduced",
+  "orbit_multiplicity": 1,
+  "angular_locations": 16,
+  "protocol": "same_basis_same_weighted_objective_symmetry_expanded_control",
+  "solver": "dense gelsd; row L2 then inverse-orbit sqrt weights then column L2",
+  "source_sha256": "5b14d59676b585dd9a342c89938f10623ce950831c74fab0ff3131d1d179417d"
+}

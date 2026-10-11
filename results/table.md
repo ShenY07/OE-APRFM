@@ -157,7 +157,7 @@ $10^{-3}$ & MM-APRFM
 \begin{table}[!htb]
 \centering\small
 \setlength{\tabcolsep}{3.5pt}
-\caption{Steady OE-APRFM configurations used in the supplementary studies. $J$ is the number of sampled features per local parity component; $N_{\rm ang}$ denotes the configured angular quadrature order, not the number of angular collocation points. The two-dimensional variable-scattering cutoff study uses physical-direction inflow traces and 58096 residual rows, as detailed in Table \ref{tab:p5-cutoff}.}
+\caption{Steady OE-APRFM configurations used in the supplementary studies. $J$ is the number of sampled features per local parity component; $N_{\rm ang}$ denotes the configured angular quadrature order, not the number of angular collocation points. The two-dimensional variable-scattering cutoff study uses physical-direction inflow traces and 58096 residual rows, as detailed in Table \ref{tab:p5-cutoff}. Angular-domain reduction is tested separately in Table \ref{tab:angular-domain-reduction}; its controlled configurations do not replace the main-study budgets listed here.}
 \label{tab:supp-configurations}
 \begin{tabular}{lccccc}
 \toprule
@@ -259,6 +259,24 @@ Projected & 16 & 32 & 812 & 25.375 & $1.123\times10^{-2}$ & $1.04\times10^{-2}$\
  & 128 & 256 & 6266 & 24.477 & $2.105\times10^{-12}$ & $1.37\times10^{-12}$\\
 \bottomrule
 \end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\caption{Controlled angular-domain reduction for the manufactured problems at $\varepsilon=10^{-3}$, with 128 coefficients and seeds 11, 23 and 37 (medians). The full-orbit control evaluates the same parity residual blocks at all symmetry-related angular locations; it is a redundant expansion of the OE discretization. Its interior rows receive a factor $m^{-1/2}$ after row normalization ($m=2$ in 1D and $m=4$ in 2D), while physical inflow rows are unchanged. Thus the trial space, boundary data and weighted least-squares objective are matched. $N_\theta$ counts angular collocation locations per interior spatial point, not quadrature nodes. All solves use dense SVD with column equilibration and $\mathtt{rcond}=10^{-8}$; The one-dimensional problem uses $J^r=J^j=64$; the two-dimensional problem uses 32 features per component in the four-component representation. Assembly times include first-call execution/compilation; solve times cover column equilibration and SVD. Runs use serial fresh CPU processes with one BLAS thread. This test measures removal of redundant angular evaluations, not an accuracy advantage over a different full-angle method.}
+\label{tab:angular-domain-reduction}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llrrrrrr}
+\toprule
+Problem & Angular sampling & $N_\theta$ & $N_{\rm row}$ & $E_f$ & $E_\rho$ & $T_{\rm asm}$ (s) & $T_{\rm solve}$ (s)\\
+\midrule
+1D & Full orbit & 32 & 2944 & $2.059\times10^{-8}$ & $7.637\times10^{-9}$ & 11.07 & 0.0235\\
+1D & Half range & 16 & 1504 & $2.059\times10^{-8}$ & $7.637\times10^{-9}$ & 10.52 & 0.0115\\
+2D & Full orbit & 16 & 3392 & $3.408\times10^{-2}$ & $1.859\times10^{-2}$ & 12.94 & 0.0445\\
+2D & First quadrant & 4 & 1232 & $3.408\times10^{-2}$ & $1.859\times10^{-2}$ & 12.71 & 0.0124\\
+\bottomrule
+\end{tabular}}
 \end{table}
 
 \begin{table}[!htb]

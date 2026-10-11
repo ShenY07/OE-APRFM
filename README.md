@@ -96,7 +96,7 @@ results/             Selected manuscript tables, figures and summary data; raw r
 
 ## Manuscript results (10 October 2026)
 
-The current [25 tables](results/table.md), [figure index](results/figure.md),
+The current [26 tables](results/table.md), [figure index](results/figure.md),
 and [PDF bundle](results/JSC_all_figures_20261010.zip) are versioned alongside
 selected summary data. Panels are exported separately as square vector PDFs;
 E6 legends use one row for three entries and two rows for four entries.
@@ -110,6 +110,13 @@ records the corrected boundary-implementation label. The P3/P4 rerun launcher
 is `scripts/refresh_manuscript_2d_tables.py`. Unused candidate constraint
 modules and defective historical reproduction entry points are excluded from
 the production source tree.
+
+The [angular-domain comparison](results/angular_domain_comparison/README.md)
+adds twelve paired runs with the same OE trial space and weighted objective.
+It measures the cost of removing symmetry-redundant residual rows at preserved
+accuracy, rather than a search for minimum cost at a prescribed tolerance.
+Per-seed records, configuration hashes and the aggregate table are included;
+raw matrices and fields can be regenerated with the campaign launcher.
 
 OE-APNN now enforces even/odd parity in its network outputs; old checkpoints
 are not results for this revised protocol. See [the baseline guide](baselines/oe-apnn/README.md)

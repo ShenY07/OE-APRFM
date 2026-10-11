@@ -376,5 +376,67 @@
       }
     ],
     "note": "Numerical refresh/validation scopes are recorded in validation.json; archival sources are not claimed to be newly rerun. Empty source lists explicitly require further recovery."
+  },
+  {
+    "table": "tab:angular-domain-reduction",
+    "sources": [
+      {
+        "path": "results/angular_domain_comparison/summary.json",
+        "sha256": "20fd945d2fc381305dc7260da0cc10e81b24bbb543f5e1451c055b8f12d91d27"
+      },
+      {
+        "path": "results/angular_domain_comparison/manifest.json",
+        "sha256": "a911329cd0bcc1ec861cafbb5d8de019f65471709635811dccce52c342f5fa7d"
+      },
+      {
+        "path": "results/angular_domain_comparison/p3/reduced/11/result.json",
+        "sha256": "81b9d90673fa25dd514f950d8370245eb3453d7d2fdd133061aa8b6379208e26"
+      },
+      {
+        "path": "results/angular_domain_comparison/p3/reduced/23/result.json",
+        "sha256": "31bbd055e8eab755a7029fa1a6992015adbb90875ecae7ee4eb98712896bafa2"
+      },
+      {
+        "path": "results/angular_domain_comparison/p3/reduced/37/result.json",
+        "sha256": "48aaf94a74a8678a285a889b09d5e624a69e540927d4f234667be3485a187244"
+      },
+      {
+        "path": "results/angular_domain_comparison/p3/expanded/11/result.json",
+        "sha256": "0bf93697b6006724ce5bc14394f6db4e19680a5f16692b67aed715b2ccbf0b9c"
+      },
+      {
+        "path": "results/angular_domain_comparison/p3/expanded/23/result.json",
+        "sha256": "2770e9e3c79469508b6c6151401c1e0e58b04e1c4c79c6f9d2ddd247fcf0407e"
+      },
+      {
+        "path": "results/angular_domain_comparison/p3/expanded/37/result.json",
+        "sha256": "b379bfbefaa850f2babd5986207b34447bb52deae431e323b3cd27beacc8833a"
+      },
+      {
+        "path": "results/angular_domain_comparison/p1/reduced/11/result.json",
+        "sha256": "9f1bac797d609b4c667d41972c73423778b513047f74850bd1c47eb6f5f4eac6"
+      },
+      {
+        "path": "results/angular_domain_comparison/p1/reduced/23/result.json",
+        "sha256": "181b7494fa9ffb021ae2911488ace41e2d7a28ef388a1094d1cdf0e3beca4cd1"
+      },
+      {
+        "path": "results/angular_domain_comparison/p1/reduced/37/result.json",
+        "sha256": "9a11ca74f73977fd5674e8866a1535f90f48d68356e20a8691226bbb802e0dab"
+      },
+      {
+        "path": "results/angular_domain_comparison/p1/expanded/11/result.json",
+        "sha256": "c948183555b4bf77b8e41afbccaf4f9c985fa91f6eff44055ae0a9396d36764e"
+      },
+      {
+        "path": "results/angular_domain_comparison/p1/expanded/23/result.json",
+        "sha256": "02cb7fa60577f420396d3242987ca24f1368c0132232cc7a273f935627604c23"
+      },
+      {
+        "path": "results/angular_domain_comparison/p1/expanded/37/result.json",
+        "sha256": "45a28524e8cd0b56c1036ced6602af3ba756d1031402d724548312cf0960e57a"
+      }
+    ],
+    "note": "Twelve serial fresh-process runs; shared OE space, inverse-orbit residual weights, matched dense SVD. Full-orbit control is redundant."
   }
 ]

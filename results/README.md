@@ -1,6 +1,6 @@
 # Manuscript result snapshot — 10 October 2026
 
-- `table.md`: 25 manuscript tables, with protocol and interpretation notes.
+- `table.md`: 26 manuscript tables, with protocol and interpretation notes.
 - `figure.md`: figure inclusion paths and captions. The two OE-APNN budget
   panels at the end are supplementary training diagnostics, optional in the
   manuscript; the main comparison uses their final-budget table entries.
@@ -9,6 +9,9 @@
 - `JSC_all_figures_20261010.zip`: the same 31 PDFs, with paths relative to this
   directory matching the figure index.
 - `oe_apnn_parity_20261010/{seedwise,summary}.csv`: revised baseline summaries.
+- `angular_domain_comparison/`: twelve per-seed result records, the execution
+  manifest, equivalence checks, summary, and the new table's LaTeX source.
+  See its README for the matching rule and regeneration commands.
 - `published_data/`: exact plotted line arrays, layout information, and
   retained source/run provenance indexes. Paths into `.release-backup` describe
   historical local inputs; those inputs are not bundled or downloadable from

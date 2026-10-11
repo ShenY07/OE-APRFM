@@ -1,0 +1,236 @@
+{
+  "commit": "283a658425a3f1837b0025304c1b2f7ccd5790e0",
+  "runs": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p1",
+        "--domain",
+        "reduced",
+        "--seed",
+        "11",
+        "--output-dir",
+        "results/angular_domain_comparison/p1/reduced/11"
+      ],
+      "result": "results/angular_domain_comparison/p1/reduced/11/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p1",
+        "--domain",
+        "expanded",
+        "--seed",
+        "11",
+        "--output-dir",
+        "results/angular_domain_comparison/p1/expanded/11"
+      ],
+      "result": "results/angular_domain_comparison/p1/expanded/11/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p1",
+        "--domain",
+        "expanded",
+        "--seed",
+        "23",
+        "--output-dir",
+        "results/angular_domain_comparison/p1/expanded/23"
+      ],
+      "result": "results/angular_domain_comparison/p1/expanded/23/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p1",
+        "--domain",
+        "reduced",
+        "--seed",
+        "23",
+        "--output-dir",
+        "results/angular_domain_comparison/p1/reduced/23"
+      ],
+      "result": "results/angular_domain_comparison/p1/reduced/23/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p1",
+        "--domain",
+        "reduced",
+        "--seed",
+        "37",
+        "--output-dir",
+        "results/angular_domain_comparison/p1/reduced/37"
+      ],
+      "result": "results/angular_domain_comparison/p1/reduced/37/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p1",
+        "--domain",
+        "expanded",
+        "--seed",
+        "37",
+        "--output-dir",
+        "results/angular_domain_comparison/p1/expanded/37"
+      ],
+      "result": "results/angular_domain_comparison/p1/expanded/37/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p3",
+        "--domain",
+        "reduced",
+        "--seed",
+        "11",
+        "--output-dir",
+        "results/angular_domain_comparison/p3/reduced/11"
+      ],
+      "result": "results/angular_domain_comparison/p3/reduced/11/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p3",
+        "--domain",
+        "expanded",
+        "--seed",
+        "11",
+        "--output-dir",
+        "results/angular_domain_comparison/p3/expanded/11"
+      ],
+      "result": "results/angular_domain_comparison/p3/expanded/11/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p3",
+        "--domain",
+        "expanded",
+        "--seed",
+        "23",
+        "--output-dir",
+        "results/angular_domain_comparison/p3/expanded/23"
+      ],
+      "result": "results/angular_domain_comparison/p3/expanded/23/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p3",
+        "--domain",
+        "reduced",
+        "--seed",
+        "23",
+        "--output-dir",
+        "results/angular_domain_comparison/p3/reduced/23"
+      ],
+      "result": "results/angular_domain_comparison/p3/reduced/23/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p3",
+        "--domain",
+        "reduced",
+        "--seed",
+        "37",
+        "--output-dir",
+        "results/angular_domain_comparison/p3/reduced/37"
+      ],
+      "result": "results/angular_domain_comparison/p3/reduced/37/result.json"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/run_angular_domain_comparison.py",
+        "--problem",
+        "p3",
+        "--domain",
+        "expanded",
+        "--seed",
+        "37",
+        "--output-dir",
+        "results/angular_domain_comparison/p3/expanded/37"
+      ],
+      "result": "results/angular_domain_comparison/p3/expanded/37/result.json"
+    }
+  ],
+  "environment": {
+    "JAX_ENABLE_X64": "true",
+    "JAX_PLATFORMS": "cpu",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "sources": {
+    "scripts/run_angular_domain_comparison.py": "5b14d59676b585dd9a342c89938f10623ce950831c74fab0ff3131d1d179417d",
+    "scripts/run_p1_oe_aprfm.py": "98fec2808e7141f52c3d63c89a2d90bc29592aff40733ee9c047bcf93106d067",
+    "scripts/run_p3_oe_aprfm.py": "bb6b61a8d11201b63c2cfc6e5edc9851af33aeffa986c5c6963bae1fbd31b7e3",
+    "src/geometry/mesh_data_structure.py": "21d729acc58fdcd25d346e74df5c2e443b5de7b86e2bb1e0d9aea3505eb403df",
+    "src/geometry/uniform_mesh.py": "dd01243c20eba7f042377241a8a21631c8264cdb96444947ca0f37ec071a5f30",
+    "src/solver/least_squares.py": "419ee5e105b0a61039212cd9507ee9fa13dafc61ce9f8edb8d3edb55afa860ca",
+    "src/solver/streaming_least_squares.py": "36ed2a491df7a53ed27a89424c59bcb21f22256b853da35bf453859119ef88fe",
+    "src/utils/parallel.py": "1111717b50e4fc687a93ca9b56d14817fbce6f2f678084a372b167cd80e67c5d",
+    "src/utils/boundary_visualization.py": "fcdd736938ff14950c5fab7a8fbfe2b81733f4316d95e216065c2e286bd8af14",
+    "src/utils/coordinate_generation.py": "913b6f3d7ce89ba57f6d3bbacd664e8992485dcfc14531304544ad9e797c3e2f",
+    "src/utils/execution_time_benchmark.py": "88bbe9cb29c464fc4ac5336a13bcc544b18436450e27b911bbe6a5665225f477",
+    "src/utils/quadrature.py": "557a0047f8eeff6d9474dbc18feb98381344ace7ead1ed7fd0d71988322788c8",
+    "src/numerical/parity_reference.py": "cee879b7f1b9f5cea8d417318cb5f7a4a2fd8f15b4705fb67b76582cc3a63314",
+    "src/numerical/__init__.py": "eeb6a8969b04bac1caa1283e1e4e82bd5bb342388c9e943150e7bc3c155c9463",
+    "src/modules/partition_of_unity.py": "8c7315535764b7dff16ccd3c90932e21e1625cd10b75dd8bd6ae2dbc97a3fdba",
+    "src/modules/collocation_sampling_v1.py": "dc990154e85c03c392c8541f00a526662f8ce10fd42f753d48fc64409cdea9b7",
+    "src/modules/collocation_sampling_v2.py": "a71a9940b827f8a568ba78e1bbf1dc5c4bc9b3b3fbc4ccca0605ef158adb11c1",
+    "src/modules/dnn.py": "08be63ac8f61dc83fd8b6df7323470c419d4ceb37eca38cd173dd1d987ac0493",
+    "src/modules/function_space.py": "569a202bbc8a481856c9192be0b56da0b40d12332cfa98f44cf201dcc32e4640",
+    "src/modules/function_space_v2.py": "b68a8c36e24507c85414ef8c2236da05455c44b739c98c8db3e21403fff24ae7",
+    "src/modules/collocation_sampling_v2_alternative.py": "4777581f5ab2f248b2cb64625e8b1da767816d06b0e00cbf0bb8865bbb4ea291",
+    "src/modules/collocation_sampling.py": "1fe8df83f375b4961062f40fe0ac7c9a445cfd70979415cc164db85e12891f45",
+    "src/modules/solution_construction_v1.py": "1de6865f63de32b8609d97603948b3b3b7ffcdb563d9beb1fbd80ce2c38d3d00",
+    "src/modules/solution_construction.py": "1cb174c515dbeac0cce4f3516b665eb244163fccc74d6c72acdf3b0e82910342",
+    "src/modules/solution_construction_v2.py": "62dd32eb523a6b0c39119e196c85daa68d39d5736ab929219b181849e9e419f8",
+    "src/modules/oe_assembly.py": "86eca50c45042fb377d3188759e79356c979faedf5f3457af559c6736383527a",
+    "src/modules/solution_construction_v2_alternative.py": "b246d0ff61ca574f09ac1c13fc72fbb597336b0fff3fabb2df314d2eea3514b9",
+    "src/configuration/p3_manufactured_2d.py": "8a456c71195747980879d80b074ce4fdc706eaff12f132371a44d843e588a01c",
+    "src/configuration/experiment_defaults.py": "c9f5376a20d4ec3ec266dcf1a3f92a1d5d682f5efe2f79b5721d7b668f937a1b",
+    "src/configuration/p6_angular_manufactured_1d.py": "42831e3f94690fb3eb3d4b301b80d59314a3f7c6843b161c6bc528cedf75c983",
+    "src/configuration/rte_1d_ex01_rfm.py": "ff8b4c259e3c9222923d3ae33569c50c9d9005cd2b29178ac39b1b67f7c0881b",
+    "src/configuration/rte_2d_settings.py": "46728a0ff123e09f620fb29048b0b6b1d613fb047cbc0cb2bbb2643d35350ef6",
+    "src/configuration/p1_manufactured_1d.py": "8c69706b3dcfb690397422fa33239b289d081bb1982938e45c7d7a878afd0700",
+    "src/configuration/p5_heterogeneous_2d.py": "4d2077ca47e44b07ef2ad8699673b8910d951a0adfbc6eef92402b555f6702dd",
+    "src/configuration/rte_1d_settings.py": "0f56104007d210dec02c607af9ecaafe750ff8066b16b8b435c3fb6aed14dbc6",
+    "src/configuration/apnn_2d_settings.py": "df7762938fc3b53add4c3da6551bc43a20bac3c6b1e672fc7cd9092a48564126",
+    "src/configuration/p4_circular_hole_2d.py": "b803c2e75ebed819eb34fedee94b785ee86b6494c0a573c3afaa7ff2b3c04a80",
+    "src/configuration/p2_heterogeneous_1d.py": "5b037d18566ece5b6f59441a44024ea27c97cceb8b64d67cb9c74f5a41383e9f",
+    "src/constraints/continuous_2d_micro_macro.py": "b51905c4b437349fc10aebb36f418c201cb6adb5b72100cd869f1d70cd5cd0b3",
+    "src/constraints/continuous_2d_odd_even.py": "9fe4ec82903bcf5a60ec1aa85b045cc71809b84a19b754f658d78cf73615aaf9",
+    "src/constraints/continuous_1d_odd_even.py": "86174305c518c06e7eeda23fe0930c7e8f1b5da36169ee7404f3c3f99b0e50aa",
+    "src/constraints/continuous_2d_odd_even_v2.py": "fbbec0ac9816cd06a36138ed6df5a01ff50a3b9b74de52f446bea26f1f049e30"
+  }
+}
