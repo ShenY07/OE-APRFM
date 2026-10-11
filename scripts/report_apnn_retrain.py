@@ -35,7 +35,7 @@ def latex(value):
 
 def update_manuscript(out, summaries):
     original = out / "original/table.md"
-    if not original.exists():
+    if not original.exists() or not (ROOT / "paper/tables.tex").exists():
         return
     # Other concurrent work may refresh non-APNN rows in this manuscript.
     # Always patch the current file; the original is a recovery snapshot only.
@@ -306,7 +306,7 @@ def main():
                 save(fig, figures / (problem + "_cost_accuracy"))
     update_manuscript(out, summaries)
     original_figure = out / "original/figure.md"
-    if original_figure.exists():
+    if original_figure.exists() and (ROOT / "paper/figures.tex").exists():
         additions = []
         for problem in ("p1", "p3"):
             path = paper_file(figures / (problem + "_cost_accuracy.pdf"))

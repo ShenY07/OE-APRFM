@@ -94,7 +94,6 @@ experiments/        Numerical experiment and comparison entry points
 scripts/            Postprocessing, paper collection, and validation tools
 tests/              Regression and consistency tests
 baselines/          Comparison implementations and third-party originals
-paper/              Numbered figures, LaTeX tables, and supporting data
 results/            Generated runs and selected experiment records
 docs/               Reproduction guide and numerical assumptions
 archive/            Historical source and original publication snapshots
@@ -125,12 +124,9 @@ convention, not a universal journal submission requirement.
 
 ## Manuscript results (10 October 2026)
 
-The current [26 tables](paper/tables.tex), [figure index](paper/figures.tex),
-and [PDF bundle](paper/figures.zip) are collected under `paper/`.
-Panels use sequential names (`fig01.pdf`, `fig02a.pdf`, …) and square vector PDFs;
-E6 legends use one row for three entries and two rows for four entries.
-See [the manuscript inventory](paper/README.md) for the included artifacts and
-which historical inputs are not bundled.
+Manuscript assets under `paper/` are not distributed in this repository.
+That directory is reserved for optional local files and is ignored by Git.
+Experiment records are described in [the result inventory](results/README.md).
 
 The 1D unprojected control now extends positive-half-range features consistently
 with its inflow rows. Both controls preserve parity; this is a comparison of
@@ -159,16 +155,6 @@ studies are not included. This release is
 not a self-contained archive of every historical experiment. Run the documented
 experiments to generate new data; a successful quick start is not an accuracy
 or speedup claim.
-
-Check the collected manuscript files and rebuild the PDF bundle with:
-
-```bash
-python -m scripts.check_paper --bundle
-```
-
-The manifest records original paths and SHA-256 hashes. Reorganization preserves
-PDF bytes, numerical data, captions, labels, and table values; only figure
-inclusion paths change. Raw fields and checkpoints stay under `results/`.
 
 ## Tests
 

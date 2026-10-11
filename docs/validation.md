@@ -38,7 +38,8 @@ A successful local check does not imply that a hosted CI run has completed.
 ## Directory reorganization — 11 October 2026
 
 The maintained library now lives under `src/oeaprfm/`; experiment entry points
-are in `experiments/`, and the collected manuscript is in `paper/`. The
+are in `experiments/`. At the time of this check, the manuscript snapshot
+was in `paper/`; it has since been removed from version control. The
 following checks were run after updating imports, paths, and figure names:
 
 | Check | Outcome |

@@ -29,4 +29,5 @@ P3 paired-trace reproduction. Original result JSON/NPZ files are not deleted
 or relabelled. The active two-component 2D comparison is also retained.
 
 `paper_20261010.zip` preserves the original manuscript PDF bundle and its
-original internal paths. The reorganized bundle is `../paper/figures.zip`.
+original internal paths. The reorganized `paper/` snapshot is no longer
+distributed in the current repository.

@@ -9,9 +9,11 @@ Run tools from the repository root with `PYTHONPATH=src:.`.
 - `refresh_2d_tables.py` runs the prescribed P3/P4 campaign;
   `update_2d_tables.py` updates the corresponding manuscript rows.
 - `refresh_figures.py` renders the historical E1–E6 panels;
-  `paper_paths.py` maps original panel names to their numbered paper paths.
-- `check_paper.py` checks the collected files, hashes, labels, and figure
-  references. Add `--bundle` to rebuild `paper/figures.zip`.
+  `paper_paths.py` uses optional local manuscript mappings, falling back to
+  the original output paths when no manuscript manifest is present.
+- `check_paper.py` can validate an independently supplied local `paper/`
+  snapshot and manifest. It is not part of source-only CI. Manuscript update
+  and audit tools require their local input files; these are not bundled.
 - `audit_*.py`, `verify_p5_e5.py`, and `validate_tables.py` inspect archived
   evidence. Several require local files under `.release-backup/` and dated
   `results/` directories; they are not fresh-clone reproduction commands.

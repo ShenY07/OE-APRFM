@@ -11,7 +11,10 @@ def paper_file(source):
     source = Path(source)
     if source.is_absolute():
         source = source.relative_to(ROOT)
-    records = json.loads((PAPER / "manifest.json").read_text())["files"]
+    manifest = PAPER / "manifest.json"
+    if not manifest.exists():
+        return ROOT / source
+    records = json.loads(manifest.read_text())["files"]
     paths = {row["source"]: row["path"] for row in records}
     key = source.as_posix()
     if key in paths:
