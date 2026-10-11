@@ -2,9 +2,9 @@
 
 import json
 import numpy as np
-from run_e3_slab import ROOT, fs, symmetric, rf_evaluator, relative
-from configuration.p1_manufactured_1d import get_config
-from numerical.parity_reference import solve_parity_gmres_1d
+from experiments.run_e3_slab import ROOT, fs, symmetric, rf_evaluator, relative
+from oeaprfm.problems.p1_manufactured_1d import get_config
+from oeaprfm.reference.parity_reference import solve_gmres_1d
 
 out = ROOT / "results/e3_slab"
 fs.uniform = symmetric
@@ -17,7 +17,7 @@ for eps in (1.0, 0.1):
         if path.exists():
             refs.append(dict(np.load(path)))
             continue
-        ref = solve_parity_gmres_1d(config, grid=(nx, nv), tol=1e-11)
+        ref = solve_gmres_1d(config, grid=(nx, nv), tol=1e-11)
         np.savez_compressed(path, **ref)
         refs.append(ref)
     coarse, fine = refs

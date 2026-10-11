@@ -1,0 +1,58 @@
+[
+  {
+    "original": "scripts/run_p1_oe_aprfm.py",
+    "archived": "archive/historical_diagnostics/legacy_run_p1_oe_aprfm.py",
+    "sha256": "6bb7b68cc1e62721a942fec7ef09fad66b8b4ac09fc0ea9a89b262442cc15249",
+    "action": "snapshot",
+    "archived_sha256": "5f6bb430415393903f790c6b1b0afff8516232b49149d22bac50c39ce0940923"
+  },
+  {
+    "original": "src/modules/solution_construction.py",
+    "archived": "archive/historical_diagnostics/legacy_solution_construction.py",
+    "sha256": "94fbb9f85bfc9201ca740a5e00e837fc47887ce9cadc1e3b97bbd078390174fc",
+    "action": "snapshot",
+    "archived_sha256": "94fbb9f85bfc9201ca740a5e00e837fc47887ce9cadc1e3b97bbd078390174fc"
+  },
+  {
+    "original": "scripts/audit_review_parity.py",
+    "archived": "archive/historical_diagnostics/audit_review_parity.py",
+    "sha256": "c340220ee041420da5cc6f8b4741ee832b51098659eea5d45f794befe31d092c",
+    "action": "move",
+    "archived_sha256": "62fce913a47b3f9fd6ba82cf4d24ddb2fe8bf0e25c8bbed155f7de58a134319b"
+  },
+  {
+    "original": "scripts/diagnose_p3_row_history.py",
+    "archived": "archive/historical_diagnostics/diagnose_p3_row_history.py",
+    "sha256": "06ffebf0e208cee1a55939c386c86ca18967badf4c6469140ee932d547a40f2f",
+    "action": "move",
+    "archived_sha256": "d15ff05656324ed9ba2711af5580d2c527a7d8a439a13690f66280090d8d8d4a"
+  },
+  {
+    "original": "scripts/reproduce_p3_historical_boundary.py",
+    "archived": "archive/historical_diagnostics/reproduce_p3_historical_boundary.py",
+    "sha256": "a58e04e3571f99621eb9a5e6a3f5298adb12a47b24bd6de1be5e43b7a064b6ba",
+    "action": "move",
+    "archived_sha256": "5f570ec665250847f6a5fdffac9dee0586eabccd2c78c615aea9815014496f57"
+  },
+  {
+    "original": "src/constraints/continuous_2d_odd_even_v1.py",
+    "archived": "archive/unused_constraints/continuous_2d_odd_even_v1.py",
+    "sha256": "38d93ff1b407df236cbd0990554ed5aa44eb060113f9c4c2b87dba3dcb030ea7",
+    "action": "move",
+    "archived_sha256": "38d93ff1b407df236cbd0990554ed5aa44eb060113f9c4c2b87dba3dcb030ea7"
+  },
+  {
+    "original": "src/constraints/continuous_2d_odd_even_v1_alternative.py",
+    "archived": "archive/unused_constraints/continuous_2d_odd_even_v1_alternative.py",
+    "sha256": "fa69ec33a1e8cdd00cfa82a2c9f7856400c8160b7b5e817acb3ef7204fdaf197",
+    "action": "move",
+    "archived_sha256": "fa69ec33a1e8cdd00cfa82a2c9f7856400c8160b7b5e817acb3ef7204fdaf197"
+  },
+  {
+    "original": "src/constraints/continuous_2d_odd_even_v2_alternative.py",
+    "archived": "archive/unused_constraints/continuous_2d_odd_even_v2_alternative.py",
+    "sha256": "8cdf16c1d27118d6ba332c6e508c0983a9406d7869430a4eb525b612ec3ce7b5",
+    "action": "move",
+    "archived_sha256": "8cdf16c1d27118d6ba332c6e508c0983a9406d7869430a4eb525b612ec3ce7b5"
+  }
+]

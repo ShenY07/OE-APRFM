@@ -3,8 +3,8 @@
 Run from the repository root:
 
 ```
-python3 scripts/run_angular_domain_campaign.py
-OPENBLAS_NUM_THREADS=1 python3 scripts/report_angular_domain_comparison.py
+python3 experiments/run_angle_campaign.py
+OPENBLAS_NUM_THREADS=1 python3 scripts/report_angle_domains.py
 ```
 
 The launcher executes 12 serial fresh-process runs (P1/P3, seeds 11/23/37,

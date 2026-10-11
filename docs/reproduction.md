@@ -12,7 +12,7 @@ interchangeable numbering schemes.
 
 | Group | Purpose | Reproduction entry |
 | --- | --- | --- |
-| E1 | Fixed-space minimum gain | `diagnose_oe_minimum_gain.py` |
+| E1 | Fixed-space minimum gain | `diagnose_oe_gain.py` |
 | E2 | Manufactured accuracy and parity ablation | P1/P3 runners; P1 `--variant` |
 | E3 | Steady slab diffusion limit | `run_e3_slab.py` |
 | E4 | P5 cutoff sensitivity | P3 runner with `--problem p5 --rcond ...` |
@@ -26,13 +26,13 @@ this source release. Archived tuning/reporting scripts remain in Git history.
 ## Manufactured problems: no downloaded data
 
 ```bash
-python scripts/run_p1_oe_aprfm.py --problem p1 --epsilon 0.001 --seed 11 \
+python experiments/run_p1_oe_aprfm.py --problem p1 --epsilon 0.001 --seed 11 \
   --features 32 --output-dir results/p1
-python scripts/run_p1_oe_aprfm.py --problem p6 --epsilon 0.001 --seed 11 \
+python experiments/run_p1_oe_aprfm.py --problem p6 --epsilon 0.001 --seed 11 \
   --features 32 --output-dir results/p6
-python scripts/run_p3_oe_aprfm.py --problem p3 --epsilon 0.001 --seed 11 \
+python experiments/run_p3_oe_aprfm.py --problem p3 --epsilon 0.001 --seed 11 \
   --features 32 --output-dir results/p3
-python scripts/run_p3_oe_aprfm.py --problem p4 --epsilon 0.001 --seed 11 \
+python experiments/run_p3_oe_aprfm.py --problem p4 --epsilon 0.001 --seed 11 \
   --features 32 --output-dir results/p4
 ```
 
@@ -65,9 +65,9 @@ settings.
 P2 uses an independently computed transport reference:
 
 ```bash
-python scripts/generate_reference.py --problem p2 --epsilon 0.001 --level A
-python scripts/generate_reference.py --problem p2 --epsilon 0.001 --level B
-python scripts/run_p2_oe_aprfm.py --epsilon 0.001 --seed 11 \
+python experiments/generate_reference.py --problem p2 --epsilon 0.001 --level A
+python experiments/generate_reference.py --problem p2 --epsilon 0.001 --level B
+python experiments/run_p2_oe_aprfm.py --epsilon 0.001 --seed 11 \
   --reference-level B --output-dir results/p2
 ```
 
@@ -75,9 +75,9 @@ P5 is the current **boundary-driven** heterogeneous configuration. Its
 reference directory must match the runner:
 
 ```bash
-python scripts/generate_reference.py --problem p5 --epsilon 0.001 --level A
-python scripts/generate_reference.py --problem p5 --epsilon 0.001 --level B
-python scripts/run_p3_oe_aprfm.py --problem p5 --epsilon 0.001 --seed 11 \
+python experiments/generate_reference.py --problem p5 --epsilon 0.001 --level A
+python experiments/generate_reference.py --problem p5 --epsilon 0.001 --level B
+python experiments/run_p3_oe_aprfm.py --problem p5 --epsilon 0.001 --seed 11 \
   --rcond 1e-6 --output-dir results/p5
 ```
 
@@ -90,8 +90,8 @@ P5 references and larger 2D systems can require substantial time and memory.
 ## E1, E3 and E5
 
 ```bash
-python scripts/diagnose_oe_minimum_gain.py
-python scripts/run_e3_slab.py
+python experiments/diagnose_oe_gain.py
+python experiments/run_e3_slab.py
 python scripts/check_e3_transport.py
 python scripts/report_e3_slab.py
 ```
@@ -104,9 +104,9 @@ stability lower bound.
 For one E5 pair, first generate its experiment-specific references:
 
 ```bash
-python scripts/run_e5_mixed.py --method references
-python scripts/run_e5_mixed.py --method oe --seed 11 --angles 32
-python scripts/run_e5_mixed.py --method mm --seed 11 --angles 32
+python experiments/run_e5_mixed.py --method references
+python experiments/run_e5_mixed.py --method oe --seed 11 --angles 32
+python experiments/run_e5_mixed.py --method mm --seed 11 --angles 32
 ```
 
 `--method all` runs references followed by all 24 preset method/seed/angular
@@ -131,18 +131,18 @@ checks.
 
 ```bash
 for seed in 11 23 37; do
-  python scripts/run_e6_periodic.py --epsilon 1 0.1 0.01 0.001 \
+  python experiments/run_e6_periodic.py --epsilon 1 0.1 0.01 0.001 \
     --seed "$seed" --dt 0.002 --batch factorized_check
 done
 for dt in 0.004 0.001; do
-  python scripts/run_e6_periodic.py --epsilon 1 0.001 \
+  python experiments/run_e6_periodic.py --epsilon 1 0.001 \
     --seed 11 --dt "$dt" --batch time_check
 done
-python scripts/run_e6_periodic.py --epsilon 1 0.001 --seed 11 \
+python experiments/run_e6_periodic.py --epsilon 1 0.001 --seed 11 \
   --dt 0.002 --features 256 --batch feature_check
-python scripts/run_e6_periodic.py --epsilon 1 0.001 --seed 11 \
+python experiments/run_e6_periodic.py --epsilon 1 0.001 --seed 11 \
   --dt 0.002 --quadrature 128 --batch quadrature_check
-python scripts/reference_e6.py
+python experiments/reference_e6.py
 python scripts/finalize_e6.py
 ```
 
@@ -155,7 +155,7 @@ Quick-start trajectories use a separate batch and are excluded from the
 After the main OE study and reference comparison, run the six MM trajectories:
 
 ```bash
-python scripts/run_e6_mm.py
+python experiments/run_e6_mm.py
 ```
 
 The MM report is `results/e6_mm_comparison/REPORT.md`. This runner relies on

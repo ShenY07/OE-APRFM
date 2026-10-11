@@ -34,3 +34,29 @@ were not repeated for this source-tree cleanup. Example execution is not an
 accuracy claim for every configuration. The checked-in CI workflow runs the
 core CPU tests and format check; the optional PyTorch tests were run locally.
 A successful local check does not imply that a hosted CI run has completed.
+
+## Directory reorganization — 11 October 2026
+
+The maintained library now lives under `src/oeaprfm/`; experiment entry points
+are in `experiments/`, and the collected manuscript is in `paper/`. The
+following checks were run after updating imports, paths, and figure names:
+
+| Check | Outcome |
+| --- | --- |
+| Complete regression suite, including optional OE-APNN | 38 passed |
+| Library imports | 45 modules and subpackages imported |
+| Experiment CLI checks | 14 entry points passed, including three vendored-baseline runners |
+| P1 and P3 small-budget smoke runs | Completed with output under `/tmp/oe_layout_smoke/` |
+| Core numerical source | Executable ASTs match after normalizing import and path changes |
+| Historical source provenance | 44 recorded sources verified after name/path normalization |
+| Collected manuscript | All 38 file hashes and 31 PDF references verified |
+| Figure captions and labels | Identical after reversing the path substitutions |
+| PDF bundle | All 31 entries match their collected files |
+| Formatting, compilation, and whitespace | Passed for maintained Python code |
+| Documentation links and migration destinations | Resolved |
+
+The existing third-party `flatbuffers` dependency emitted a deprecation warning.
+The full paper experiments and TeX compilation were not repeated. Smoke runs
+check execution and output paths at small budgets; they are not accuracy or
+timing benchmarks. Historical result records and third-party source retain
+their original contents.

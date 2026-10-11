@@ -10,7 +10,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from e6_protocol import validate
+from experiments.e6_protocol import validate
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "results/e6_periodic"

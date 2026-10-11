@@ -24,7 +24,7 @@ cd OE-APRFM
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-export PYTHONPATH="$PWD/src:$PWD/scripts"
+export PYTHONPATH="$PWD/src:$PWD"
 export JAX_ENABLE_X64=true
 export JAX_PLATFORMS=cpu
 export OPENBLAS_NUM_THREADS=1
@@ -40,7 +40,7 @@ requires `requirements-apnn.txt` (PyTorch); it is not required by OE-APRFM.
 Run the 1D manufactured problem with an exact reference:
 
 ```bash
-python scripts/run_p1_oe_aprfm.py --epsilon 0.001 --seed 11 \
+python experiments/run_p1_oe_aprfm.py --epsilon 0.001 --seed 11 \
   --features 32 --output-dir results/quickstart
 ```
 
@@ -50,9 +50,9 @@ and timing, plus an NPZ file with the numerical and exact fields.
 Run the periodic time-dependent problem with implicit backward Euler:
 
 ```bash
-python scripts/run_e6_periodic.py --epsilon 1 0.001 --seed 11 \
+python experiments/run_e6_periodic.py --epsilon 1 0.001 --seed 11 \
   --dt 0.002 --batch quickstart
-python scripts/reference_e6.py
+python experiments/reference_e6.py
 ```
 
 E6 saves coefficients and trajectories under `results/e6_periodic/quickstart/`.
@@ -64,16 +64,16 @@ see [numerical methods and limitations](docs/numerical_methods.md).
 
 | Problem / diagnostic | Entry point |
 | --- | --- |
-| P1: 1D manufactured solution; P6: angular-dependent manufactured solution | `scripts/run_p1_oe_aprfm.py --problem p1` / `--problem p6` |
-| P2: heterogeneous 1D transport | `scripts/run_p2_oe_aprfm.py` |
-| P3: 2D manufactured solution; P4: circular hole; P5: heterogeneous boundary-driven transport | `scripts/run_p3_oe_aprfm.py --problem p3` / `p4` / `p5` |
-| E1: fixed-space minimum-gain diagnostic | `scripts/diagnose_oe_minimum_gain.py` |
-| E3: steady slab diffusion limit | `scripts/run_e3_slab.py` |
-| E5: mixed-scale slab | `scripts/run_e5_mixed.py` |
-| E6: periodic transient transport | `scripts/run_e6_periodic.py` |
-| Matched micro–macro random-feature comparisons | `scripts/run_mm_aprfm_1d.py`, `scripts/run_mm_aprfm_2d.py`, `scripts/run_e6_mm.py` |
-| Direct RFM and deterministic transport | `scripts/run_rfm_1d.py`, `scripts/run_oe_si_dsa.py` |
-| OE-APNN | `baselines/oe-apnn/train.py` |
+| P1: 1D manufactured solution; P6: angular-dependent manufactured solution | `experiments/run_p1_oe_aprfm.py --problem p1` / `--problem p6` |
+| P2: heterogeneous 1D transport | `experiments/run_p2_oe_aprfm.py` |
+| P3: 2D manufactured solution; P4: circular hole; P5: heterogeneous boundary-driven transport | `experiments/run_p3_oe_aprfm.py --problem p3` / `p4` / `p5` |
+| E1: fixed-space minimum-gain diagnostic | `experiments/diagnose_oe_gain.py` |
+| E3: steady slab diffusion limit | `experiments/run_e3_slab.py` |
+| E5: mixed-scale slab | `experiments/run_e5_mixed.py` |
+| E6: periodic transient transport | `experiments/run_e6_periodic.py` |
+| Matched micro–macro random-feature comparisons | `experiments/run_mm_aprfm_1d.py`, `experiments/run_mm_aprfm_2d.py`, `experiments/run_e6_mm.py` |
+| Direct RFM and deterministic transport | `experiments/run_rfm_1d.py`, `experiments/run_oe_si_dsa.py` |
+| OE-APNN | `baselines/oe_apnn/train.py` |
 
 P labels identify problem configurations; E labels identify experiment groups.
 Full commands, reference-data prerequisites and the prescribed 20-trajectory
@@ -82,32 +82,61 @@ E6 study are in [the reproduction guide](docs/reproduction.md).
 ## Repository layout
 
 ```text
-src/configuration/   Problem definitions and experiment defaults
-src/constraints/     Transport, parity and micro–macro residuals
-src/modules/         Random features, partition of unity and assembly
-src/solver/          Least squares and streaming QR
-src/numerical/       Deterministic reference solvers
-scripts/             Experiment runners, references and diagnostics
-baselines/           Comparison implementations and attribution
-test/                Regression and consistency tests
-docs/                Reproduction guide and numerical assumptions
-results/             Selected manuscript tables, figures and summary data; raw runs generated locally
+src/oeaprfm/         Numerical library
+  problems/         Problem definitions and experiment defaults
+  constraints/      Transport and parity residuals
+  features/         Random features, sampling, and reconstruction
+  geometry/         Spatial and angular meshes
+  solvers/          Dense least squares and streaming QR
+  reference/        Deterministic transport reference solvers
+  utils/            Quadrature, coordinates, and timing
+experiments/        Numerical experiment and comparison entry points
+scripts/            Postprocessing, paper collection, and validation tools
+tests/              Regression and consistency tests
+baselines/          Comparison implementations and third-party originals
+paper/              Numbered figures, LaTeX tables, and supporting data
+results/            Generated runs and selected experiment records
+docs/               Reproduction guide and numerical assumptions
+archive/            Historical source and original publication snapshots
 ```
+
+Project Python code uses four-space indentation and 79-column Black formatting,
+following `src/oeaprfm/constraints/oe_constraints_2d.py` (formerly
+`continuous_2d_odd_even.py`). Function, class, and module names are at most
+20 characters. Names distinguish the formulation, role, and dimension:
+`OEInterior2D` assembles odd-even interior constraints, `OEBoundary2D` handles
+inflow boundaries, and `OEField2D` reconstructs the field. `HalfOE` denotes
+unprojected half-range features; `QuadOE` aliases distinguish four-component
+implementations. Comments explain numerical choices, conventions, and shapes.
+
+Imports and script paths use the new names listed in
+[`scripts/name_changes.json`](scripts/name_changes.json) and
+[`scripts/layout_changes.json`](scripts/layout_changes.json). Update external
+callers using that mapping. Archived source and recorded hashes retain their
+original names; source audits translate names in memory before comparing
+executable syntax. Third-party originals and historical archives keep their
+original style.
+
+This organization follows the separation of library and experiments used in
+[the JSC manifold-MOR companion repository](https://github.com/pbuchfink/manifold-mor-wave)
+and the source/example/test/documentation separation in
+[Trixi.jl](https://github.com/trixi-framework/Trixi.jl). It is a repository
+convention, not a universal journal submission requirement.
 
 ## Manuscript results (10 October 2026)
 
-The current [26 tables](results/table.md), [figure index](results/figure.md),
-and [PDF bundle](results/JSC_all_figures_20261010.zip) are versioned alongside
-selected summary data. Panels are exported separately as square vector PDFs;
+The current [26 tables](paper/tables.tex), [figure index](paper/figures.tex),
+and [PDF bundle](paper/figures.zip) are collected under `paper/`.
+Panels use sequential names (`fig01.pdf`, `fig02a.pdf`, …) and square vector PDFs;
 E6 legends use one row for three entries and two rows for four entries.
-See [the result inventory](results/README.md) for the included artifacts and
+See [the manuscript inventory](paper/README.md) for the included artifacts and
 which historical inputs are not bundled.
 
 The 1D unprojected control now extends positive-half-range features consistently
 with its inflow rows. Both controls preserve parity; this is a comparison of
 basis constructions. The 2D runner uses physical-direction inflow traces and
 records the corrected boundary-implementation label. The P3/P4 rerun launcher
-is `scripts/refresh_manuscript_2d_tables.py`. Unused candidate constraint
+is `scripts/refresh_2d_tables.py`. Unused candidate constraint
 modules and defective historical reproduction entry points are excluded from
 the production source tree.
 
@@ -119,30 +148,40 @@ Per-seed records, configuration hashes and the aggregate table are included;
 raw matrices and fields can be regenerated with the campaign launcher.
 
 OE-APNN now enforces even/odd parity in its network outputs; old checkpoints
-are not results for this revised protocol. See [the baseline guide](baselines/oe-apnn/README.md)
+are not results for this revised protocol. See [the baseline guide](baselines/oe_apnn/README.md)
 for the retraining commands. Mixed-scale transport differences remain relative
 to an archived reference and do not establish fine accuracy rankings. CPU
 archive timings, shared-host CPU reruns, and concurrent GPU training do not
 establish controlled speedup factors.
 
-Large raw fields, model checkpoints, local audit scripts that require the
-historical backup, and exploratory studies are not included. This release is
+Large raw fields, model checkpoints, historical audit inputs, and exploratory
+studies are not included. This release is
 not a self-contained archive of every historical experiment. Run the documented
 experiments to generate new data; a successful quick start is not an accuracy
 or speedup claim.
+
+Check the collected manuscript files and rebuild the PDF bundle with:
+
+```bash
+python -m scripts.check_paper --bundle
+```
+
+The manifest records original paths and SHA-256 hashes. Reorganization preserves
+PDF bytes, numerical data, captions, labels, and table values; only figure
+inclusion paths change. Raw fields and checkpoints stay under `results/`.
 
 ## Tests
 
 ```bash
 python -m pip install -r requirements-dev.txt
-python -m pytest -q test --ignore=test/test_oe_apnn_baseline.py
+python -m pytest -q tests --ignore=tests/test_apnn.py
 ```
 
 To include the optional neural baseline:
 
 ```bash
 python -m pip install -r requirements-apnn.txt
-python -m pytest -q test
+python -m pytest -q tests
 ```
 
 The release checks are recorded in [validation notes](docs/validation.md).

@@ -7,11 +7,7 @@ import jax.numpy as jnp
 
 
 def install(runner, method):
-    name = (
-        "OddEvenDecompositionConstructor1D"
-        if method == "oe"
-        else "MicroMacroConstructor1D"
-    )
+    name = "OEField1D" if method == "oe" else "MicroMacroConstructor1D"
     original = getattr(runner, name)
     state = {}
 

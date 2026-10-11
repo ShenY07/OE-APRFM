@@ -47,7 +47,7 @@ fig.tight_layout()
 fig.savefig(OUT / "diffusion_limit.pdf")
 fig.savefig(OUT / "diffusion_limit.png", dpi=200)
 print(json.dumps(summary, indent=2))
-from run_e3_slab import fs, symmetric, rf_evaluator, gauss
+from experiments.run_e3_slab import fs, symmetric, rf_evaluator, gauss
 
 fs.uniform = symmetric
 ev = rf_evaluator(64, 11)
