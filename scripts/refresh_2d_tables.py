@@ -10,7 +10,7 @@ import sys
 from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/table_refresh_20261010"
+OUT = ROOT / "results/runs/feature_study"
 
 
 def main():

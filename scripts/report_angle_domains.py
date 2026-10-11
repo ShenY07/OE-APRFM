@@ -6,7 +6,7 @@ from statistics import median
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/angular_domain_comparison"
+OUT = ROOT / "results/comparisons/angular_domains"
 records = []
 checks = []
 for problem in ("p1", "p3"):

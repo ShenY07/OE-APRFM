@@ -234,9 +234,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--epsilon", type=float, required=True)
     parser.add_argument("--seed", type=int, required=True)
-    parser.add_argument("--output-dir", type=Path, default=Path("results/raw"))
     parser.add_argument(
-        "--reference-dir", type=Path, default=Path("results/references")
+        "--output-dir", type=Path, default=Path("results/runs/oe_aprfm")
+    )
+    parser.add_argument(
+        "--reference-dir", type=Path, default=Path("data/references")
     )
     parser.add_argument("--partitions", type=int, nargs=2, default=(2, 2))
     parser.add_argument("--features", type=int, default=64)

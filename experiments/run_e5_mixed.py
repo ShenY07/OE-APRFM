@@ -141,10 +141,10 @@ def main():
                 self.pts_right = (jnp.ones_like(boundary), -boundary)
 
         runner.Sample1D = MatchedSample
-        # Existing MM runner uses ROOT/results/references for the p2 branch.
+        # Existing MM runner uses ROOT/data/references for the p2 branch.
         # Redirect its read-only reference lookup into this experiment.
         runner.ROOT = OUT / "mm_reference_root"
-        target = runner.ROOT / "results/references"
+        target = runner.ROOT / "data/references"
         target.mkdir(parents=True, exist_ok=True)
         link = target / "p2_parity_ref_eps_1e+00_level_B.npz"
         if not link.exists():

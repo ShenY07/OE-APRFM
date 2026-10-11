@@ -1,0 +1,60 @@
+{
+  "problem": "p3",
+  "method": "oe_aprfm",
+  "epsilon": 0.001,
+  "seed": 23,
+  "relative_l2_f": 0.0011632795773372933,
+  "relative_l2_rho": 0.0004857791795947482,
+  "residual_half": 0.00043230716623086246,
+  "empirical_stability_ratio": 2.9160633251447248,
+  "condition_number": 6147015.409995105,
+  "largest_singular_value": 11.813291966474079,
+  "smallest_effective_singular_value": 1.9217931269971367e-06,
+  "singular_value_threshold": 1.1813291966474079e-11,
+  "coefficient_norm": 667.2359864328769,
+  "rank": 512,
+  "num_rows": 13808,
+  "num_columns": 512,
+  "num_angular": 32,
+  "oversampling_ratio": 26.96875,
+  "partitions": [
+    1,
+    1,
+    1
+  ],
+  "strides": {
+    "theta": 1.5707963267948966,
+    "x": 2.0,
+    "y": 2.0
+  },
+  "features_per_patch": 128,
+  "scale": 1.0,
+  "rcond": 1e-12,
+  "block_weights": null,
+  "collocation": [
+    16,
+    16,
+    16
+  ],
+  "feature_seconds": 0.002197579015046358,
+  "assembly_seconds": 19.53306898684241,
+  "solve_seconds": 0.07593154697678983,
+  "evaluation_seconds": 4.06800381699577,
+  "total_seconds": 23.679201929830015,
+  "min_rho_h": 0.13615165992848602,
+  "max_rho_h": 7.380866135384597,
+  "min_f_h": 0.12884593557413943,
+  "correlation_rho": 0.9999997827576638,
+  "negative_fraction_f": 0.0,
+  "negative_fraction_rho": 0.0,
+  "angular_representation": "four_component",
+  "residual_definition": "complete_normalized_training_residual_v2",
+  "boundary_implementation": "independent_pair_traces_v2",
+  "source_sha256": {
+    "scripts/run_p3_oe_aprfm.py": "663ecd7e279e38b73ba7ecd7385bf1dca61df3237867c6becdfb4e43cb9c7088",
+    "src/solver/streaming_least_squares.py": "36ed2a491df7a53ed27a89424c59bcb21f22256b853da35bf453859119ef88fe",
+    "src/constraints/continuous_2d_odd_even_v2.py": "fbbec0ac9816cd06a36138ed6df5a01ff50a3b9b74de52f446bea26f1f049e30",
+    "src/modules/function_space_v2.py": "b68a8c36e24507c85414ef8c2236da05455c44b739c98c8db3e21403fff24ae7",
+    "src/modules/oe_assembly.py": "86eca50c45042fb377d3188759e79356c979faedf5f3457af559c6736383527a"
+  }
+}

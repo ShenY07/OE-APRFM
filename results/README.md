@@ -1,25 +1,12 @@
-# Experiment outputs
+# 实验结果
 
-New experiment records, raw fields, reference solutions, logs, and checkpoints
-belong here. The runners retain their existing output schemas and default
-paths so saved experiments remain traceable.
+| 目录 | 用途 | GitHub 内容 |
+| --- | --- | --- |
+| [comparisons/](comparisons/) | 方法、特征表示与角域的对比 | 汇总、逐次指标、两份预测场及示例图 |
+| [runs/](runs/) | 完整训练与求解输出 | 使用说明；完整历史运行保留本地 |
+| [checks/](checks/) | 数值一致性、几何、图表和代码检查 | 使用说明；历史日志保留本地 |
+| [figures/](figures/) | 完整实验生成的图像 | 使用说明；精选示例见 comparisons/figures/ |
 
-Manuscript assets are not bundled. An optional local `paper/` directory is
-ignored by Git; experiment summaries and figures can be generated here.
+模型权重见 [models/](../models/)，参考数据见 [data/](../data/)，运行命令见 [training/](../training/)。不再以日期作为结果目录的主要分类。
 
-Versioned experiment records include:
-
-- `oe_apnn_parity_20261010/{seedwise,summary}.csv`: revised neural-baseline
-  summaries.
-- `angular_domain_comparison/`: twelve per-seed records, execution manifest,
-  equivalence checks, summary, and table source. See its README for commands.
-
-Other dated folders are local run or audit outputs. Their dates and recorded
-paths are preserved as provenance, rather than renamed to imply a new run.
-Raw NPZ fields, checkpoints, process logs, caches, and local backup archives
-are not versioned. Do not place generated data in `src/` or `experiments/`.
-
-For new studies, separate the problem, configuration, and seed in the output
-path, and save both machine-readable metrics and the corresponding run
-configuration. Keep source records and raw fields here. Reference-dependent runs and their limitations
-are described in [the reproduction guide](../docs/reproduction.md).
+旧路径保留在历史记录中；[目录迁移表](../scripts/folder_changes.json) 给出当前位置，报告工具读取旧记录时自动解析这些路径。原始数据内容及记录的源码哈希不改写。

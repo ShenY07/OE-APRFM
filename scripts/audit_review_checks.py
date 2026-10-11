@@ -16,7 +16,7 @@ from oeaprfm.utils.quadrature import leggauss
 
 jax.config.update("jax_enable_x64", True)
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/review_audit_20261010"
+OUT = ROOT / "results/checks/parity"
 
 
 def main():

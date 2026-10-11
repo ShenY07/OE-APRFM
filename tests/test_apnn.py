@@ -7,13 +7,30 @@ import numpy as np
 import pytest
 import torch
 
-BASELINE = Path(__file__).resolve().parents[1] / "baselines/oe_apnn"
+BASELINE = Path(__file__).resolve().parents[1] / "src/baselines/oe_apnn"
 sys.path.insert(0, str(BASELINE))
 
 from ap_eqn import build_solver  # noqa: E402
 from config import get_config  # noqa: E402
 from data_pipeline import CollocationDataset  # noqa: E402
 from networks import build_networks, parameter_count  # noqa: E402
+
+
+def test_saved_model(monkeypatch):
+    from models.load_apnn import load_model
+
+    monkeypatch.setattr(torch.cuda, "is_available", lambda: True)
+    root = Path(__file__).resolve().parents[1]
+    solver, nets = load_model(
+        root / "models/oe_apnn/baseline/p1/eps_1e-03/steps_20000/seed_11"
+    )
+    assert solver.device.type == "cpu"
+    assert solver.nodes.dtype == torch.float64
+    x = torch.tensor([[0.2]], dtype=torch.float64)
+    v = torch.tensor([[0.3]], dtype=torch.float64)
+    with torch.no_grad():
+        value = solver.reconstruct(nets, x, v)
+    assert torch.isfinite(value).all()
 
 
 @pytest.mark.parametrize("problem", ["p1", "p2", "p3", "p4", "p5"])

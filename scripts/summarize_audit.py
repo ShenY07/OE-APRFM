@@ -12,7 +12,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/review_audit_20261010"
+OUT = ROOT / "results/checks/parity"
 ARCHIVE = ROOT / ".release-backup/20261009/original-worktree/results"
 
 

@@ -48,7 +48,7 @@ def _reference(problem, epsilon, result, config):
     if problem == "p2":
         path = (
             ROOT
-            / "results/references"
+            / "data/references"
             / f"p2_parity_ref_eps_{epsilon:.0e}_level_B.npz"
         )
         with np.load(path) as data:
@@ -169,7 +169,7 @@ if __name__ == "__main__":
     parser.add_argument("--tol", type=float, default=1e-9)
     parser.add_argument("--max-iter", type=int, default=500)
     parser.add_argument(
-        "--output-dir", type=Path, default=ROOT / "results/baselines/oe_si_dsa"
+        "--output-dir", type=Path, default=ROOT / "results/runs/oe_si_dsa"
     )
     parser.add_argument("--method-label", default=None)
     parser.add_argument("--dsa-relaxation", type=float, default=1e-2)

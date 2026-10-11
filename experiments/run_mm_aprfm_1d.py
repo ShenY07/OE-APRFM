@@ -14,7 +14,7 @@ os.environ.setdefault("JAX_ENABLE_X64", "true")
 
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT_SRC = ROOT / "src"
-VENDORED_SRC = ROOT / "baselines" / "mm_oerfm" / "original" / "src"
+VENDORED_SRC = ROOT / "src" / "baselines" / "mm_oerfm" / "original" / "src"
 sys.path.insert(0, str(CURRENT_SRC))
 from oeaprfm.problems.p1_manufactured_1d import get_config as get_p1_config
 from oeaprfm.problems.p2_heterogeneous_1d import get_config as get_p2_config
@@ -307,7 +307,7 @@ if __name__ == "__main__":
     parser.add_argument("--rcond", type=float, default=1e-12)
     parser.add_argument("--collocation", type=int, nargs=2, default=(32, 34))
     parser.add_argument(
-        "--output-dir", type=Path, default=Path("results/baselines/mm_aprfm")
+        "--output-dir", type=Path, default=Path("results/runs/mm_aprfm")
     )
     args = parser.parse_args()
     print(

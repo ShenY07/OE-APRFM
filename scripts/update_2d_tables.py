@@ -6,10 +6,11 @@ import json
 import math
 import re
 from pathlib import Path
+from scripts.repo_paths import resolve_path
 from statistics import median
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/table_refresh_20261010"
+OUT = ROOT / "results/runs/feature_study"
 TARGET = ROOT / "paper/tables.tex"
 
 
@@ -26,7 +27,7 @@ def main():
     )
     groups = {}
     for status in statuses:
-        r = json.loads((ROOT / status["record"]).read_text())
+        r = json.loads((resolve_path(status["record"])).read_text())
         assert (
             r["partitions"] == [1, 1, 1]
             and r["collocation"] == [16, 16, 16]

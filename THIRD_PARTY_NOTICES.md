@@ -2,7 +2,7 @@
 
 ## Micro–macro random-feature baseline
 
-`baselines/mm_oerfm/original/` retains the implementation attributed to
+`src/baselines/mm_oerfm/original/` retains the implementation attributed to
 **Keke Wu**, *Asymptotic Preserving Random Feature Method for Multiscale
 Radiative Transfer Equations*. The original author and affiliation are kept
 in that directory's README.

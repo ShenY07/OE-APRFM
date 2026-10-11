@@ -1,0 +1,18 @@
+{
+  "baselines": "src/baselines",
+  "results/angular_domain_comparison": "results/comparisons/angular_domains",
+  "results/code_cleanup_20261010": "results/checks/code_style",
+  "results/consistency_final_20261010": "results/checks/consistency",
+  "results/figure": "results/figures",
+  "results/figure_layout_20261010": "results/checks/figure_layout",
+  "results/figure_refresh_20261010": "results/checks/figures",
+  "results/oe_apnn_parity_20261010": "results/runs/neural_study",
+  "results/p5_e5_verification_20261010": "results/checks/geometry",
+  "results/raw": "results/runs/oe_aprfm",
+  "results/references": "data/references",
+  "results/references_p5_boundary": "data/references/p5_boundary",
+  "results/references_p5_boundary_constant": "data/references/p5_boundary_constant",
+  "results/review_audit_20261010": "results/checks/parity",
+  "results/table_completion_check_20261010": "results/checks/tables",
+  "results/table_refresh_20261010": "results/runs/feature_study"
+}

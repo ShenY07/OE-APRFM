@@ -5,8 +5,8 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
 os.chdir(root)
-out = root / "results/angular_domain_comparison"
-out.mkdir(exist_ok=True)
+out = root / "results/comparisons/angular_domains"
+out.mkdir(parents=True, exist_ok=True)
 env = os.environ.copy()
 env.update(
     PYTHONPATH="src:.",

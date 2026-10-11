@@ -15,9 +15,11 @@ LAYOUT = json.loads(
     Path(__file__).with_name("layout_changes.json").read_text()
 )
 PATH_PATTERN = re.compile(
-    "|".join(
+    r"(?<![\w/])(?:"
+    + "|".join(
         re.escape(p) for p in sorted(LAYOUT["paths"], key=len, reverse=True)
     )
+    + r")(?=$|[/\s\"'])"
 )
 
 

@@ -49,12 +49,12 @@ def main() -> None:
         )
     if args.problem == "p5":
         default_dir = (
-            "results/references_p5_boundary_constant"
+            "data/references/p5_boundary_constant"
             if args.p5_constant_inflow
-            else "results/references_p5_boundary"
+            else "data/references/p5_boundary"
         )
     else:
-        default_dir = "results/references"
+        default_dir = "data/references"
     output_dir = args.output_dir or Path(default_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     stem = (

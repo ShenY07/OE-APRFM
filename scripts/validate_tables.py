@@ -6,11 +6,12 @@ import json
 import re
 import subprocess
 from pathlib import Path
+from scripts.repo_paths import resolve_path
 from scripts.source_compat import rename_source, source_ast, source_tree
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/table_refresh_20261010"
+OUT = ROOT / "results/runs/feature_study"
 
 
 def main():
@@ -91,7 +92,7 @@ def main():
     assert len(status) == 30
     field_checks = []
     for item in status:
-        path = ROOT / item["record"]
+        path = resolve_path(item["record"])
         r = json.loads(path.read_text())
         with np.load(path.with_suffix(".npz")) as d:
             mask = d["mask"]
@@ -133,7 +134,7 @@ def main():
             if not source_path.exists():
                 # Removed unused variants remain byte-identical in the archive.
                 relocations = json.loads(
-                    (ROOT / "archive/cleanup_manifest.json").read_text()
+                    (ROOT / "legacy/cleanup_manifest.json").read_text()
                 )
                 entry = next(
                     item for item in relocations if item["original"] == path

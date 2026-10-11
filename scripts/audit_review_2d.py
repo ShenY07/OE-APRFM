@@ -6,7 +6,7 @@ import jax
 import experiments.run_p3_oe_aprfm as runner
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/review_audit_20261010/p3"
+OUT = ROOT / "results/checks/parity/p3"
 
 
 def main():

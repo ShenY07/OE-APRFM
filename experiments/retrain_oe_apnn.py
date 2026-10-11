@@ -54,7 +54,7 @@ def main():
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=ROOT / "results/oe_apnn_parity_20261010",
+        default=ROOT / "results/runs/neural_study",
     )
     parser.add_argument("--devices", type=int, nargs=2, default=[1, 2])
     parser.add_argument("--dry-run", action="store_true")
@@ -64,7 +64,7 @@ def main():
     lock = (out / "runner.lock").open("w")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     plan = groups()
-    source_paths = list((ROOT / "baselines/oe_apnn").glob("*.py")) + [
+    source_paths = list((ROOT / "src/baselines/oe_apnn").glob("*.py")) + [
         Path(__file__),
         ROOT / "scripts/report_apnn_retrain.py",
     ]
@@ -103,7 +103,7 @@ def main():
     # CPU reference generation is separate from the GPU neural-network training.
     for eps in (1.0, 0.001):
         reference = (
-            ROOT / f"results/references/p2_parity_ref_eps_{eps:.0e}_level_B"
+            ROOT / f"data/references/p2_parity_ref_eps_{eps:.0e}_level_B"
         )
         if not reference.with_suffix(".npz").exists():
             raise RuntimeError(f"Missing P2 reference: {reference}.npz")
@@ -169,7 +169,7 @@ def main():
                         )
                     command = [
                         sys.executable,
-                        str(ROOT / "baselines/oe_apnn/train.py"),
+                        str(ROOT / "src/baselines/oe_apnn/train.py"),
                         "--problem",
                         group["problem"],
                         "--epsilon",

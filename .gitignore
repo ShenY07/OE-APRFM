@@ -7,7 +7,6 @@
 *.pkl
 *.pt
 *.log
-/data/
 /ckpts/
 
 # Python, testing, and environment files
@@ -38,27 +37,28 @@ dist/
 # Optional local manuscript assets are not part of the repository.
 /paper/
 
-# Selected experiment summaries (raw experiments remain ignored)
-!/results/oe_apnn_parity_20261010/
-/results/oe_apnn_parity_20261010/*
-!/results/oe_apnn_parity_20261010/summary.csv
-!/results/oe_apnn_parity_20261010/seedwise.csv
+# Curated research assets
+/docs/
+/legacy/*.zip
+!data/references/*.npz
+!models/oe_apnn/**/*.pt
+!models/oe_apnn/**/history.npz
+!/results/comparisons/
+/results/comparisons/**
+!/results/comparisons/**/
+!/results/comparisons/**/*.md
+!/results/comparisons/**/*.csv
+!/results/comparisons/**/*.json
+!/results/comparisons/**/*.tex
+!/results/comparisons/oe_aprfm/fields/*.npz
+!/results/comparisons/figures/*.png
 
-# Angular-domain manuscript comparison: metadata only, no raw matrices/fields
-!/results/angular_domain_comparison/
-/results/angular_domain_comparison/*
-!/results/angular_domain_comparison/README.md
-!/results/angular_domain_comparison/manifest.json
-!/results/angular_domain_comparison/summary.json
-!/results/angular_domain_comparison/table.tex
-!/results/angular_domain_comparison/p1/
-!/results/angular_domain_comparison/p3/
-/results/angular_domain_comparison/p[13]/*
-!/results/angular_domain_comparison/p[13]/reduced/
-!/results/angular_domain_comparison/p[13]/expanded/
-/results/angular_domain_comparison/p[13]/*/*
-!/results/angular_domain_comparison/p[13]/*/11/
-!/results/angular_domain_comparison/p[13]/*/23/
-!/results/angular_domain_comparison/p[13]/*/37/
-/results/angular_domain_comparison/p[13]/*/*/*
-!/results/angular_domain_comparison/p[13]/*/*/result.json
+!/results/runs/
+/results/runs/*
+!/results/runs/README.md
+!/results/checks/
+/results/checks/*
+!/results/checks/README.md
+!/results/figures/
+/results/figures/*
+!/results/figures/README.md

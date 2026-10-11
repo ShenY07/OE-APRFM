@@ -109,7 +109,7 @@ def main():
     ]
     if len(paths) != 20:
         raise RuntimeError(
-            f"Expected 20 prescribed E6 trajectories, found {len(paths)}; see docs/reproduction.md"
+            f"Expected 20 prescribed E6 trajectories, found {len(paths)}; see training/README.md"
         )
     records = {
         str(p.parent.relative_to(OUT)): json.loads(p.read_text())

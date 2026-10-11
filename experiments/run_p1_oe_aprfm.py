@@ -296,7 +296,9 @@ def main() -> None:
     parser.add_argument("--epsilon", type=float, required=True)
     parser.add_argument("--problem", choices=("p1", "p6"), default="p1")
     parser.add_argument("--seed", type=int, required=True)
-    parser.add_argument("--output-dir", type=Path, default=Path("results/raw"))
+    parser.add_argument(
+        "--output-dir", type=Path, default=Path("results/runs/oe_aprfm")
+    )
     parser.add_argument("--partitions", type=int, nargs=2, default=(1, 1))
     parser.add_argument("--features", type=int, default=64)
     parser.add_argument("--scale", type=float, default=1.0)

@@ -14,7 +14,7 @@ from oeaprfm.features.reconstruct_quadrant import OEField2D
 import oeaprfm.features.function_space_v2 as fs
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/p5_e5_verification_20261010"
+OUT = ROOT / "results/checks/geometry"
 ARCH = ROOT / ".release-backup/20261009/original-worktree"
 
 

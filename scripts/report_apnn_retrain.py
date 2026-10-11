@@ -117,7 +117,7 @@ def main():
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=ROOT / "results/oe_apnn_parity_20261010",
+        default=ROOT / "results/runs/neural_study",
     )
     args = parser.parse_args()
     out = args.output_dir.resolve()

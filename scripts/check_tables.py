@@ -2,11 +2,12 @@
 
 import csv, json, re, hashlib, sys
 from pathlib import Path
+from scripts.repo_paths import resolve_path
 from statistics import median
 
 ROOT = Path(__file__).resolve().parents[1]
 ARC = ROOT / ".release-backup/20261009/original-worktree"
-OUT = ROOT / "results/table_completion_check_20261010"
+OUT = ROOT / "results/checks/tables"
 OUT.mkdir(exist_ok=True)
 sys.path.insert(0, str(ARC / "scripts"))
 from p2_corrected_results import corrected_records
@@ -184,7 +185,7 @@ for i, r in enumerate(
     for c, k in enumerate(("median", "minimum", "maximum"), 2):
         check("mixed-timing", i, c, r[k])
 # Verify current completed APNN cost groups, regardless of later baseline additions.
-a = csvs(ROOT / "results/oe_apnn_parity_20261010/summary.csv")
+a = csvs(ROOT / "results/runs/neural_study/summary.csv")
 for problem, label in [
     ("p1", "supp-efficiency"),
     ("p3", "supp-efficiency-2d"),
@@ -208,9 +209,9 @@ from efficiency_refresh_data import efficiency_records
 
 records = efficiency_records()
 new2d = [
-    json.loads((ROOT / item["record"]).read_text())
+    json.loads((resolve_path(item["record"])).read_text())
     for item in json.loads(
-        (ROOT / "results/table_refresh_20261010/status.json").read_text()
+        (ROOT / "results/runs/feature_study/status.json").read_text()
     )
 ]
 for problem, label in (
@@ -342,7 +343,7 @@ for i, (problem, eps, rep) in enumerate(
 
 # New same-objective angular-domain control, independent of old table indices.
 angular = json.loads(
-    (ROOT / "results/angular_domain_comparison/summary.json").read_text()
+    (ROOT / "results/comparisons/angular_domains/summary.json").read_text()
 )["summary"]
 for i, row in enumerate(angular):
     for column, key in enumerate(
@@ -360,14 +361,12 @@ for i, row in enumerate(angular):
 
 # Every indexed source must still exist and retain its recorded hash.
 index = json.loads(
-    (
-        ROOT / "results/figure_refresh_20261010/table_source_index.json"
-    ).read_text()
+    (ROOT / "results/checks/figures/table_source_index.json").read_text()
 )
 source_issues = []
 for r in index:
     for s in r["sources"]:
-        p = ROOT / s["path"]
+        p = resolve_path(s["path"])
         if (
             not p.exists()
             or hashlib.sha256(p.read_bytes()).hexdigest() != s["sha256"]

@@ -13,6 +13,19 @@ transport residuals to build a linear least-squares problem. The repository
 contains steady 1D/2D solvers, manufactured and transport benchmarks,
 micro–macro and neural-network comparisons, and a 1D time-dependent extension.
 
+## 按用途查找
+
+| 要找的内容 | 入口 |
+| --- | --- |
+| 数据集和参考解 | [data/](data/README.md)（包含两份 P2 参考数据） |
+| 已训练模型与对比模型 | [models/](models/README.md)、[48 组模型索引](models/index.csv) |
+| 对比结果和预测场 | [results/comparisons/](results/comparisons/README.md) |
+| 训练、求解代码 | [training/](training/README.md) |
+| 可视化代码和示例图 | [visualization/](visualization/README.md) |
+| 旧版本代码 | [legacy/](legacy/README.md) |
+
+数据、权重和精选结果已随仓库保存；本地历史运行、压缩包、docs/ 及 paper/ 不再上传。旧稳态 OE-APRFM 运行没有保存可重载系数，预测场与模型分开列出。
+
 ## Installation
 
 Run commands from the repository root. Python **3.10** is the tested version;
@@ -58,7 +71,7 @@ python experiments/reference_e6.py
 E6 saves coefficients and trajectories under `results/e6_periodic/quickstart/`.
 The reference script evaluates both continuous-time Fourier evolution and a
 same-step backward-Euler reference. Their errors measure different things;
-see [numerical methods and limitations](docs/numerical_methods.md).
+see [numerical methods and limitations](src/oeaprfm/README.md).
 
 ## Experiments and comparisons
 
@@ -73,11 +86,11 @@ see [numerical methods and limitations](docs/numerical_methods.md).
 | E6: periodic transient transport | `experiments/run_e6_periodic.py` |
 | Matched micro–macro random-feature comparisons | `experiments/run_mm_aprfm_1d.py`, `experiments/run_mm_aprfm_2d.py`, `experiments/run_e6_mm.py` |
 | Direct RFM and deterministic transport | `experiments/run_rfm_1d.py`, `experiments/run_oe_si_dsa.py` |
-| OE-APNN | `baselines/oe_apnn/train.py` |
+| OE-APNN | `src/baselines/oe_apnn/train.py` |
 
 P labels identify problem configurations; E labels identify experiment groups.
 Full commands, reference-data prerequisites and the prescribed 20-trajectory
-E6 study are in [the reproduction guide](docs/reproduction.md).
+E6 study are in [the reproduction guide](training/README.md).
 
 ## Repository layout
 
@@ -90,13 +103,16 @@ src/oeaprfm/         Numerical library
   solvers/          Dense least squares and streaming QR
   reference/        Deterministic transport reference solvers
   utils/            Quadrature, coordinates, and timing
+src/baselines/      Comparison implementations and third-party originals
 experiments/        Numerical experiment and comparison entry points
 scripts/            Postprocessing, paper collection, and validation tools
 tests/              Regression and consistency tests
-baselines/          Comparison implementations and third-party originals
-results/            Generated runs and selected experiment records
-docs/               Reproduction guide and numerical assumptions
-archive/            Historical source and original publication snapshots
+results/            comparisons/, runs/, checks/, and figures/
+legacy/             Historical source for diagnosis only
+data/               Versioned reference datasets and asset manifest
+models/             Trained OE-APNN weights, configurations and index
+training/           Unified training and solve entry point
+visualization/      Plotting saved fields and training histories
 ```
 
 Project Python code uses four-space indentation and 79-column Black formatting,
@@ -136,7 +152,7 @@ is `scripts/refresh_2d_tables.py`. Unused candidate constraint
 modules and defective historical reproduction entry points are excluded from
 the production source tree.
 
-The [angular-domain comparison](results/angular_domain_comparison/README.md)
+The [angular-domain comparison](results/comparisons/angular_domains/README.md)
 adds twelve paired runs with the same OE trial space and weighted objective.
 It measures the cost of removing symmetry-redundant residual rows at preserved
 accuracy, rather than a search for minimum cost at a prescribed tolerance.
@@ -144,14 +160,15 @@ Per-seed records, configuration hashes and the aggregate table are included;
 raw matrices and fields can be regenerated with the campaign launcher.
 
 OE-APNN now enforces even/odd parity in its network outputs; old checkpoints
-are not results for this revised protocol. See [the baseline guide](baselines/oe_apnn/README.md)
+are not results for this revised protocol. See [the baseline guide](src/baselines/oe_apnn/README.md)
 for the retraining commands. Mixed-scale transport differences remain relative
 to an archived reference and do not establish fine accuracy rankings. CPU
 archive timings, shared-host CPU reruns, and concurrent GPU training do not
 establish controlled speedup factors.
 
-Large raw fields, model checkpoints, historical audit inputs, and exploratory
-studies are not included. This release is
+Two P2 reference datasets, 48 completed OE-APNN checkpoint pairs and selected
+prediction fields are included. Other large fields, historical audit inputs
+and exploratory studies remain local. This release is
 not a self-contained archive of every historical experiment. Run the documented
 experiments to generate new data; a successful quick start is not an accuracy
 or speedup claim.
@@ -170,7 +187,7 @@ python -m pip install -r requirements-apnn.txt
 python -m pytest -q tests
 ```
 
-The release checks are recorded in [validation notes](docs/validation.md).
+Run `python scripts/check_assets.py` to verify the published datasets, weights and selected results.
 Core CPU tests and formatting are also configured in GitHub Actions.
 
 ## Patent disclosure and licensing status

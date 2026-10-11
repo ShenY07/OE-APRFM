@@ -2,7 +2,7 @@
 
 Run from the repository root with `PYTHONPATH=src:.` and the environment
 settings in the root README. Full budgets and reference prerequisites are in
-[the reproduction guide](../docs/reproduction.md).
+[the reproduction guide](../training/README.md).
 
 | Entry point | Purpose |
 | --- | --- |

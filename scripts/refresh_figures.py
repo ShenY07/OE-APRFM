@@ -17,8 +17,8 @@ ROOT = REPO / ".release-backup/20261009/original-worktree"
 import sys
 
 sys.path.insert(0, str(ROOT / "scripts"))
-OUT = REPO / "results/figure/new"
-AUDIT = REPO / "results/figure_refresh_20261010"
+OUT = REPO / "results/figures/new"
+AUDIT = REPO / "results/checks/figures"
 AUDIT.mkdir(parents=True, exist_ok=True)
 OUT.mkdir(parents=True, exist_ok=True)
 BLUE = "#0072B2"
@@ -207,7 +207,7 @@ save(
     "E1_fixed_space_minimum_gain",
     "32-dimensional diagnostic with H1 x H1 and unweighted inflow L2 norms; refined quadrature; no truncation. Not verification of Assumption 1 for main experiments.",
 )
-parity_path = REPO / "results/review_audit_20261010/parity/audit.json"
+parity_path = REPO / "results/checks/parity/parity/audit.json"
 sources.add(str(parity_path))
 parity = json.loads(parity_path.read_text())
 assert len(parity) == 24
@@ -259,7 +259,7 @@ for problem in ("p1", "p3"):
     if problem == "p3":
         rr = []
         for p in sorted(
-            (REPO / "results/table_refresh_20261010/raw").glob(
+            (REPO / "results/runs/feature_study/raw").glob(
                 "p3_four_component_*eps1e-03*/*.json"
             )
         ):
@@ -503,13 +503,13 @@ for eps in (1.0, 0.001):
 
 # The two existing APNN filenames are retained. Each file has one axis with both
 # kinetic and density errors, avoiding embedded subplots and oversized titles.
-apnn_path = REPO / "results/oe_apnn_parity_20261010/summary.csv"
+apnn_path = REPO / "results/runs/neural_study/summary.csv"
 sources.add(str(apnn_path))
 with apnn_path.open() as stream:
     apnn = list(csv.DictReader(stream))
 main_out = OUT
 for problem in ("p1", "p3"):
-    OUT = REPO / "results/oe_apnn_parity_20261010/figures"
+    OUT = REPO / "results/runs/neural_study/figures"
     fig, ax = axes("Adam steps", "Relative error")
     rr = [
         r

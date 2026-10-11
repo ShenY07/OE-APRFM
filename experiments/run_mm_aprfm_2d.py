@@ -15,7 +15,9 @@ sys.path.insert(0, str(ROOT / "src"))
 from oeaprfm.problems.p3_manufactured_2d import get_config as get_p3_config
 from oeaprfm.problems.p4_circular_hole_2d import get_config as get_p4_config
 
-sys.path.insert(0, str(ROOT / "baselines" / "mm_oerfm" / "original" / "src"))
+sys.path.insert(
+    0, str(ROOT / "src" / "baselines" / "mm_oerfm" / "original" / "src")
+)
 import jax
 import jax.numpy as jnp
 from jax import jit, random, vmap
@@ -267,7 +269,7 @@ if __name__ == "__main__":
         "--collocation", type=int, nargs=3, default=(16, 16, 16)
     )
     parser.add_argument(
-        "--output-dir", type=Path, default=Path("results/baselines/mm_aprfm")
+        "--output-dir", type=Path, default=Path("results/runs/mm_aprfm")
     )
     args = parser.parse_args()
     print(

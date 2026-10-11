@@ -10,7 +10,7 @@ from oeaprfm.problems.p4_circular_hole_2d import get_config as p4_config
 
 
 def main() -> None:
-    output = Path("results/references")
+    output = Path("data/references")
     output.mkdir(parents=True, exist_ok=True)
     p1 = p1_config()
     nx, nv = map(int, p1.protocol.evaluation_grid)

@@ -7,13 +7,14 @@ import re
 import subprocess
 import zipfile
 from pathlib import Path
+from scripts.repo_paths import resolve_path
 from scripts.paper_paths import paper_file
 from statistics import median
 import xml.etree.ElementTree as ET
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/figure_refresh_20261010"
+OUT = ROOT / "results/checks/figures"
 ARCH = ROOT / ".release-backup/20261009/original-worktree"
 
 
@@ -90,7 +91,7 @@ def table_contains(label, values, rtol=0.006):
     checks.append(dict(table=label, numeric_cells_checked=len(values)))
 
 
-parity = read(ROOT / "results/review_audit_20261010/parity/audit.json")
+parity = read(ROOT / "results/checks/parity/parity/audit.json")
 for metric, name in [("f", "distribution"), ("rho", "density")]:
     panel = byname[f"E2_parity_budget_{name}_error"]
     for variant, label in [
@@ -128,9 +129,9 @@ close(
     [r["folded_Ef"], r["folded_Erho"]],
 )
 # Re-evaluate all 30 unified-protocol saved fields and compare shared table entries.
-statuses = read(ROOT / "results/table_refresh_20261010/status.json")
+statuses = read(ROOT / "results/runs/feature_study/status.json")
 for item in statuses:
-    p = ROOT / item["record"]
+    p = resolve_path(item["record"])
     r = read(p)
     with np.load(p.with_suffix(".npz")) as d:
         mask = d["mask"]
@@ -251,7 +252,7 @@ for r in parity:
     j, seed, v = r["features_per_patch"], r["seed"], r["variant"]
     p = (
         ROOT
-        / "results/review_audit_20261010/parity/raw"
+        / "results/checks/parity/parity/raw"
         / f"p1_oe_aprfm_eps_1e-03_seed_{seed}_J{j}_{v}.json"
     )
     nboundary = 2 * r["collocation"]["boundary"]
@@ -261,7 +262,7 @@ for r in parity:
         p,
         record=r,
         historical_commit=read(
-            ROOT / "results/review_audit_20261010/parity/manifest.json"
+            ROOT / "results/checks/parity/parity/manifest.json"
         )["commit"],
         residual_blocks=dict(boundary=nboundary, macro=n, even=n, odd=n),
         reconstruction=(
@@ -292,13 +293,13 @@ for r in parity:
         ],
     )
 for item in statuses:
-    p = ROOT / item["record"]
+    p = resolve_path(item["record"])
     r = read(p)
     register(
         "unified_2d",
         p,
         historical_commit=read(
-            ROOT / "results/table_refresh_20261010/manifest.json"
+            ROOT / "results/runs/feature_study/manifest.json"
         )["commit"],
         original_command=item["command"],
         reconstruction=r["angular_representation"],
@@ -345,7 +346,7 @@ for p in sorted(
             effective_rank=r["rank"],
             column_scaling="L2 of compressed weighted system; coefficient norm is original theta",
         ),
-        limitation="Legacy metadata label is misleading: exact-hash historical source calls one-row physical trace, verified in results/p5_e5_verification_20261010/verification.json. No physical-boundary inconsistency was found for this sweep.",
+        limitation="Legacy metadata label is misleading: exact-hash historical source calls one-row physical trace, verified in results/checks/geometry/verification.json. No physical-boundary inconsistency was found for this sweep.",
     )
 for p in sorted((ARCH / "results/e5_mixed").glob("*_s*_a*/metadata.json")):
     r = read(p)
@@ -397,9 +398,7 @@ for p in sorted((ARCH / "results/e6_mm_comparison").glob("s*/result.json")):
         reference_version="Fourier CT/BE, same step for BE",
     )
 for p in sorted(
-    (ROOT / "results/oe_apnn_parity_20261010/runs").glob(
-        "cost/**/metrics.json"
-    )
+    (ROOT / "results/runs/neural_study/runs").glob("cost/**/metrics.json")
 ):
     register(
         "APNN_cost",
@@ -410,7 +409,7 @@ for p in sorted(
     )
 # Fixed-collocation P1 feature/cost runs are distinct from the parity-budget sweep.
 for source in read(OUT / "figure_sources.json"):
-    p = ROOT / source["path"]
+    p = resolve_path(source["path"])
     if p.name == "audit.json" and "efficiency_refresh" in str(p):
         r = read(p)[0]
         if r.get("problem") == "p1":
@@ -492,7 +491,7 @@ source_paths = [
     "src/oeaprfm/features/reconstruction.py",
     "scripts/refresh_figures.py",
     "scripts/audit_figures.py",
-    "docs/reproduction.md",
+    "training/README.md",
 ]
 snapshot = OUT / "source"
 snapshot.mkdir(exist_ok=True)

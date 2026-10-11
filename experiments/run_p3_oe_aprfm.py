@@ -271,9 +271,9 @@ def run(
         reference = np.broadcast_to(reference_rho[:, :, None], numerical.shape)
     elif problem == "p5":
         reference_dir = (
-            Path("results/references_p5_boundary_constant")
+            Path("data/references/p5_boundary_constant")
             if p5_constant_inflow
-            else Path("results/references_p5_boundary")
+            else Path("data/references/p5_boundary")
         )
         candidates = [
             reference_dir
@@ -424,7 +424,9 @@ if __name__ == "__main__":
     parser.add_argument("--p5-constant-inflow", action="store_true")
     parser.add_argument("--epsilon", type=float, required=True)
     parser.add_argument("--seed", type=int, required=True)
-    parser.add_argument("--output-dir", type=Path, default=Path("results/raw"))
+    parser.add_argument(
+        "--output-dir", type=Path, default=Path("results/runs/oe_aprfm")
+    )
     parser.add_argument("--partitions", type=int, nargs=3)
     parser.add_argument("--features", type=int)
     parser.add_argument("--scale", type=float, default=1.0)

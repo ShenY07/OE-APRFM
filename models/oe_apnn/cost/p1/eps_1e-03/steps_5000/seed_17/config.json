@@ -1,0 +1,37 @@
+{
+  "protocol": "oe-apnn-p1-p5-v2-hard-parity",
+  "problem": "P1",
+  "epsilon": 0.001,
+  "seed": 17,
+  "dtype": "float64",
+  "network": {
+    "parity_projection": "antipodal_even_r_odd_j",
+    "hidden_width": 64,
+    "hidden_transforms": 4,
+    "separate_r_j": true
+  },
+  "optimizer": {
+    "name": "Adam",
+    "learning_rate": 0.001,
+    "scheduler": null
+  },
+  "training": {
+    "steps": 5000,
+    "interior_phase_samples": 4096,
+    "boundary_phase_samples": 1024,
+    "validation_interval": 200
+  },
+  "parameter_count": 25474,
+  "device": "cuda:1",
+  "torch": "2.5.1+cu121",
+  "cuda": "12.1",
+  "python": "3.10.12",
+  "cpu_threads": 1,
+  "source_sha256": {
+    "ap_eqn.py": "0f0202c95b3d9eeff9040c90da66719318acda788b2e363717acd4b9926832f1",
+    "config.py": "81320e7e43ab9fdba54e5b931c9359d0549f3a7262d9caeb208c23ae64bc7df1",
+    "networks.py": "ddf044e3dea203173cafd567bc061bfac3d348e545eae4cec009b2714c44838d",
+    "data_pipeline.py": "40b9748ed0440a1eae2c351f2c3bb84c52cf2552a9ff529abc5384336ad79d8d",
+    "train.py": "757b4d55c7618b012eda66d1719b00901441d9e423e8fce61d759f7609c79c01"
+  }
+}

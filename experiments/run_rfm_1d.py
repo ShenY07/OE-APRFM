@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from oeaprfm.problems.p1_manufactured_1d import get_config as p1_config
 from oeaprfm.problems.p2_heterogeneous_1d import get_config as p2_config
 
-sys.path.insert(0, str(ROOT / "baselines/mm_oerfm/original/src"))
+sys.path.insert(0, str(ROOT / "src/baselines/mm_oerfm/original/src"))
 import jax, jax.numpy as jnp, numpy as np
 from jax import jit, random, vmap
 from scipy.linalg import lstsq
@@ -87,7 +87,7 @@ def run(problem, epsilon, seed, output_dir, partitions, features, rcond):
     else:
         with np.load(
             ROOT
-            / f"results/references/p2_parity_ref_eps_{epsilon:.0e}_level_B.npz"
+            / f"data/references/p2_parity_ref_eps_{epsilon:.0e}_level_B.npz"
         ) as d:
             x, velocity, ref, weights = (
                 d["x"],
@@ -169,9 +169,7 @@ if __name__ == "__main__":
     p.add_argument("--partitions", type=int, nargs=2, required=True)
     p.add_argument("--features", type=int, required=True)
     p.add_argument("--rcond", type=float, required=True)
-    p.add_argument(
-        "--output-dir", type=Path, default=Path("results/baselines/rfm")
-    )
+    p.add_argument("--output-dir", type=Path, default=Path("results/runs/rfm"))
     a = p.parse_args()
     print(
         json.dumps(

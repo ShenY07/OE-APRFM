@@ -8,7 +8,7 @@ import experiments.reference_e6 as reference
 from experiments.e6_protocol import validate
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/review_audit_20261010/e6"
+OUT = ROOT / "results/checks/parity/e6"
 ARCHIVE = (
     ROOT
     / ".release-backup/20261009/original-worktree/results/e6_periodic/factorized_check"
