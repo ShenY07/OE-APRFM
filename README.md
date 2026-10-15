@@ -1,206 +1,133 @@
 # OE-APRFM
 
-Research code for **Mitigating Ill-Conditioning in Asymptotic Preserving Random
-Feature Methods for Multiscale Radiative Transfer Equations via Parity
-Embedding**.
+奇偶分解渐近保持随机特征方法，用于稳态和时间依赖辐射输运方程。项目使用 Python、JAX/Flax 和 SciPy；OE-APNN 神经网络基线使用可选的 PyTorch。
 
-**Yan Shen** · University of Science and Technology of China
+## 保留的功能
 
-Contact: sheny2607@mail.ustc.edu.cn
+- P1–P5 稳态求解、P6 角度依赖算例，以及 E3/E5/E6 扩展实验。
+- OE-APRFM、MM-APRFM、普通 RFM、OE-SI-DSA/Krylov 和 OE-APNN 对比。
+- 参考解生成、角域与特征规模比较、物理矩和误差统计。
+- 模型保存/加载、训练曲线和密度场绘图。
 
-OE-APRFM uses even/odd parity features, angular projection and rescaled
-transport residuals to build a linear least-squares problem. The repository
-contains steady 1D/2D solvers, manufactured and transport benchmarks,
-micro–macro and neural-network comparisons, and a 1D time-dependent extension.
+`models/comparison_index.csv` 对应 30 组 OE-APRFM/OE-APNN 基准模型：P1–P5，ε=1、10⁻³，种子 7/11/17。OE-APNN 另有 18 组训练成本实验；OE-APRFM 另有角域比较模型和 E6 时间轨迹。
 
-## 按用途查找
+**问题定义：** 基准 P5 是与 OE-APNN 相同的方孔制造解。非均匀介质 P5 是独立扩展，不能与方孔结果混用。统一训练入口默认选择方孔；二维实验入口通过 `--p5-definition square_hole` 或 `heterogeneous` 显式区分。
 
-| 要找的内容 | 入口 |
-| --- | --- |
-| 数据集和参考解 | [data/](data/README.md)（包含两份 P2 参考数据） |
-| 已训练模型与对比模型 | [models/](models/README.md)、[48 组模型索引](models/index.csv) |
-| 对比结果和预测场 | [results/comparisons/](results/comparisons/README.md) |
-| 训练、求解代码 | [training/](training/README.md) |
-| 可视化代码和示例图 | [visualization/](visualization/README.md) |
-| 旧版本代码 | [legacy/](legacy/README.md) |
+## 目录与入口
 
-数据、权重和精选结果已随仓库保存；本地历史运行、压缩包、docs/ 及 paper/ 不再上传。旧稳态 OE-APRFM 运行没有保存可重载系数，预测场与模型分开列出。
+```text
+src/oeaprfm/       问题配置、随机特征、约束、几何、线性求解和检查点
+src/baselines/     oe_apnn、mm_oerfm、oe_si_dsa 的实际实现
+experiments/      单次求解、参考解生成和批量实验
+training/train.py 统一选择方法与问题
+visualization/    保存结果的绘图入口
+scripts/          结果统计、物理诊断和资产索引/校验
+tests/            数值、模型加载和命令入口测试
+data/references/  P1–P5 参考数据及 extensions 扩展参考数据
+data/manifest.json 随仓库保存的数据、模型与精选场的 SHA-256 清单
+models/           已保存模型、两个加载器和跨方法索引
+results/          精选对比结果与本地生成输出
+```
 
-## Installation
+`experiments/run_p1_oe_aprfm.py` 支持 P1/P6；`run_p2_oe_aprfm.py` 求解 P2；`run_p3_oe_aprfm.py` 支持 P3/P4/P5。核心二维组装位于 `features/oe_assembly.py`，流式 QR 位于 `solvers/streaming_qr.py`。确定性参考求解器位于 `src/baselines/oe_si_dsa/solver.py`。
 
-Run commands from the repository root. Python **3.10** is the tested version;
-the default setup uses CPU execution and double precision.
+## 环境与安装
+
+验证环境为 Linux、Python 3.10，采用 CPU 和双精度。依赖版本列于 `requirements*.txt`。从项目根目录执行：
 
 ```bash
-git clone https://github.com/ShenY07/OE-APRFM.git
-cd OE-APRFM
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt
 export PYTHONPATH="$PWD/src:$PWD"
 export JAX_ENABLE_X64=true
 export JAX_PLATFORMS=cpu
-export OPENBLAS_NUM_THREADS=1
-export OMP_NUM_THREADS=1
-export MKL_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
 ```
 
-For tests, install `requirements-dev.txt`. The optional OE-APNN comparison
-requires `requirements-apnn.txt` (PyTorch); it is not required by OE-APRFM.
-
-## Quick start
-
-Run the 1D manufactured problem with an exact reference:
-
-```bash
-python experiments/run_p1_oe_aprfm.py --epsilon 0.001 --seed 11 \
-  --features 32 --output-dir results/quickstart
-```
-
-The runner writes a JSON record with errors, dimensions, solver diagnostics
-and timing, plus an NPZ file with the numerical and exact fields.
-
-Run the periodic time-dependent problem with implicit backward Euler:
-
-```bash
-python experiments/run_e6_periodic.py --epsilon 1 0.001 --seed 11 \
-  --dt 0.002 --batch quickstart
-python experiments/reference_e6.py
-```
-
-E6 saves coefficients and trajectories under `results/e6_periodic/quickstart/`.
-The reference script evaluates both continuous-time Fourier evolution and a
-same-step backward-Euler reference. Their errors measure different things;
-see [numerical methods and limitations](src/oeaprfm/README.md).
-
-## Experiments and comparisons
-
-| Problem / diagnostic | Entry point |
-| --- | --- |
-| P1: 1D manufactured solution; P6: angular-dependent manufactured solution | `experiments/run_p1_oe_aprfm.py --problem p1` / `--problem p6` |
-| P2: heterogeneous 1D transport | `experiments/run_p2_oe_aprfm.py` |
-| P3: 2D manufactured solution; P4: circular hole; P5: heterogeneous boundary-driven transport | `experiments/run_p3_oe_aprfm.py --problem p3` / `p4` / `p5` |
-| E1: fixed-space minimum-gain diagnostic | `experiments/diagnose_oe_gain.py` |
-| E3: steady slab diffusion limit | `experiments/run_e3_slab.py` |
-| E5: mixed-scale slab | `experiments/run_e5_mixed.py` |
-| E6: periodic transient transport | `experiments/run_e6_periodic.py` |
-| Matched micro–macro random-feature comparisons | `experiments/run_mm_aprfm_1d.py`, `experiments/run_mm_aprfm_2d.py`, `experiments/run_e6_mm.py` |
-| Direct RFM and deterministic transport | `experiments/run_rfm_1d.py`, `experiments/run_oe_si_dsa.py` |
-| OE-APNN | `src/baselines/oe_apnn/train.py` |
-
-P labels identify problem configurations; E labels identify experiment groups.
-Full commands, reference-data prerequisites and the prescribed 20-trajectory
-E6 study are in [the reproduction guide](training/README.md).
-
-## Repository layout
-
-```text
-src/oeaprfm/         Numerical library
-  problems/         Problem definitions and experiment defaults
-  constraints/      Transport and parity residuals
-  features/         Random features, sampling, and reconstruction
-  geometry/         Spatial and angular meshes
-  solvers/          Dense least squares and streaming QR
-  reference/        Deterministic transport reference solvers
-  utils/            Quadrature, coordinates, and timing
-src/baselines/      Comparison implementations and third-party originals
-experiments/        Numerical experiment and comparison entry points
-scripts/            Postprocessing, paper collection, and validation tools
-tests/              Regression and consistency tests
-results/            comparisons/, runs/, checks/, and figures/
-legacy/             Historical source for diagnosis only
-data/               Versioned reference datasets and asset manifest
-models/             Trained OE-APNN weights, configurations and index
-training/           Unified training and solve entry point
-visualization/      Plotting saved fields and training histories
-```
-
-Project Python code uses four-space indentation and 79-column Black formatting,
-following `src/oeaprfm/constraints/oe_constraints_2d.py` (formerly
-`continuous_2d_odd_even.py`). Function, class, and module names are at most
-20 characters. Names distinguish the formulation, role, and dimension:
-`OEInterior2D` assembles odd-even interior constraints, `OEBoundary2D` handles
-inflow boundaries, and `OEField2D` reconstructs the field. `HalfOE` denotes
-unprojected half-range features; `QuadOE` aliases distinguish four-component
-implementations. Comments explain numerical choices, conventions, and shapes.
-
-Imports and script paths use the new names listed in
-[`scripts/name_changes.json`](scripts/name_changes.json) and
-[`scripts/layout_changes.json`](scripts/layout_changes.json). Update external
-callers using that mapping. Archived source and recorded hashes retain their
-original names; source audits translate names in memory before comparing
-executable syntax. Third-party originals and historical archives keep their
-original style.
-
-This organization follows the separation of library and experiments used in
-[the JSC manifold-MOR companion repository](https://github.com/pbuchfink/manifold-mor-wave)
-and the source/example/test/documentation separation in
-[Trixi.jl](https://github.com/trixi-framework/Trixi.jl). It is a repository
-convention, not a universal journal submission requirement.
-
-## Manuscript results (10 October 2026)
-
-Manuscript assets under `paper/` are not distributed in this repository.
-That directory is reserved for optional local files and is ignored by Git.
-Experiment records are described in [the result inventory](results/README.md).
-
-The 1D unprojected control now extends positive-half-range features consistently
-with its inflow rows. Both controls preserve parity; this is a comparison of
-basis constructions. The 2D runner uses physical-direction inflow traces and
-records the corrected boundary-implementation label. The P3/P4 rerun launcher
-is `scripts/refresh_2d_tables.py`. Unused candidate constraint
-modules and defective historical reproduction entry points are excluded from
-the production source tree.
-
-The [angular-domain comparison](results/comparisons/angular_domains/README.md)
-adds twelve paired runs with the same OE trial space and weighted objective.
-It measures the cost of removing symmetry-redundant residual rows at preserved
-accuracy, rather than a search for minimum cost at a prescribed tolerance.
-Per-seed records, configuration hashes and the aggregate table are included;
-raw matrices and fields can be regenerated with the campaign launcher.
-
-OE-APNN now enforces even/odd parity in its network outputs; old checkpoints
-are not results for this revised protocol. See [the baseline guide](src/baselines/oe_apnn/README.md)
-for the retraining commands. Mixed-scale transport differences remain relative
-to an archived reference and do not establish fine accuracy rankings. CPU
-archive timings, shared-host CPU reruns, and concurrent GPU training do not
-establish controlled speedup factors.
-
-Two P2 reference datasets, 48 completed OE-APNN checkpoint pairs and selected
-prediction fields are included. Other large fields, historical audit inputs
-and exploratory studies remain local. This release is
-not a self-contained archive of every historical experiment. Run the documented
-experiments to generate new data; a successful quick start is not an accuracy
-or speedup claim.
-
-## Tests
-
-```bash
-python -m pip install -r requirements-dev.txt
-python -m pytest -q tests --ignore=tests/test_apnn.py
-```
-
-To include the optional neural baseline:
+OE-APNN 训练、加载及相关测试还需：
 
 ```bash
 python -m pip install -r requirements-apnn.txt
+```
+
+无需外部服务、密钥或环境配置文件。单次神经网络训练支持 CPU；`experiments/retrain_oe_apnn.py` 是需要 CUDA 的完整批量训练入口。
+
+## 快速运行
+
+小规模 OE-APRFM 求解与绘图：
+
+```bash
+python training/train.py --method oe_aprfm --problem p1 \
+  --epsilon 0.001 --seed 11 --features 16 --collocation 8 8 \
+  --output-dir results/smoke/oe_aprfm
+python visualization/plot_results.py \
+  results/smoke/oe_aprfm/p1_oe_aprfm_eps_1e-03_seed_11.npz \
+  --output results/smoke/density.png
+```
+
+输出包含预测场、JSON 指标及同名 `*_model/` 检查点目录。这个小规模示例用于验证运行，不是精度基准。
+
+其他基线：
+
+```bash
+python training/train.py --method mm_aprfm --problem p1 \
+  --epsilon 1 --seed 11 --features 16 --collocation 8 8 \
+  --output-dir results/smoke/mm_aprfm
+python -m baselines.oe_si_dsa.run --problem p1 --epsilon 1 \
+  --grid-1d 16 8 --output-dir results/smoke/oe_si_dsa
+python training/train.py --method oe_apnn --problem p1 --steps 1 \
+  --interior-samples 16 --boundary-samples 16 --quadrature-points 4 \
+  --output-dir results/smoke/oe_apnn
+```
+
+使用 `python training/train.py --method oe_aprfm --problem p3 --runner-help` 查看参数。MM 稳态入口支持 P1–P4/P6；OE-APNN 支持 P1–P5。
+
+## 数据与模型
+
+P1/P3/P4/P5 使用解析制造解，`data/references/p*/exact.npz` 保存评价网格及解。P2 使用 `data/references/p2/` 的 Gauss–Legendre 数值参考解。扩展实验数据集中在 `data/references/extensions/`；训练配点由求解器在线生成。
+
+```bash
+python -m experiments.exact_references
+python -m experiments.generate_reference --problem p2 --epsilon 0.001 --level B
+```
+
+生成数据会更新文件；确认新资产后执行 `python scripts/index_assets.py` 重建校验清单。索引命令还会验证 30 对基准模型是否齐全。
+
+加载已有 OE-APRFM 模型：
+
+```python
+from models.load_aprfm import load_model
+predict = load_model("models/oe_aprfm/baseline/p1/eps_1e-03/seed_11")
+f = predict([0.2, 0.8], [0.3, -0.3])
+```
+
+二维模型传入 `x, y, theta`。加载器核对随机特征参数并恢复双精度预测。OE-APNN 加载器是 `models/load_apnn.py`，返回求解器与 `r/j` 网络；调用 `solver.reconstruct(nets, x, v)` 或二维的 `solver.reconstruct(nets, x, y, theta)`。
+
+`python -m experiments.retrain_oe_aprfm --workers 2` 生成完整的 30 组基准模型，并核验保存场与重载预测。完整实验比快速示例耗时长。已有模型和单次运行结果不应被视为跨硬件的速度比较。
+
+## 扩展与报告
+
+- `experiments/run_e3_slab.py`、`run_e5_mixed.py`：扩散极限与混合介质实验。
+- `experiments/run_e6_periodic.py`、`reference_e6.py`：周期输运、隐式后向 Euler 及独立 Fourier 参考；MM 时间扩展位于 `baselines.mm_oerfm.periodic`。
+- `experiments/run_angle_campaign.py`：角域对比；`scripts/report_angle_domains.py` 校验配对系统并输出汇总。
+- `scripts/refresh_2d_tables.py`：P3/P4 特征规模及表示方式实验。
+- `scripts/report_e3_slab.py`、`report_e5_mixed.py`、`report_apnn_retrain.py` 和 `finalize_e6.py`：汇总各自已完成的运行。
+
+报告脚本需要先运行对应实验，不能仅靠模型文件生成完整研究报告。部分本地生成结果不会提交；代码不依赖论文、旧路径映射或外部历史目录。
+
+## 验证
+
+本项目无独立编译构建步骤或类型检查配置。
+
+```bash
+python -m compileall -q src experiments scripts tests training visualization models
+python scripts/check_assets.py
+python -m pytest -q tests --ignore=tests/test_apnn.py
+# 安装可选 PyTorch 后：
 python -m pytest -q tests
 ```
 
-Run `python scripts/check_assets.py` to verify the published datasets, weights and selected results.
-Core CPU tests and formatting are also configured in GitHub Actions.
+自动化测试覆盖配置、奇偶组装、PoU、流式 QR、物理矩、模型重载和基线入口。GitHub Actions 执行 CPU 语法、资产与非神经网络测试。
 
-## Patent disclosure and licensing status
-
-The authors declare that a patent application related to the methodology
-presented in this work has been filed and published under publication number
-**CN122263556A**. The patent application is currently pending examination.
-
-This disclosure records the status supplied by the authors for this release;
-it should not be read as a continuously updated patent-status record.
-
-No open-source license is granted in this release. Public availability of the
-source code is not itself an open-source license. For copyright or patent
-licensing inquiries, contact the author above. Third-party attribution is
-recorded in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md); no new license is
-assigned to those components by this release.
+数值参考的迭代收敛不等于离散精度充分；结论仍需网格、角度和时间步加密验证。第三方基线的作者归属与许可说明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

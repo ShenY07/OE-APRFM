@@ -71,9 +71,7 @@ commands, checkpoints and per-run logs are retained under
 `results/runs/neural_study`.
 
 After each three-seed group, `scripts/report_apnn_retrain.py` updates
-`summary.csv`, `seedwise.csv`, `REPORT.md`, PDF/PNG loss and field figures,
-and the OE-APNN entries in `paper/tables.tex` and `paper/figures.tex` when
-those manuscript files exist. Original manuscript files are backed up first.
+`summary.csv`, `seedwise.csv`, `REPORT.md`, and PDF/PNG loss and field figures.
 Only complete three-seed groups enter summary statistics. The new phase-sample
 budget is 5120; this is not the scalar residual count. CUDA timings include
 concurrent resource sharing and cannot establish a same-hardware speedup

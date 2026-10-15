@@ -1,0 +1,30 @@
+{
+  "format": "oe-aprfm-v1",
+  "problem": "p1",
+  "epsilon": 1.0,
+  "seed": 17,
+  "constructor": "oeaprfm.features.reconstruction:OEField1D",
+  "domain": {
+    "v": [
+      0.0,
+      1.0
+    ],
+    "x": [
+      0.0,
+      1.0
+    ]
+  },
+  "strides": {
+    "v": 1.0,
+    "x": 1.0
+  },
+  "Jn": {
+    "f": 64,
+    "j": 64,
+    "r": 64
+  },
+  "scale": 1.0,
+  "activation": "tanh",
+  "jax_version": "0.6.2",
+  "problem_definition": "p1"
+}

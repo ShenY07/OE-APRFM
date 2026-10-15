@@ -1,0 +1,61 @@
+{
+  "problem": "p4",
+  "method": "oe_aprfm",
+  "problem_definition": "p4",
+  "epsilon": 1.0,
+  "seed": 7,
+  "relative_l2_f": 0.056282139266141305,
+  "relative_l2_rho": 0.02120858767774511,
+  "residual_half": 0.0024301987561906407,
+  "empirical_stability_ratio": 24.749217862832833,
+  "condition_number": 1791552.2614134862,
+  "largest_singular_value": 11.724383317310336,
+  "smallest_effective_singular_value": 6.544259729303188e-06,
+  "singular_value_threshold": 1.1724383317310336e-11,
+  "coefficient_norm": 1015.3883631269475,
+  "rank": 512,
+  "num_rows": 13712,
+  "num_columns": 512,
+  "num_angular": 32,
+  "oversampling_ratio": 26.78125,
+  "partitions": [
+    1,
+    1,
+    1
+  ],
+  "strides": {
+    "theta": 1.5707963267948966,
+    "x": 2.0,
+    "y": 2.0
+  },
+  "features_per_patch": 128,
+  "scale": 1.0,
+  "rcond": 1e-12,
+  "block_weights": null,
+  "collocation": [
+    16,
+    16,
+    16
+  ],
+  "feature_seconds": 0.0008744061924517155,
+  "assembly_seconds": 18.44565361412242,
+  "solve_seconds": 0.07230836804956198,
+  "evaluation_seconds": 4.1447172509506345,
+  "total_seconds": 22.66355363931507,
+  "min_rho_h": 0.3228937395818653,
+  "max_rho_h": 0.963869094714794,
+  "min_f_h": -0.09293452410468461,
+  "correlation_rho": 0.9948459825745636,
+  "negative_fraction_f": 5.1775147928994085e-05,
+  "negative_fraction_rho": 0.0,
+  "angular_representation": "four_component",
+  "residual_definition": "complete_normalized_training_residual_v2",
+  "boundary_implementation": "physical_inflow_trace_v3",
+  "source_sha256": {
+    "experiments/run_p3_oe_aprfm.py": "db8ff2a157fe82772ae6aa6fc51a0b5c669e2a1b4d995f9d230ee8604df3e1f8",
+    "src/oeaprfm/solvers/streaming_qr.py": "5a5bb3eab5040a8187d539aa1844a542709ad695bd8664976215e6b327945c4b",
+    "src/oeaprfm/constraints/oe_quadrant_2d.py": "04cb19d4151d7072e8dd79580863ac9d5a4a38373762636fa8d1a175de93df24",
+    "src/oeaprfm/features/function_space_v2.py": "571e97d5c16a37638819c2c719709368ded09b64bc56c1f24106585df830088c",
+    "src/oeaprfm/features/oe_assembly.py": "b39f6863c8d29f825ed70c6f37b30e218fa149baf9740eb611e315e693b98575"
+  }
+}

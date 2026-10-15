@@ -1,0 +1,35 @@
+{
+  "format": "oe-aprfm-v1",
+  "problem": "p3",
+  "epsilon": 0.001,
+  "seed": 37,
+  "constructor": "oeaprfm.features.reconstruct_quadrant:OEField2D",
+  "domain": {
+    "theta": [
+      0.0,
+      1.5707963267948966
+    ],
+    "x": [
+      -1.0,
+      1.0
+    ],
+    "y": [
+      -1.0,
+      1.0
+    ]
+  },
+  "strides": {
+    "theta": 1.5707963267948966,
+    "x": 2.0,
+    "y": 2.0
+  },
+  "Jn": {
+    "j": 32,
+    "r": 32,
+    "f": 32
+  },
+  "scale": 1.0,
+  "activation": "tanh",
+  "jax_version": "0.6.2",
+  "problem_definition": "p3"
+}

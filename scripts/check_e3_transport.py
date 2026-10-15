@@ -4,16 +4,18 @@ import json
 import numpy as np
 from experiments.run_e3_slab import ROOT, fs, symmetric, rf_evaluator, relative
 from oeaprfm.problems.p1_manufactured_1d import get_config
-from oeaprfm.reference.parity_reference import solve_gmres_1d
+from baselines.oe_si_dsa.solver import solve_gmres_1d
 
-out = ROOT / "results/e3_slab"
+out = ROOT / "results/runs/e3_slab"
+reference_dir = ROOT / "data/references/extensions/e3_slab"
+reference_dir.mkdir(parents=True, exist_ok=True)
 fs.uniform = symmetric
 for eps in (1.0, 0.1):
     config = get_config(eps)
     config.model.source = lambda x, v: np.zeros_like(v)
     refs = []
     for nx, nv in ((256, 64), (512, 128)):
-        path = out / f"reference_eps{eps:.0e}_{nx}_{nv}.npz"
+        path = reference_dir / f"reference_eps{eps:.0e}_{nx}_{nv}.npz"
         if path.exists():
             refs.append(dict(np.load(path)))
             continue

@@ -13,7 +13,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-OUT = ROOT / "results/e5_mixed"
+OUT = ROOT / "results/runs/e5_mixed"
 
 
 def config(epsilon=1.0):
@@ -39,7 +39,7 @@ def main():
     p.add_argument("--angles", type=int, default=8)
     a = p.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
-    refdir = OUT / "reference"
+    refdir = ROOT / "data/references/extensions/e5_mixed"
     refdir.mkdir(exist_ok=True)
     if a.method == "all":
         subprocess.run(
@@ -74,7 +74,7 @@ def main():
                         )
         return
     if a.method == "references":
-        from oeaprfm.reference.parity_reference import solve_gmres_1d
+        from baselines.oe_si_dsa.solver import solve_gmres_1d
 
         for level, grid in [("A", (256, 64)), ("B", (512, 128))]:
             path = refdir / f"p2_parity_ref_eps_1e+00_level_{level}.npz"
@@ -115,7 +115,7 @@ def main():
     else:
         os.environ.setdefault("MM_ASSEMBLY_BATCH_SIZE", "16")
         # Run the vendored micro–macro baseline in its worker process.
-        import experiments.run_mm_aprfm_1d as runner
+        import baselines.mm_oerfm.run_1d as runner
         import jax.numpy as jnp
         from scipy.linalg import lstsq
 
@@ -144,7 +144,7 @@ def main():
         # Existing MM runner uses ROOT/data/references for the p2 branch.
         # Redirect its read-only reference lookup into this experiment.
         runner.ROOT = OUT / "mm_reference_root"
-        target = runner.ROOT / "data/references"
+        target = runner.ROOT / "data/references/p2"
         target.mkdir(parents=True, exist_ok=True)
         link = target / "p2_parity_ref_eps_1e+00_level_B.npz"
         if not link.exists():

@@ -1,0 +1,61 @@
+{
+  "problem": "p4",
+  "method": "oe_aprfm",
+  "problem_definition": "p4",
+  "epsilon": 0.001,
+  "seed": 7,
+  "relative_l2_f": 0.024349519680994493,
+  "relative_l2_rho": 0.02115961242322131,
+  "residual_half": 0.002244246595393097,
+  "empirical_stability_ratio": 14.373986828714328,
+  "condition_number": 6064669.102716163,
+  "largest_singular_value": 11.435240040319385,
+  "smallest_effective_singular_value": 1.8855505299040838e-06,
+  "singular_value_threshold": 1.1435240040319386e-11,
+  "coefficient_norm": 2115.5620513823787,
+  "rank": 512,
+  "num_rows": 13712,
+  "num_columns": 512,
+  "num_angular": 32,
+  "oversampling_ratio": 26.78125,
+  "partitions": [
+    1,
+    1,
+    1
+  ],
+  "strides": {
+    "theta": 1.5707963267948966,
+    "x": 2.0,
+    "y": 2.0
+  },
+  "features_per_patch": 128,
+  "scale": 1.0,
+  "rcond": 1e-12,
+  "block_weights": null,
+  "collocation": [
+    16,
+    16,
+    16
+  ],
+  "feature_seconds": 0.0014831009320914745,
+  "assembly_seconds": 19.195600118953735,
+  "solve_seconds": 0.05729497876018286,
+  "evaluation_seconds": 3.8295535780489445,
+  "total_seconds": 23.083931776694953,
+  "min_rho_h": 0.2533605726553382,
+  "max_rho_h": 0.9613831491171393,
+  "min_f_h": 0.16764103878161732,
+  "correlation_rho": 0.9947662276784368,
+  "negative_fraction_f": 0.0,
+  "negative_fraction_rho": 0.0,
+  "angular_representation": "four_component",
+  "residual_definition": "complete_normalized_training_residual_v2",
+  "boundary_implementation": "physical_inflow_trace_v3",
+  "source_sha256": {
+    "experiments/run_p3_oe_aprfm.py": "db8ff2a157fe82772ae6aa6fc51a0b5c669e2a1b4d995f9d230ee8604df3e1f8",
+    "src/oeaprfm/solvers/streaming_qr.py": "5a5bb3eab5040a8187d539aa1844a542709ad695bd8664976215e6b327945c4b",
+    "src/oeaprfm/constraints/oe_quadrant_2d.py": "04cb19d4151d7072e8dd79580863ac9d5a4a38373762636fa8d1a175de93df24",
+    "src/oeaprfm/features/function_space_v2.py": "571e97d5c16a37638819c2c719709368ded09b64bc56c1f24106585df830088c",
+    "src/oeaprfm/features/oe_assembly.py": "b39f6863c8d29f825ed70c6f37b30e218fa149baf9740eb611e315e693b98575"
+  }
+}

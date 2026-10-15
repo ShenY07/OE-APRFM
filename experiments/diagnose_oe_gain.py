@@ -163,7 +163,7 @@ def main():
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "results/minimum_gain/p1_J16_seed11.json",
+        default=ROOT / "results/runs/minimum_gain/p1_J16_seed11.json",
     )
     args = parser.parse_args()
     analytic_checks()

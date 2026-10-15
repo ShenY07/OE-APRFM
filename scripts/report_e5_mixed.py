@@ -13,7 +13,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/e5_mixed"
+OUT = ROOT / "results/runs/e5_mixed"
 
 
 def relative(a, b, w=1):
@@ -21,8 +21,8 @@ def relative(a, b, w=1):
 
 
 def main():
-    coarse = np.load(OUT / "reference/p2_parity_ref_eps_1e+00_level_A.npz")
-    fine = np.load(OUT / "reference/p2_parity_ref_eps_1e+00_level_B.npz")
+    coarse = np.load(ROOT / "data/references/extensions/e5_mixed/p2_parity_ref_eps_1e+00_level_A.npz")
+    fine = np.load(ROOT / "data/references/extensions/e5_mixed/p2_parity_ref_eps_1e+00_level_B.npz")
     x, v, w = fine["x"], fine["velocity"], fine["weights"] / 2
     fref = fine["f"]
     rho = fref @ w

@@ -6,9 +6,9 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from src.baselines.oe_apnn.ap_eqn import build_solver
-from src.baselines.oe_apnn.config import get_config
-from src.baselines.oe_apnn.networks import build_networks
+from baselines.oe_apnn.ap_eqn import build_solver
+from baselines.oe_apnn.config import get_config
+from baselines.oe_apnn.networks import build_networks
 
 
 def load_model(directory):

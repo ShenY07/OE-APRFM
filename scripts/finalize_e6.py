@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from experiments.e6_protocol import validate
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/e6_periodic"
+OUT = ROOT / "results/runs/e6_periodic"
 
 
 def save(name, rows):
@@ -55,7 +55,7 @@ def metrics(r, d, nx, nv, reference):
     v, w = np.polynomial.legendre.leggauss(nv)
     w = w / 2
     ref = np.load(
-        OUT / f"references/eps{r['epsilon']:.0e}_dt{r['dt']:.0e}_n256.npz"
+        ROOT / f"data/references/extensions/e6_periodic/eps{r['epsilon']:.0e}_dt{r['dt']:.0e}_n256.npz"
     )
     vn, wn = np.polynomial.legendre.leggauss(256)
     wn = wn / 2
@@ -109,7 +109,7 @@ def main():
     ]
     if len(paths) != 20:
         raise RuntimeError(
-            f"Expected 20 prescribed E6 trajectories, found {len(paths)}; see training/README.md"
+            f"Expected 20 prescribed E6 trajectories, found {len(paths)}; see README.md"
         )
     records = {
         str(p.parent.relative_to(OUT)): json.loads(p.read_text())
@@ -322,7 +322,7 @@ def main():
         r = records[key]
         d = np.load(OUT / key / "fields.npz")
         x = d["x"]
-        ref = np.load(OUT / f"references/eps{eps:.0e}_dt2e-03_n256.npz")
+        ref = np.load(ROOT / f"data/references/extensions/e6_periodic/eps{eps:.0e}_dt2e-03_n256.npz")
         vn, wn = np.polynomial.legendre.leggauss(256)
         wn /= 2
         for col, t in enumerate((0.02, 0.1, 0.2)):

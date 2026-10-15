@@ -40,7 +40,7 @@ def main():
         default=[1.0, 0.1, 0.01, 0.001, 0.0001, 1e-6],
     )
     parser.add_argument(
-        "--output", type=Path, default=ROOT / "results/e3_slab"
+        "--output", type=Path, default=ROOT / "results/runs/e3_slab"
     )
     args = parser.parse_args()
     out = args.output

@@ -1,6 +1,6 @@
-"""Validate paired systems/fields and update the manuscript angular-domain table."""
+"""Validate paired angular-domain systems and write their summary table."""
 
-import json, re
+import json
 from pathlib import Path
 from statistics import median
 import numpy as np
@@ -112,24 +112,5 @@ table = "\n".join(
         r"\end{table}",
     ]
 )
-p = ROOT / "paper/tables.tex"
-if p.exists():
-    text = p.read_text()
-    pattern = r"\\begin\{table\}.*?\\end\{table\}"
-    blocks = list(re.finditer(pattern, text, re.S))
-    existing = next(
-        (b for b in blocks if r"\label{tab:angular-domain-reduction}" in b[0]),
-        None,
-    )
-    if existing:
-        text = text[: existing.start()] + table + text[existing.end() :]
-    else:
-        b = next(b for b in blocks if r"\label{tab:parity" in b[0])
-        text = text[: b.end()] + "\n\n" + table + text[b.end() :]
-    old = "The two-dimensional variable-scattering cutoff study uses physical-direction inflow traces and 58096 residual rows, as detailed in Table \\ref{tab:p5-cutoff}."
-    addition = r" Angular-domain reduction is tested separately in Table \ref{tab:angular-domain-reduction}; its controlled configurations do not replace the main-study budgets listed here."
-    if addition not in text:
-        text = text.replace(old, old + addition)
-    p.write_text(text)
 (OUT / "table.tex").write_text(table + "\n")
 print(json.dumps(dict(summary=summary, checks=checks), indent=2))

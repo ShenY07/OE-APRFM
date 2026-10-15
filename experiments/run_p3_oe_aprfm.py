@@ -49,6 +49,7 @@ def run(
     *,
     angular_representation="four_component",
     p5_constant_inflow=False,
+    p5_definition="heterogeneous",
     partitions=None,
     features=None,
     scale=1.0,
@@ -67,6 +68,9 @@ def run(
         if problem == "p5"
         else config_functions[problem](epsilon)
     )
+    if problem == "p5" and p5_definition == "square_hole":
+        from oeaprfm.problems.p5_square_hole_2d import get_config as square_hole_config
+        config = square_hole_config(epsilon)
     model = config.model
     if partitions is None:
         partitions = (2, 2, 1) if problem == "p5" else (1, 1, 1)
@@ -110,6 +114,9 @@ def run(
     sample = sample_class(
         domain, dict(model.collocation_sizes), model.sample_mode
     )
+    if problem == "p5" and p5_definition == "square_hole":
+        from oeaprfm.features.square_hole import restrict_square_hole
+        restrict_square_hole(sample)
     common = dict(
         domain=domain,
         strides=strides,
@@ -179,7 +186,7 @@ def run(
             least_squares.add(
                 block, block_rhs, row_factors=np.sqrt(weights[0])
             )
-    if problem == "p4":
+    if problem == "p4" or (problem == "p5" and p5_definition == "square_hole"):
         circle_x, circle_y, normal_angle = sample.pts_hole
         angular_offsets = jnp.linspace(-0.49 * jnp.pi, 0.49 * jnp.pi, 32)
         circle_x = jnp.repeat(circle_x, angular_offsets.size, axis=0)
@@ -258,12 +265,14 @@ def run(
             )
         ).reshape(ny, na)
     rho = numerical.mean(axis=2)
-    if problem == "p3":
+    if problem == "p3" or (problem == "p5" and p5_definition == "square_hole"):
         reference = np.exp(-x[:, None, None] - y[None, :, None]) + np.zeros(
             (1, 1, na)
         )
         reference_rho = reference.mean(axis=2)
         mask = np.ones((nx, ny), dtype=bool)
+        if problem == "p5":
+            mask = (np.abs(x[:, None]) > 1/3) | (np.abs(y[None, :]) > 1/3)
     elif problem == "p4":
         xx, yy = np.meshgrid(x, y, indexing="ij")
         reference_rho = 1 / (1 + xx**2 + yy**2)
@@ -271,9 +280,9 @@ def run(
         reference = np.broadcast_to(reference_rho[:, :, None], numerical.shape)
     elif problem == "p5":
         reference_dir = (
-            Path("data/references/p5_boundary_constant")
+            Path("data/references/extensions/p5_heterogeneous/constant_inflow")
             if p5_constant_inflow
-            else Path("data/references/p5_boundary")
+            else Path("data/references/extensions/p5_heterogeneous/variable_inflow")
         )
         candidates = [
             reference_dir
@@ -327,6 +336,7 @@ def run(
     record = {
         "problem": problem,
         "method": "oe_aprfm",
+        "problem_definition": p5_definition if problem == "p5" else problem,
         "epsilon": epsilon,
         "seed": seed,
         "relative_l2_f": error_f,
@@ -410,6 +420,8 @@ def run(
         error_rho=np.abs(rho - reference_rho),
         mask=mask,
     )
+    from oeaprfm.checkpoints import save_model
+    save_model(output_dir / f"{stem}_model", constructor, cp, record)
     return record
 
 
@@ -422,6 +434,7 @@ if __name__ == "__main__":
         default="four_component",
     )
     parser.add_argument("--p5-constant-inflow", action="store_true")
+    parser.add_argument("--p5-definition", choices=("heterogeneous", "square_hole"), default="heterogeneous")
     parser.add_argument("--epsilon", type=float, required=True)
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument(
@@ -444,6 +457,7 @@ if __name__ == "__main__":
                 args.problem,
                 angular_representation=args.angular_representation,
                 p5_constant_inflow=args.p5_constant_inflow,
+                p5_definition=args.p5_definition,
                 partitions=(
                     None if args.partitions is None else tuple(args.partitions)
                 ),

@@ -10,15 +10,18 @@ import random
 import platform
 import subprocess
 import time
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 import numpy as np
 import torch
 
-from ap_eqn import build_solver
-from config import get_config
-from data_pipeline import CollocationDataset
-from networks import build_networks, parameter_count
+from baselines.oe_apnn.ap_eqn import build_solver
+from baselines.oe_apnn.config import get_config
+from baselines.oe_apnn.data_pipeline import CollocationDataset
+from baselines.oe_apnn.networks import build_networks, parameter_count
 
 
 def _squared_losses(residuals):
@@ -47,7 +50,7 @@ def evaluate(config, nets, solver, output_dir: Path, batch_size: int = 2048):
     """Evaluate on the same independent grids/references used by the comparison."""
     problem = config.problem.name
     epsilon = float(config.rte.kn)
-    reference_dir = Path("data/references")
+    reference_dir = Path("data/references/p2")
     if problem == "p1":
         reference_path = None
     elif problem == "p2":

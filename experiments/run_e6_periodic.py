@@ -42,7 +42,7 @@ class Space:
 def run(eps, dt, seed, J, nq, batch):
     out = (
         ROOT
-        / "results/e6_periodic"
+        / "results/runs/e6_periodic"
         / batch
         / f"s{seed}_eps{eps:.0e}_dt{dt:.0e}_J{J}_q{nq}"
     )

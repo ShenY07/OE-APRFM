@@ -6,7 +6,7 @@ import numpy as np
 from scipy.linalg import expm, lu_factor, lu_solve
 from experiments.e6_protocol import validate
 
-ROOT = Path(__file__).resolve().parents[1] / "results/e6_periodic"
+ROOT = Path(__file__).resolve().parents[1] / "results/runs/e6_periodic"
 
 
 def amplitude(eps, dt, n, probe):
@@ -41,7 +41,7 @@ def rel(a, b, w):
 
 
 def main():
-    cache = ROOT / "references"
+    cache = Path(__file__).resolve().parents[1] / "data/references/extensions/e6_periodic"
     cache.mkdir(exist_ok=True)
     rows = []
     for path in sorted(ROOT.glob("*/*/result.json")):

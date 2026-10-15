@@ -1,15 +1,10 @@
-# Generated experiments and local archives
-/results/*
-!/results/README.md
-/.release-backup/
-*.npz
-*.npy
-*.pkl
-*.pt
-*.log
-/ckpts/
+# Local runs; already-versioned comparison records remain tracked.
+/results/
+# Optional local manuscript and working documentation.
+/paper/
+/docs/
 
-# Python, testing, and environment files
+# Python environments, caches and build output.
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -24,7 +19,21 @@ dist/
 .mplconfig/
 .cache/
 
-# Machine-specific and private configuration
+# Generated binary files; only curated data and models are versioned.
+*.npz
+*.npy
+*.pt
+*.pkl
+*.log
+*.tmp
+*.lock
+/ckpts/
+!data/references/**/*.npz
+!models/oe_apnn/**/*.pt
+!models/oe_apnn/**/history.npz
+!models/oe_aprfm/**/*.npz
+
+# Private and machine-specific settings.
 .env
 .env.*
 .vscode/
@@ -33,32 +42,3 @@ dist/
 .codex/
 .aws/
 .DS_Store
-
-# Optional local manuscript assets are not part of the repository.
-/paper/
-
-# Curated research assets
-/docs/
-/legacy/*.zip
-!data/references/*.npz
-!models/oe_apnn/**/*.pt
-!models/oe_apnn/**/history.npz
-!/results/comparisons/
-/results/comparisons/**
-!/results/comparisons/**/
-!/results/comparisons/**/*.md
-!/results/comparisons/**/*.csv
-!/results/comparisons/**/*.json
-!/results/comparisons/**/*.tex
-!/results/comparisons/oe_aprfm/fields/*.npz
-!/results/comparisons/figures/*.png
-
-!/results/runs/
-/results/runs/*
-!/results/runs/README.md
-!/results/checks/
-/results/checks/*
-!/results/checks/README.md
-!/results/figures/
-/results/figures/*
-!/results/figures/README.md

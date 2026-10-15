@@ -288,6 +288,8 @@ def run(
         exact=exact,
         exact_rho=exact_rho,
     )
+    from oeaprfm.checkpoints import save_model
+    save_model(output_dir / f"{stem}_model", constructor, constructor_params, record)
     return record
 
 

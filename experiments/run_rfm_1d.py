@@ -11,17 +11,17 @@ sys.path.insert(0, str(ROOT / "src"))
 from oeaprfm.problems.p1_manufactured_1d import get_config as p1_config
 from oeaprfm.problems.p2_heterogeneous_1d import get_config as p2_config
 
-sys.path.insert(0, str(ROOT / "src/baselines/mm_oerfm/original/src"))
+sys.path.insert(0, str(ROOT / "src/baselines/mm_oerfm"))
 import jax, jax.numpy as jnp, numpy as np
 from jax import jit, random, vmap
 from scipy.linalg import lstsq
-from constraints.continuous1d import (
+from baselines.mm_oerfm.constraints.continuous1d import (
     PointwiseBoundaryConstraint1D as RTEBoundary1D,
     PointwiseInteriorConstraint1D as RTEInterior1D,
 )
-from modules.generator import Sample1D
-from modules.solution import Constructor1D as RTEField1D
-import modules.func_space as original_function_space
+from baselines.mm_oerfm.modules.generator import Sample1D
+from baselines.mm_oerfm.modules.solution import Constructor1D as RTEField1D
+import baselines.mm_oerfm.modules.func_space as original_function_space
 
 jax.config.update("jax_enable_x64", True)
 
@@ -87,7 +87,7 @@ def run(problem, epsilon, seed, output_dir, partitions, features, rcond):
     else:
         with np.load(
             ROOT
-            / f"data/references/p2_parity_ref_eps_{epsilon:.0e}_level_B.npz"
+            / f"data/references/p2/p2_parity_ref_eps_{epsilon:.0e}_level_B.npz"
         ) as d:
             x, velocity, ref, weights = (
                 d["x"],

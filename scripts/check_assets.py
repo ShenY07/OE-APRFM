@@ -11,6 +11,8 @@ def main():
     records = json.loads((ROOT / "data/manifest.json").read_text())
     for record in records:
         path = ROOT / record["path"]
+        if path.stat().st_size != record["bytes"]:
+            raise ValueError(f"Asset size differs: {path}")
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         if digest != record["sha256"]:
             raise ValueError(f"Asset differs from recorded source: {path}")

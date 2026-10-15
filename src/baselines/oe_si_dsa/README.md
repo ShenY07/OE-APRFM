@@ -1,14 +1,5 @@
-# Deterministic odd-even transport comparison
+# Deterministic odd-even transport baseline
 
-The implementations are in `src/oeaprfm/reference/parity_reference.py`; the executable
-entry is `experiments/run_oe_si_dsa.py`. Use `--help` to select the problem, grid,
-iteration tolerance, iteration limit and 1D solver (automatic, DSA or Krylov).
+`solver.py` contains the 1D SI-DSA and 1D/2D Krylov implementations. `run.py` provides the P1–P5 executable interface.
 
-```bash
-python experiments/run_oe_si_dsa.py --problem p1 --epsilon 0.001
-```
-
-Results are written to `results/runs/oe_si_dsa/`. Inspect the saved solver
-and convergence diagnostics rather than inferring the algorithm from the
-directory name. Grid refinement and matched tolerances are required for a
-meaningful comparison with random-feature methods.
+Run `PYTHONPATH=src:. python3 -m baselines.oe_si_dsa.run --help`. The same solvers generate the numerical reference datasets.

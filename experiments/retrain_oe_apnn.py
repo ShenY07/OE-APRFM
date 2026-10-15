@@ -103,7 +103,7 @@ def main():
     # CPU reference generation is separate from the GPU neural-network training.
     for eps in (1.0, 0.001):
         reference = (
-            ROOT / f"data/references/p2_parity_ref_eps_{eps:.0e}_level_B"
+            ROOT / f"data/references/p2/p2_parity_ref_eps_{eps:.0e}_level_B"
         )
         if not reference.with_suffix(".npz").exists():
             raise RuntimeError(f"Missing P2 reference: {reference}.npz")
@@ -115,14 +115,6 @@ def main():
         target = out / "source" / p.relative_to(ROOT)
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(p, target)
-    for name, current in (
-        ("table.md", "tables.tex"),
-        ("figure.md", "figures.tex"),
-    ):
-        target = out / "original" / name
-        if not target.exists() and (ROOT / "paper" / current).exists():
-            target.parent.mkdir(exist_ok=True)
-            shutil.copy2(ROOT / "paper" / current, target)
     env = dict(
         os.environ,
         OMP_NUM_THREADS="1",

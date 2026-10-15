@@ -1,4 +1,4 @@
-"""Serial, fresh-process reruns for the P3/P4 entries in paper/tables.tex."""
+"""Run the matched P3/P4 feature and parity-representation comparisons."""
 
 import hashlib
 import json

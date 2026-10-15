@@ -10,7 +10,7 @@ import numpy as np
 
 from oeaprfm.problems.p2_heterogeneous_1d import get_config as p2_config
 from oeaprfm.problems.p5_heterogeneous_2d import get_config as p5_config
-from oeaprfm.reference.parity_reference import (
+from baselines.oe_si_dsa.solver import (
     solve_gmres_2d,
     solve_si_dsa_1d,
 )
@@ -49,12 +49,12 @@ def main() -> None:
         )
     if args.problem == "p5":
         default_dir = (
-            "data/references/p5_boundary_constant"
+            "data/references/extensions/p5_heterogeneous/constant_inflow"
             if args.p5_constant_inflow
-            else "data/references/p5_boundary"
+            else "data/references/extensions/p5_heterogeneous/variable_inflow"
         )
     else:
-        default_dir = "data/references"
+        default_dir = "data/references/p2"
     output_dir = args.output_dir or Path(default_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     stem = (

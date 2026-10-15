@@ -1,19 +1,15 @@
 """Contract tests for the locked OE-APNN baseline."""
 
-import sys
 from pathlib import Path
 
 import numpy as np
 import pytest
 import torch
 
-BASELINE = Path(__file__).resolve().parents[1] / "src/baselines/oe_apnn"
-sys.path.insert(0, str(BASELINE))
-
-from ap_eqn import build_solver  # noqa: E402
-from config import get_config  # noqa: E402
-from data_pipeline import CollocationDataset  # noqa: E402
-from networks import build_networks, parameter_count  # noqa: E402
+from baselines.oe_apnn.ap_eqn import build_solver  # noqa: E402
+from baselines.oe_apnn.config import get_config  # noqa: E402
+from baselines.oe_apnn.data_pipeline import CollocationDataset  # noqa: E402
+from baselines.oe_apnn.networks import build_networks, parameter_count  # noqa: E402
 
 
 def test_saved_model(monkeypatch):

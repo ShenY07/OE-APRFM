@@ -227,6 +227,8 @@ def run(
         reference_rho=reference_rho,
         error_rho=np.abs(numerical_rho - reference_rho),
     )
+    from oeaprfm.checkpoints import save_model
+    save_model(output_dir / f"{stem}_model", constructor, cp, record)
     return record
 
 
@@ -238,7 +240,7 @@ def main():
         "--output-dir", type=Path, default=Path("results/runs/oe_aprfm")
     )
     parser.add_argument(
-        "--reference-dir", type=Path, default=Path("data/references")
+        "--reference-dir", type=Path, default=Path("data/references/p2")
     )
     parser.add_argument("--partitions", type=int, nargs=2, default=(2, 2))
     parser.add_argument("--features", type=int, default=64)

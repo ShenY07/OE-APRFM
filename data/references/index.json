@@ -1,0 +1,37 @@
+{
+  "p1": {
+    "kind": "exact",
+    "path": "p1/exact.npz",
+    "definition": "1-x"
+  },
+  "p2": {
+    "kind": "numerical",
+    "directory": "p2",
+    "default_quadrature": "Gauss-Legendre",
+    "epsilon": [
+      1.0,
+      0.001
+    ]
+  },
+  "p3": {
+    "kind": "exact",
+    "path": "p3/exact.npz",
+    "definition": "exp(-x-y), square"
+  },
+  "p4": {
+    "kind": "exact",
+    "path": "p4/exact.npz",
+    "definition": "1/(1+x^2+y^2), circular hole radius 0.5"
+  },
+  "p5": {
+    "kind": "exact",
+    "path": "p5/exact.npz",
+    "definition": "exp(-x-y), square hole [-1/3,1/3]^2"
+  },
+  "extensions": {
+    "e5_mixed": "extensions/e5_mixed",
+    "e6_periodic": "extensions/e6_periodic",
+    "p5_heterogeneous": "extensions/p5_heterogeneous",
+    "e3_slab": "extensions/e3_slab"
+  }
+}

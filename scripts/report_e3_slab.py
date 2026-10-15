@@ -13,7 +13,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results/e3_slab"
+OUT = ROOT / "results/runs/e3_slab"
 rows = [json.loads(p.read_text()) for p in sorted(OUT.glob("seed*.json"))]
 assert len(rows) == 18
 summary = []

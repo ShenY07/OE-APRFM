@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""Refresh tables and figures from complete three-seed hard-parity runs only."""
+"""Summarize and plot complete three-seed hard-parity training groups."""
 
 from __future__ import annotations
 import argparse
 import csv
 import json
-import os
 from pathlib import Path
-from scripts.paper_paths import paper_file
-import re
 
 import matplotlib
 
@@ -22,94 +19,10 @@ ROOT = Path(__file__).resolve().parents[1]
 def save(fig, path):
     fig.tight_layout()
     for ext in ("pdf", "png"):
-        target = paper_file(path.with_suffix("." + ext))
+        target = path.with_suffix("." + ext)
         target.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(target, dpi=180, bbox_inches="tight")
     plt.close(fig)
-
-
-def latex(value):
-    mantissa, exponent = f"{value:.3e}".split("e")
-    return rf"${mantissa}\times10^{{{int(exponent)}}}$"
-
-
-def update_manuscript(out, summaries):
-    original = out / "original/table.md"
-    if not original.exists() or not (ROOT / "paper/tables.tex").exists():
-        return
-    # Other concurrent work may refresh non-APNN rows in this manuscript.
-    # Always patch the current file; the original is a recovery snapshot only.
-    text = (ROOT / "paper/tables.tex").read_text()
-    by_key = {
-        (s["suite"], s["problem"], s["epsilon"], s["steps"]): s
-        for s in summaries
-    }
-    for problem, label in (
-        ("p1", "tab:supp-efficiency"),
-        ("p3", "tab:supp-efficiency-2d"),
-    ):
-        pattern = r"\\begin\{table\}.*?\\end\{table\}"
-
-        def replace(match):
-            block = match.group()
-            if "\\label{" + label + "}" not in block:
-                return block
-            for steps in (500, 2000, 5000):
-                row_pattern = rf"^(?:OE-APNN)?\s*& {steps} steps & .*?$"
-                s = by_key.get(("cost", problem, 0.001, steps))
-                prefix = "OE-APNN" if steps == 500 else " "
-                n = 25474 if problem == "p1" else 25730
-                values = (
-                    f"{latex(s['E_f_median'])} & {latex(s['E_rho_median'])} & {s['train_time_s_median']:.2f}"
-                    if s
-                    else r"\text{pending} & \text{pending} & \text{pending}"
-                )
-                new = (
-                    f"{prefix} & {steps} steps & {n} & 5120 & {values}" + r"\\"
-                )
-                block = re.sub(row_pattern, lambda _: new, block, flags=re.M)
-            note = (
-                r" Hard-parity OE-APNN uses seeds 7, 11, 17, 4096 interior and 1024 boundary phase samples per step "
-                r"($N_{\rm phase}=5120$, replacing the previous 640-sample budget); $N_{\rm res}$ in its rows denotes this phase-sample budget, not scalar equation count. "
-                r"Times are concurrent CUDA training wall times on A800 GPUs with three seeds per GPU; other-method times are historical and do not establish a same-hardware speedup."
-            )
-            if "Hard-parity OE-APNN uses seeds" in block:
-                return block
-            pos = block.index(r"\label")
-            end = block.rfind("}", 0, pos)
-            return block[:end] + note + block[end:]
-
-        text = re.sub(pattern, replace, text, flags=re.S)
-    # Two summary rows reuse the 5000-step cost runs.
-    pattern = r"\\begin\{table\}.*?\\end\{table\}"
-
-    def summary_block(match):
-        block = match.group()
-        if r"\label{tab:efficiency-summary}" not in block:
-            return block
-        for problem, count in (("p1", 25474), ("p3", 25730)):
-            s = by_key.get(("cost", problem, 0.001, 5000))
-            values = (
-                f"{latex(s['E_f_median'])} & {latex(s['E_rho_median'])} & {s['train_time_s_median']:.2f}"
-                if s
-                else r"\text{pending} & \text{pending} & \text{pending}"
-            )
-            pat = rf"(   & OE-APNN & {count}\s*\n)   & .*?\\\\"
-            block = re.sub(
-                pat, lambda m: m[1] + "   & " + values + r"\\", block
-            )
-        pos = block.index(r"\label")
-        end = block.rfind("}", 0, pos)
-        note = r" OE-APNN uses the new hard-parity 5000-step, 5120-phase-sample CUDA protocol (seeds 7, 11, 17); concurrent GPU times are not directly comparable to historical timings of other methods."
-        if "OE-APNN uses the new hard-parity" in block:
-            return block
-        return block[:end] + note + block[end:]
-
-    text = re.sub(pattern, summary_block, text, flags=re.S)
-    target = ROOT / "paper/tables.tex"
-    tmp = target.with_suffix(".tmp")
-    tmp.write_text(text)
-    tmp.replace(target)
 
 
 def main():
@@ -304,42 +217,6 @@ def main():
                     ncol=2,
                 )
                 save(fig, figures / (problem + "_cost_accuracy"))
-    update_manuscript(out, summaries)
-    original_figure = out / "original/figure.md"
-    if original_figure.exists() and (ROOT / "paper/figures.tex").exists():
-        additions = []
-        for problem in ("p1", "p3"):
-            path = paper_file(figures / (problem + "_cost_accuracy.pdf"))
-            if path.exists():
-                rel = Path(os.path.relpath(path, ROOT / "paper")).as_posix()
-                additions.append(
-                    r"\begin{figure}[!htbp]"
-                    + "\n"
-                    + r"\centering"
-                    + "\n"
-                    + r"\includegraphics[width=0.8\linewidth]{"
-                    + rel
-                    + "}\n"
-                    + r"\caption{Hard-parity OE-APNN "
-                    + problem.upper()
-                    + r" retraining at $\varepsilon=10^{-3}$ with 4096 interior and 1024 boundary phase samples. Medians and minimum--maximum bands use seeds 7, 11, 17. Only completed three-seed budgets are shown. Kinetic and density errors are plotted on a shared axis.}"
-                    + "\n"
-                    + r"\label{fig:apnn-hard-parity-"
-                    + problem
-                    + "}\n"
-                    + r"\end{figure}"
-                )
-        target = ROOT / "paper/figures.tex"
-        current = target.read_text()
-        current = re.sub(
-            r"\\begin\{figure\}.*?\\end\{figure\}",
-            lambda m: "" if r"\label{fig:apnn-hard-parity-" in m[0] else m[0],
-            current,
-            flags=re.S,
-        )
-        target.write_text(
-            current.rstrip() + "\n\n" + "\n\n".join(additions) + "\n"
-        )
     print(
         f"Refreshed {len(seedwise)}/48 runs, {len(summaries)}/16 complete groups",
         flush=True,
